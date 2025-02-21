@@ -25,7 +25,9 @@
         </a>
       </div>
       <div class="flex lg:hidden">
-        <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+        <!-- Mobile menu button -->
+        <button type="button"
+          class="lg:hidden -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
           <span class="sr-only">Open main menu</span>
           <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
             aria-hidden="true" data-slot="icon">
@@ -162,7 +164,7 @@
       </div>
     </nav>
     <!-- Mobile menu, show/hide based on menu open state. -->
-    <div class="lg:hidden" role="dialog" aria-modal="true">
+    <div class="hidden" id="mobile-menu" role="dialog" aria-modal="true">
       <!-- Background backdrop, show/hide based on slide-over state. -->
       <div class="fixed inset-0 z-10"></div>
       <div
@@ -188,13 +190,8 @@
                   class="flex w-full items-center justify-between rounded-lg py-2 pr-3.5 pl-3 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                   aria-controls="disclosure-1" aria-expanded="false">
                   Product
-                  <!--
-                  Expand/collapse icon, toggle classes based on menu open state.
-
-                  Open: "rotate-180", Closed: ""
-                -->
-                  <svg class="size-5 flex-none" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
-                    data-slot="icon">
+                  <svg class="size-5 flex-none transition-transform duration-150" viewBox="0 0 20 20"
+                    fill="currentColor" aria-hidden="true" data-slot="icon">
                     <path fill-rule="evenodd"
                       d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
                       clip-rule="evenodd" />
@@ -653,6 +650,50 @@
         hideDropdown();
       }
     });
+    // Mobile menu functionality
+    const mobileMenuButton = document.querySelector('button[aria-controls="disclosure-1"]');
+    const mobileProductMenu = document.getElementById('disclosure-1');
+    let isOpen = false;
+
+    mobileMenuButton.addEventListener('click', () => {
+      isOpen = !isOpen;
+      mobileMenuButton.setAttribute('aria-expanded', isOpen);
+
+      if (isOpen) {
+        mobileProductMenu.classList.remove('hidden');
+        // Rotate arrow icon
+        mobileMenuButton.querySelector('svg').classList.add('rotate-180');
+      } else {
+        mobileProductMenu.classList.add('hidden');
+        // Reset arrow icon
+        mobileMenuButton.querySelector('svg').classList.remove('rotate-180');
+      }
+    });
+
+    // Initially hide the mobile product menu
+    mobileProductMenu.classList.add('hidden');
+
+    // Mobile menu elements
+    const mobileMenuOpenButton = document.querySelector('button.lg\\:hidden');
+    const mobileMenuCloseButton = document.querySelector('button.rounded-md.text-gray-700');
+    const mobileMenu = document.querySelector('[role="dialog"].hidden');
+    const backdrop = document.querySelector('.fixed.inset-0.z-10');
+
+    // Mobile menu functions
+    const openMobileMenu = () => {
+      mobileMenu.classList.remove('hidden');
+      document.body.style.overflow = 'hidden'; // Prevent scrolling
+    };
+
+    const closeMobileMenu = () => {
+      mobileMenu.classList.add('hidden');
+      document.body.style.overflow = ''; // Restore scrolling
+    };
+
+    // Add event listeners for mobile menu
+    mobileMenuOpenButton.addEventListener('click', openMobileMenu);
+    mobileMenuCloseButton.addEventListener('click', closeMobileMenu);
+  </script>
   </script>
 </body>
 
