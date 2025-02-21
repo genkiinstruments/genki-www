@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+  <title></title>
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <header class="bg-white">
+    <nav class="mx-auto flex h-16 items-center max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+      <div class="flex lg:flex-1">
+        <a href="#" class="-m-1.5 p-1.5">
+          <span class="sr-only">Your Company</span>
+          <img class="h-8 w-auto" src="logo.svg" alt="">
+        </a>
+      </div>
+      <div class="flex lg:hidden">
+        <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+          <span class="sr-only">Open main menu</span>
+          <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            aria-hidden="true" data-slot="icon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+      </div>
+      <div class="hidden lg:flex lg:gap-x-12">
+        <div class="relative">
+          <button type="button" class="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900"
+            aria-expanded="false">
+            Products
+            <svg class="size-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
+              data-slot="icon">
+              <path fill-rule="evenodd"
+                d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+                clip-rule="evenodd" />
+            </svg>
+          </button>
+
+          <!--
+          'Product' flyout menu, show/hide based on flyout menu state.
+
+          Entering: "transition ease-out duration-200"
+            From: "opacity-0 translate-y-1"
+            To: "opacity-100 translate-y-0"
+          Leaving: "transition ease-in duration-150"
+            From: "opacity-100 translate-y-0"
+            To: "opacity-0 translate-y-1"
+        -->
+          <div
+            class="absolute top-full -left-8 z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white ring-1 shadow-lg ring-gray-900/5 hidden opacity-0 translate-y-1">
+            <div class="p-4">
+              <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50">
+                <div
+                  class="flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                  <svg class="size-6 text-gray-600 group-hover:text-[#FF5F49]" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" />
+                  </svg>
+                </div>
+                <div class="flex-auto">
+                  <a href="#" class="block font-semibold text-gray-900">
+                    Wave
+                    <span class="absolute inset-0"></span>
+                  </a>
+                  <p class="mt-1 text-gray-600">Shape sound with your hands</p>
+                </div>
+              </div>
+              <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50">
+                <div
+                  class="flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                  <svg class="size-6 text-gray-600 group-hover:text-[#FF5F49]" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M15.042 21.672 13.684 16.6m0 0-2.51 2.225.569-9.47 5.227 7.917-3.286-.672ZM12 2.25V4.5m5.834.166-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243-1.59-1.59" />
+                  </svg>
+                </div>
+                <div class="flex-auto">
+                  <a href="#" class="block font-semibold text-gray-900">
+                    Wavefront
+                    <span class="absolute inset-0"></span>
+                  </a>
+                  <p class="mt-1 text-gray-600">Add movement to your Eurorack</p>
+                </div>
+              </div>
+              <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50">
+                <div
+                  class="flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                  <svg class="size-6 text-gray-600 group-hover:text-[#FF5F49]" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M7.864 4.243A7.5 7.5 0 0 1 19.5 10.5c0 2.92-.556 5.709-1.568 8.268M5.742 6.364A7.465 7.465 0 0 0 4.5 10.5a7.464 7.464 0 0 1-1.15 3.993m1.989 3.559A11.209 11.209 0 0 0 8.25 10.5a3.75 3.75 0 1 1 7.5 0c0 .527-.021 1.049-.064 1.565M12 10.5a14.94 14.94 0 0 1-3.6 9.75m6.633-4.596a18.666 18.666 0 0 1-2.485 5.33" />
+                  </svg>
+                </div>
+                <div class="flex-auto">
+                  <a href="#" class="block font-semibold text-gray-900">
+                    Cosmos
+                    <span class="absolute inset-0"></span>
+                  </a>
+                  <p class="mt-1 text-gray-600">Cosmic journey across the soundiverse</p>
+                </div>
+              </div>
+              <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50">
+                <div
+                  class="flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                  <svg class="size-6 text-gray-600 group-hover:text-[#FF5F49]" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 0 0 2.25-2.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v2.25A2.25 2.25 0 0 0 6 10.5Zm0 9.75h2.25A2.25 2.25 0 0 0 10.5 18v-2.25a2.25 2.25 0 0 0-2.25-2.25H6a2.25 2.25 0 0 0-2.25 2.25V18A2.25 2.25 0 0 0 6 20.25Zm9.75-9.75H18a2.25 2.25 0 0 0 2.25-2.25V6A2.25 2.25 0 0 0 18 3.75h-2.25A2.25 2.25 0 0 0 13.5 6v2.25a2.25 2.25 0 0 0 2.25 2.25Z" />
+                  </svg>
+                </div>
+                <div class="flex-auto">
+                  <a href="#" class="block font-semibold text-gray-900">
+                    Katla
+                    <span class="absolute inset-0"></span>
+                  </a>
+                  <p class="mt-1 text-gray-600">5-voice analogue happy-accident machine</p>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
+              <a href="#"
+                class="flex items-center justify-center gap-x-2.5 p-3 text-sm/6 font-semibold text-gray-900 hover:bg-gray-100">
+                <svg class="size-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
+                  data-slot="icon">
+                  <path fill-rule="evenodd"
+                    d="M2 10a8 8 0 1 1 16 0 8 8 0 0 1-16 0Zm6.39-2.908a.75.75 0 0 1 .766.027l3.5 2.25a.75.75 0 0 1 0 1.262l-3.5 2.25A.75.75 0 0 1 8 12.25v-4.5a.75.75 0 0 1 .39-.658Z"
+                    clip-rule="evenodd" />
+                </svg>
+                Watch demo
+              </a>
+              <a href="#"
+                class="flex items-center justify-center gap-x-2.5 p-3 text-sm/6 font-semibold text-gray-900 hover:bg-gray-100">
+                <svg class="size-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
+                  data-slot="icon">
+                  <path fill-rule="evenodd"
+                    d="M2 3.5A1.5 1.5 0 0 1 3.5 2h1.148a1.5 1.5 0 0 1 1.465 1.175l.716 3.223a1.5 1.5 0 0 1-1.052 1.767l-.933.267c-.41.117-.643.555-.48.95a11.542 11.542 0 0 0 6.254 6.254c.395.163.833-.07.95-.48l.267-.933a1.5 1.5 0 0 1 1.767-1.052l3.223.716A1.5 1.5 0 0 1 18 15.352V16.5a1.5 1.5 0 0 1-1.5 1.5H15c-1.149 0-2.263-.15-3.326-.43A13.022 13.022 0 0 1 2.43 8.326 13.019 13.019 0 0 1 2 5V3.5Z"
+                    clip-rule="evenodd" />
+                </svg>
+                Contact sales
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <a href="#" class="text-sm/6 font-semibold text-gray-900">Documentation</a>
+        <a href="#" class="text-sm/6 font-semibold text-gray-900">Music</a>
+        <a href="#" class="text-sm/6 font-semibold text-gray-900">Company</a>
+      </div>
+      <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+        <a href="#" class="text-sm/6 font-semibold text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </nav>
+    <!-- Mobile menu, show/hide based on menu open state. -->
+    <div class="lg:hidden" role="dialog" aria-modal="true">
+      <!-- Background backdrop, show/hide based on slide-over state. -->
+      <div class="fixed inset-0 z-10"></div>
+      <div
+        class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+        <div class="flex items-center justify-between">
+          <a href="#" class="-m-1.5 p-1.5">
+            <span class="sr-only">Your Company</span>
+            <img class="h-8 w-auto" src="https://tailwindui.com/plus-assets/img/logos/mark.svg" alt="">
+          </a>
+          <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700">
+            <span class="sr-only">Close menu</span>
+            <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+              aria-hidden="true" data-slot="icon">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div class="mt-6 flow-root">
+          <div class="-my-6 divide-y divide-gray-500/10">
+            <div class="space-y-2 py-6">
+              <div class="-mx-3">
+                <button type="button"
+                  class="flex w-full items-center justify-between rounded-lg py-2 pr-3.5 pl-3 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                  aria-controls="disclosure-1" aria-expanded="false">
+                  Product
+                  <!--
+                  Expand/collapse icon, toggle classes based on menu open state.
+
+                  Open: "rotate-180", Closed: ""
+                -->
+                  <svg class="size-5 flex-none" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
+                    data-slot="icon">
+                    <path fill-rule="evenodd"
+                      d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </button>
+                <!-- 'Product' sub-menu, show/hide based on menu state. -->
+                <div class="mt-2 space-y-2 " id="disclosure-1">
+                  <a href="#"
+                    class="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50">Wave</a>
+                  <a href="#"
+                    class="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50">Wavefront</a>
+                  <a href="#"
+                    class="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50">Cosmos</a>
+                  <a href="#"
+                    class="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50">Katla</a>
+                  <a href="#"
+                    class="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50">Watch
+                    demo</a>
+                  <a href="#"
+                    class="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50">Contact
+                    sales</a>
+                </div>
+              </div>
+              <a href="#"
+                class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Features</a>
+              <a href="#"
+                class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Marketplace</a>
+              <a href="#"
+                class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Company</a>
+            </div>
+            <div class="py-6">
+              <a href="#"
+                class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Log
+                in</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <div class="bg-white">
+    <div class="pt-6">
+      <nav aria-label="Breadcrumb" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <ol role="list" class="flex items-center space-x-4">
+          <li>
+            <div class="flex items-center">
+              <a href="#" class="mr-4 text-sm font-medium text-gray-900">Products</a>
+              <svg viewBox="0 0 6 20" aria-hidden="true" class="h-5 w-auto text-gray-300">
+                <path d="M4.878 4.34H3.551L.27 16.532h1.327l3.281-12.19z" fill="currentColor" />
+              </svg>
+            </div>
+          </li>
+
+          <li class="text-sm">
+            <a href="#" aria-current="page" class="font-medium text-gray-500 hover:text-gray-600">Wave Ring</a>
+          </li>
+        </ol>
+      </nav>
+      <div class="mx-auto mt-8 max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+        <div class="lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8">
+          <div class="lg:col-span-5 lg:col-start-8">
+            <div class="flex justify-between">
+              <h1 class="text-xl font-medium text-gray-900">Wave Ring</h1>
+              <p class="text-xl font-medium text-gray-900">$349</p>
+            </div>
+            <!-- Reviews -->
+            <div class="mt-4">
+              <h2 class="sr-only">Reviews</h2>
+              <div class="flex items-center">
+                <p class="text-sm text-gray-700">
+                  4.9
+                  <span class="sr-only"> out of 5 stars</span>
+                </p>
+                <div class="ml-1 flex items-center">
+                  <!-- Active: "text-yellow-400", Inactive: "text-gray-200" -->
+                  <svg class="size-5 shrink-0 text-yellow-400" viewBox="0 0 20 20" fill="currentColor"
+                    aria-hidden="true" data-slot="icon">
+                    <path fill-rule="evenodd"
+                      d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
+                      clip-rule="evenodd" />
+                  </svg>
+                  <svg class="size-5 shrink-0 text-yellow-400" viewBox="0 0 20 20" fill="currentColor"
+                    aria-hidden="true" data-slot="icon">
+                    <path fill-rule="evenodd"
+                      d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
+                      clip-rule="evenodd" />
+                  </svg>
+                  <svg class="size-5 shrink-0 text-yellow-400" viewBox="0 0 20 20" fill="currentColor"
+                    aria-hidden="true" data-slot="icon">
+                    <path fill-rule="evenodd"
+                      d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
+                      clip-rule="evenodd" />
+                  </svg>
+                  <svg class="size-5 shrink-0 text-yellow-400" viewBox="0 0 20 20" fill="currentColor"
+                    aria-hidden="true" data-slot="icon">
+                    <path fill-rule="evenodd"
+                      d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
+                      clip-rule="evenodd" />
+                  </svg>
+                  <svg class="size-5 shrink-0 text-yellow-400" viewBox="0 0 20 20" fill="currentColor"
+                    aria-hidden="true" data-slot="icon">
+                    <path fill-rule="evenodd"
+                      d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <div aria-hidden="true" class="ml-4 text-sm text-gray-300">·</div>
+                <div class="ml-4 flex">
+                  <a href="#" class="text-sm font-medium text-[#FF5F49] hover:text-[#FF5F49]/80">See all 512 reviews</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Image gallery -->
+          <div class="mt-8 lg:col-span-7 lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:mt-0">
+            <h2 class="sr-only">Images</h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-3 lg:gap-8">
+              <img src="wave.webp" alt="Back of women&#039;s Basic Tee in black."
+                class="rounded-lg lg:col-span-2 lg:row-span-2 w-full h-full object-cover">
+              <img src="./box.png" alt="Side profile of women&#039;s Basic Tee in black."
+                class="hidden rounded-lg lg:block w-full h-full object-cover">
+              <img src="./korg.png" alt="Front of women&#039;s Basic Tee in black."
+                class="hidden rounded-lg lg:block w-full h-full object-cover">
+            </div>
+          </div>
+
+          <div class="mt-8 lg:col-span-5">
+            <form>
+              <!-- Color picker -->
+              <div>
+                <h2 class="text-sm font-medium text-gray-900">Color</h2>
+
+                <fieldset aria-label="Choose a color" class="mt-2">
+                  <div class="flex items-center gap-x-3">
+                    <!-- Active and Checked: "ring-3 ring-offset-1" -->
+                    <label aria-label="Black"
+                      class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 ring-gray-900 focus:outline-hidden">
+                      <input type="radio" name="color-choice" value="Black" class="sr-only">
+                      <span aria-hidden="true" class="size-8 rounded-full border border-black/10 bg-gray-900"></span>
+                    </label>
+                    <!-- Active and Checked: "ring-3 ring-offset-1" -->
+                    <label aria-label="Heather Grey"
+                      class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 ring-gray-400 focus:outline-hidden">
+                      <input type="radio" name="color-choice" value="Heather Grey" class="sr-only">
+                      <span aria-hidden="true" class="size-8 rounded-full border border-black/10 bg-gray-400"></span>
+                    </label>
+                  </div>
+                </fieldset>
+              </div>
+              <!-- Size picker -->
+              <div class="mt-8">
+                <div class="flex items-center justify-between">
+                  <h2 class="text-sm font-medium text-gray-900">Quantitiy</h2>
+                  <a href="#" class="text-sm font-medium text-[#FF5F49] hover:text-[#FF5F49]/80">See sizing chart</a>
+                </div>
+
+                <fieldset aria-label="Choose a size" class="mt-2">
+                  <div class="grid grid-cols-3 gap-3 sm:grid-cols-6">
+                    <!--
+                    In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
+                    Active: "ring-2 ring-[#FF5F49]/80 ring-offset-2"
+                    Checked: "border-transparent bg-[#FF5F49] text-white hover:bg-[#FF5F49]/80", Not Checked: "border-gray-200 bg-white text-gray-900 hover:bg-gray-50"
+                  -->
+                    <label
+                      class="flex cursor-pointer items-center justify-center rounded-md border px-3 py-3 text-sm font-medium uppercase focus:outline-hidden sm:flex-1">
+                      <input type="radio" name="size-choice" value="1" class="sr-only">
+                      <span>1</span>
+                    </label>
+                    <!--
+                    In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
+                    Active: "ring-2 ring-[#FF5F49]/80 ring-offset-2"
+                    Checked: "border-transparent bg-[#FF5F49] text-white hover:bg-[#FF5F49]/80", Not Checked: "border-gray-200 bg-white text-gray-900 hover:bg-gray-50"
+                  -->
+                    <label
+                      class="flex cursor-pointer items-center justify-center rounded-md border px-3 py-3 text-sm font-medium uppercase focus:outline-hidden sm:flex-1">
+                      <input type="radio" name="size-choice" value="2" class="sr-only">
+                      <span>2</span>
+                    </label>
+                    <!--
+                    In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
+                    Active: "ring-2 ring-[#FF5F49]/80 ring-offset-2"
+                    Checked: "border-transparent bg-[#FF5F49] text-white hover:bg-[#FF5F49]/80", Not Checked: "border-gray-200 bg-white text-gray-900 hover:bg-gray-50"
+                  -->
+                    <label
+                      class="flex cursor-pointer items-center justify-center rounded-md border px-3 py-3 text-sm font-medium uppercase focus:outline-hidden sm:flex-1">
+                      <input type="radio" name="size-choice" value="3" class="sr-only">
+                      <span>3</span>
+                    </label>
+                  </div>
+                </fieldset>
+              </div>
+
+              <a href="#" class="text-sm font-medium text-[#FF5F49] hover:text-[#FF5F49]/80">
+                <button type="submit"
+                  class="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-[#FF5F49] px-8 py-3 text-base font-medium text-white hover:bg-[#FF5F49]/80 focus:ring-2 focus:ring-[#FF5F49]/80 focus:ring-offset-2 focus:outline-hidden">Add
+                  to cart</button></a>
+            </form>
+
+            <!-- Product details -->
+            <div class="mt-10">
+              <h2 class="text-sm font-medium text-gray-900">Description</h2>
+
+              <div class="mt-4 space-y-4 text-sm/6 text-gray-500">
+                <p>The Wave Ring is an extension of your creativity. This MIDI controller can add dynamic effects with
+                  the tap of a finger, the click of a button, the wave of your hand.</p>
+                <p>Included with your purchase of Wave, Softwave unlocks the full functionality of your wearable
+                  technology. Customize each and every input range, CC value, movement curve, and more for total control
+                  of your creativity.
+
+                </p>
+              </div>
+            </div>
+
+            <div class="mt-8 border-t border-gray-200 pt-8">
+              <h2 class="text-sm font-medium text-gray-900">Fabric &amp; Care</h2>
+
+              <div class="mt-4">
+                <ul role="list" class="list-disc space-y-1 pl-5 text-sm/6 text-gray-500 marker:text-gray-300">
+                  <li class="pl-2">Press record from anywhere in the studio</li>
+                  <li class="pl-2">Send commands and switch between settings on the ring.</li>
+                  <li class="pl-2">Use natural movements to change your sounds.</li>
+                  <li class="pl-2">Machine wash cold with similar colors</li>
+                  <li class="pl-2">Ethically and locally made</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Policies -->
+            <section aria-labelledby="policies-heading" class="mt-10">
+              <h2 id="policies-heading" class="sr-only">Our Policies</h2>
+
+              <dl class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                <div class="rounded-lg border border-gray-200 bg-gray-50 p-6 text-center">
+                  <dt>
+                    <svg class="mx-auto size-6 shrink-0 text-gray-400" fill="none" viewBox="0 0 24 24"
+                      stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="m6.115 5.19.319 1.913A6 6 0 0 0 8.11 10.36L9.75 12l-.387.775c-.217.433-.132.956.21 1.298l1.348 1.348c.21.21.329.497.329.795v1.089c0 .426.24.815.622 1.006l.153.076c.433.217.956.132 1.298-.21l.723-.723a8.7 8.7 0 0 0 2.288-4.042 1.087 1.087 0 0 0-.358-1.099l-1.33-1.108c-.251-.21-.582-.299-.905-.245l-1.17.195a1.125 1.125 0 0 1-.98-.314l-.295-.295a1.125 1.125 0 0 1 0-1.591l.13-.132a1.125 1.125 0 0 1 1.3-.21l.603.302a.809.809 0 0 0 1.086-1.086L14.25 7.5l1.256-.837a4.5 4.5 0 0 0 1.528-1.732l.146-.292M6.115 5.19A9 9 0 1 0 17.18 4.64M6.115 5.19A8.965 8.965 0 0 1 12 3c1.929 0 3.716.607 5.18 1.64" />
+                    </svg>
+                    <span class="mt-4 text-sm font-medium text-gray-900">International delivery</span>
+                  </dt>
+                  <dd class="mt-1 text-sm text-gray-500">Free worldwide shipping</dd>
+                </div>
+                <div class="rounded-lg border border-gray-200 bg-gray-50 p-6 text-center">
+                  <dt>
+                    <svg class="mx-auto size-6 shrink-0 text-gray-400" fill="none" viewBox="0 0 24 24"
+                      stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                    <span class="mt-4 text-sm font-medium text-gray-900">Loyalty rewards</span>
+                  </dt>
+                  <dd class="mt-1 text-sm text-gray-500">Don&#039;t look at other tees</dd>
+                </div>
+              </dl>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Video Section -->
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 rounded-md">
+    <div class="relative overflow-hidden">
+      <!-- 16:9 aspect ratio wrapper -->
+      <div class="relative pt-[50%] rounded-2xl object-cover">
+        <iframe src="https://player.vimeo.com/video/624358076?background=1&autoplay=1&loop=1&byline=0&title=0"
+          class="absolute inset-0 h-full w-full rounded-2xl" frameborder="0"
+          allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+  <footer class="bg-white">
+    <div class="mx-auto max-w-7xl px-6 pt-20 p-8 sm:pt-24 lg:px-8 lg:pt-32">
+      <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+        <div class="grid grid-cols-2 gap-8 xl:col-span-2">
+          <div class="md:grid md:grid-cols-2 md:gap-8">
+            <div>
+              <h3 class="text-sm/6 font-semibold text-gray-900">Products</h3>
+              <ul role="list" class="mt-6 space-y-4">
+                <li>
+                  <a href="#" class="text-sm/6 text-gray-600 hover:text-gray-900">Wave</a>
+                </li>
+                <li>
+                  <a href="#" class="text-sm/6 text-gray-600 hover:text-gray-900">Wavefront</a>
+                </li>
+                <li>
+                  <a href="#" class="text-sm/6 text-gray-600 hover:text-gray-900">Cosmos</a>
+                </li>
+                <li>
+                <li>
+                  <a href="#" class="text-sm/6 text-gray-600 hover:text-gray-900">Insights</a>
+                </li>
+                <a href="#" class="text-sm/6 text-gray-600 hover:text-gray-900">Katla</a>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-10 md:mt-0">
+              <h3 class="text-sm/6 font-semibold text-gray-900">Support</h3>
+              <ul role="list" class="mt-6 space-y-4">
+                <li>
+                  <a href="#" class="text-sm/6 text-gray-600 hover:text-gray-900">Submit ticket</a>
+                </li>
+                <li>
+                  <a href="#" class="text-sm/6 text-gray-600 hover:text-gray-900">Documentation</a>
+                </li>
+                <li>
+                  <a href="#" class="text-sm/6 text-gray-600 hover:text-gray-900">Guides</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="md:grid md:grid-cols-2 md:gap-8">
+            <div>
+              <h3 class="text-sm/6 font-semibold text-gray-900">Company</h3>
+              <ul role="list" class="mt-6 space-y-4">
+                <li>
+                  <a href="#" class="text-sm/6 text-gray-600 hover:text-gray-900">About</a>
+                </li>
+                <li>
+                  <a href="#" class="text-sm/6 text-gray-600 hover:text-gray-900">Blog</a>
+                </li>
+                <li>
+                  <a href="#" class="text-sm/6 text-gray-600 hover:text-gray-900">Jobs</a>
+                </li>
+                <li>
+                  <a href="#" class="text-sm/6 text-gray-600 hover:text-gray-900">Press</a>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-10 md:mt-0">
+              <h3 class="text-sm/6 font-semibold text-gray-900">Legal</h3>
+              <ul role="list" class="mt-6 space-y-4">
+                <li>
+                  <a href="#" class="text-sm/6 text-gray-600 hover:text-gray-900">Terms of service</a>
+                </li>
+                <li>
+                  <a href="#" class="text-sm/6 text-gray-600 hover:text-gray-900">Privacy policy</a>
+                </li>
+                <li>
+                  <a href="#" class="text-sm/6 text-gray-600 hover:text-gray-900">License</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="mt-10 xl:mt-0">
+          <h3 class="text-sm/6 font-semibold text-gray-900">Subscribe to our newsletter</h3>
+          <p class="mt-2 text-sm/6 text-gray-600">The latest news, articles, and resources.
+          </p>
+          <form class="mt-6 sm:flex sm:max-w-md">
+            <label for="email-address" class="sr-only">Email address</label>
+            <input type="email" name="email-address" id="email-address" autocomplete="email" required
+              class="w-full min-w-0 rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#FF5F49] sm:w-64 sm:text-sm/6 xl:w-full"
+              placeholder="Enter your email">
+            <div class="mt-4 sm:mt-0 sm:ml-4 sm:shrink-0">
+              <button type="submit"
+                class="flex w-full items-center justify-center rounded-md bg-[#FF5F49] px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-[#FF5F49]/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF5F49]">Subscribe</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 md:flex md:items-center md:justify-between lg:mt-24">
+        <div class="flex gap-x-6 md:order-2">
+          <a href="#" class="text-gray-600 hover:text-gray-800">
+            <span class="sr-only">Facebook</span>
+            <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd"
+                d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                clip-rule="evenodd" />
+            </svg>
+          </a>
+          <a href="#" class="text-gray-600 hover:text-gray-800">
+            <span class="sr-only">Instagram</span>
+            <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd"
+                d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
+                clip-rule="evenodd" />
+            </svg>
+          </a>
+          <a href="#" class="text-gray-600 hover:text-gray-800">
+            <span class="sr-only">X</span>
+            <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M13.6823 10.6218L20.2391 3H18.6854L12.9921 9.61788L8.44486 3H3.2002L10.0765 13.0074L3.2002 21H4.75404L10.7663 14.0113L15.5685 21H20.8131L13.6819 10.6218H13.6823ZM11.5541 13.0956L10.8574 12.0991L5.31391 4.16971H7.70053L12.1742 10.5689L12.8709 11.5655L18.6861 19.8835H16.2995L11.5541 13.096V13.0956Z" />
+            </svg>
+          </a>
+          <a href="#" class="text-gray-600 hover:text-gray-800">
+            <span class="sr-only">GitHub</span>
+            <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd"
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                clip-rule="evenodd" />
+            </svg>
+          </a>
+          <a href="#" class="text-gray-600 hover:text-gray-800">
+            <span class="sr-only">YouTube</span>
+            <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd"
+                d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.417-4.814a2.507 2.507 0 0 1 1.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z"
+                clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+        <p class="mt-8 text-sm/6 text-gray-600 md:order-1 md:mt-0">&copy; 2025 Genki Instruments ehf. All rights
+          reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Get the button and dropdown elements
+    const productsButton = document.querySelector('button[aria-expanded="false"]');
+    const productsDropdown = document.querySelector('.absolute.top-full');
+    const productsContainer = document.querySelector('.relative'); // Parent container
+
+    let timeoutId;
+
+    // Show dropdown function
+    const showDropdown = () => {
+      clearTimeout(timeoutId);
+      productsButton.setAttribute('aria-expanded', 'true');
+      productsDropdown.classList.remove('hidden');
+      // Add animation classes
+      productsDropdown.classList.add('transition', 'ease-out', 'duration-200');
+      productsDropdown.classList.add('opacity-100', 'translate-y-0');
+      productsDropdown.classList.remove('opacity-0', 'translate-y-1');
+    };
+
+    // Hide dropdown function
+    const hideDropdown = () => {
+      productsButton.setAttribute('aria-expanded', 'false');
+      productsDropdown.classList.add('transition', 'ease-in', 'duration-150');
+      productsDropdown.classList.remove('opacity-100', 'translate-y-0');
+      productsDropdown.classList.add('opacity-0', 'translate-y-1');
+
+      timeoutId = setTimeout(() => {
+        productsDropdown.classList.add('hidden');
+      }, 150);
+    };
+
+    // Add hover event listeners to the container
+    productsContainer.addEventListener('mouseenter', showDropdown);
+    productsContainer.addEventListener('mouseleave', hideDropdown);
+
+    // Add focus/blur events for keyboard navigation
+    productsButton.addEventListener('focus', showDropdown);
+    productsContainer.addEventListener('focusout', (e) => {
+      // Check if the new focused element is outside the container
+      if (!productsContainer.contains(e.relatedTarget)) {
+        hideDropdown();
+      }
+    });
+  </script>
+</body>
+
+</html>
