@@ -10,12 +10,12 @@ let
             command: __VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS=.tail01dbd.ts.net pnpm dev
             readiness_probe:
               http_get:
-                host: 127.0.0.1
+                host: localhost
                 port: 5173
                 path: /
           
           tailscale-funnel:
-            command: tailscale funnel 127.0.0.1:5173
+            command: tailscale funnel localhost:5173
       '';
   };
   runScript = pkgs.writeShellScriptBin name ''
