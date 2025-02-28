@@ -1,7 +1,7 @@
 { pkgs }:
 pkgs.mkShell {
   # Add build dependencies
-  packages = [ ];
+  packages = with pkgs; [ pnpm ];
 
   # Add environment variables
   env = { };
