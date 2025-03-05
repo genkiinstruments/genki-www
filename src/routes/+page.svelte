@@ -98,6 +98,20 @@
           Customize Wave to fit your unique setup
         </p>
       </a>
+      <a href="/softwave" class="group">
+        <img
+          src="https://tailwindcss.com/plus-assets/img/ecommerce-images/category-page-01-image-card-03.jpg"
+          alt="Textured gray felt pouch for paper cards with snap button flap and elastic pen holder loop."
+          class="aspect-square w-full overflow-hidden rounded-lg object-cover group-hover:opacity-75 sm:aspect-2/3"
+        />
+        <div
+          class="mt-4 flex items-center justify-between text-base font-medium text-gray-900"
+        >
+          <h3>Andrea</h3>
+          <p>$9999</p>
+        </div>
+        <p class="mt-1 text-sm text-gray-500 italic">Epic coolness 😎</p>
+      </a>
     </div>
   </div>
 </div>
