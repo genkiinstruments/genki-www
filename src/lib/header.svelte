@@ -2,42 +2,48 @@
   import { NavigationMenu } from "bits-ui";
   import CaretDown from "phosphor-svelte/lib/CaretDown";
   import cn from "clsx";
+
   import logo from "$lib/assets/logo.svg";
 
-  const components: { title: string; href: string; description: string }[] = [
+  const hardware: { title: string; href: string; content: string }[] = [
+    {
+      href: "/wave",
+      title: "Wave",
+      content: "The ring for music",
+    },
+    {
+      href: "/wavefront",
+      title: "Wavefront",
+      content: "Move your Eurorack",
+    },
+    {
+      href: "/katla",
+      title: "Katla",
+      content: "Happy-accident machine",
+    },
+  ];
+
+  const software: { title: string; href: string; content: string }[] = [
     {
       title: "Softwave",
-      href: "/",
-      description:
-        "The digital companion to Wave and Wavefront. Get started out of the box with the rich built-in sound enging",
+      href: "/softwve",
+      content: "Customize your Wave",
     },
     {
       title: "Wave for Work",
-      href: "/",
-      description: "Use Wave to control slides, ",
+      href: "/wave-for-work",
+      content: "Wave as a peripheral",
+    },
+    {
+      title: "Cosmos",
+      href: "/cosmos",
+      content: "Visually or semantically separates content.",
     },
     {
       title: "Glover",
-      href: "/",
-      description:
+      href: "https://mimugloves.com/gloves/",
+      content:
         "Made by our friends at Mi.Mu, Glover allows you to connect more than two Waves for composing and performing music using movement.",
-    },
-    {
-      title: "Scroll Area",
-      href: "/",
-      description: "Visually or semantically separates content.",
-    },
-    {
-      title: "Tabs",
-      href: "/",
-      description:
-        "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-    },
-    {
-      title: "Tooltip",
-      href: "/",
-      description:
-        "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
     },
   ];
 
@@ -47,9 +53,6 @@
     href: string;
     content: string;
   };
-  import { Avatar } from "bits-ui";
-
-  let loadingStatus = $state<Avatar.RootProps["loadingStatus"]>("loading");
 </script>
 
 {#snippet ListItem({ className, title, content, href }: ListItemProps)}
@@ -73,19 +76,7 @@
   <header
     class="flex items-center justify-between w-full px-4 max-w-7xl mx-auto"
   >
-    <Avatar.Root
-      bind:loadingStatus
-      class="h-12 w-12 rounded-full {loadingStatus === 'loaded'
-        ? 'border-foreground'
-        : 'border-transparent'} bg-muted text-muted-foreground text-[17px] font-medium uppercase"
-    >
-      <div
-        class="flex h-full w-full items-center justify-center overflow-hidden rounded-full"
-      >
-        <Avatar.Image src={logo} alt="@huntabyte" />
-        <Avatar.Fallback class="border-muted border">HB</Avatar.Fallback>
-      </div>
-    </Avatar.Root>
+    <a href="/"><img class="w-9 h-8 hidden sm:inline" src={logo} alt="" /></a>
 
     <div class="flex-1 flex justify-center">
       <NavigationMenu.Root class="relative z-10 flex w-full justify-center">
@@ -122,22 +113,9 @@
                     </p>
                   </NavigationMenu.Link>
                 </li>
-
-                {@render ListItem({
-                  href: "/",
-                  title: "Wave",
-                  content: "Move and control sound",
-                })}
-                {@render ListItem({
-                  href: "/",
-                  title: "Wavefront",
-                  content: "Add Wave/iPad™ to your Eurorack",
-                })}
-                {@render ListItem({
-                  href: "/",
-                  title: "Katla",
-                  content: "5-voice, analog happy-accident machine",
-                })}
+                {#each hardware as component (component.title)}
+                  {@render ListItem(component)}
+                {/each}
               </ul>
             </NavigationMenu.Content>
           </NavigationMenu.Item>
@@ -157,12 +135,8 @@
               <ul
                 class="grid gap-3 p-3 sm:w-[400px] sm:p-6 md:w-[500px] md:grid-cols-2 lg:w-[600px]"
               >
-                {#each components as component (component.title)}
-                  {@render ListItem({
-                    href: component.href,
-                    title: component.title,
-                    content: component.description,
-                  })}
+                {#each software as component (component.title)}
+                  {@render ListItem(component)}
                 {/each}
               </ul>
             </NavigationMenu.Content>
@@ -193,19 +167,5 @@
         </div>
       </NavigationMenu.Root>
     </div>
-    <!-- Right side empty space to balance layout -->
-    <Avatar.Root
-      bind:loadingStatus
-      class="h-12 w-12 rounded-full {loadingStatus === 'loaded'
-        ? 'border-foreground'
-        : 'border-transparent'} bg-muted text-muted-foreground text-[17px] font-medium uppercase"
-    >
-      <div
-        class="flex h-full w-full items-center justify-center overflow-hidden rounded-full"
-      >
-        <Avatar.Image src={logo} alt="@huntabyte" />
-        <Avatar.Fallback class="">HB</Avatar.Fallback>
-      </div>
-    </Avatar.Root>
   </header>
 </div>

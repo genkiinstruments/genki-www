@@ -4,51 +4,57 @@
       <div class="grid grid-cols-2 gap-8 xl:col-span-2">
         <div class="md:grid md:grid-cols-2 md:gap-8">
           <div>
-            <h3 class="text-sm/6 font-semibold text-gray-900">Products</h3>
+            <h3 class="text-sm/6 font-semibold text-gray-900">Hardware</h3>
             <ul role="list" class="mt-6 space-y-4">
               <li>
-                <a href="/" class="text-sm/6 text-gray-600 hover:text-gray-900"
-                  >Wave</a
+                <a
+                  href="/wave"
+                  class="text-sm/6 text-gray-600 hover:text-gray-900">Wave</a
                 >
               </li>
               <li>
-                <a href="/" class="text-sm/6 text-gray-600 hover:text-gray-900"
+                <a
+                  href="/wavefront"
+                  class="text-sm/6 text-gray-600 hover:text-gray-900"
                   >Wavefront</a
                 >
               </li>
               <li>
-                <a href="/" class="text-sm/6 text-gray-600 hover:text-gray-900"
-                  >Cosmos</a
-                >
-              </li>
-              <li>
-                <a href="/" class="text-sm/6 text-gray-600 hover:text-gray-900"
-                  >Insights</a
-                >
-              </li>
-              <li>
-                <a href="/" class="text-sm/6 text-gray-600 hover:text-gray-900"
-                  >Katla</a
+                <a
+                  href="/katla"
+                  class="text-sm/6 text-gray-600 hover:text-gray-900">Katla</a
                 >
               </li>
             </ul>
           </div>
           <div class="mt-10 md:mt-0">
-            <h3 class="text-sm/6 font-semibold text-gray-900">Support</h3>
+            <h3 class="text-sm/6 font-semibold text-gray-900">Software</h3>
             <ul role="list" class="mt-6 space-y-4">
               <li>
-                <a href="/" class="text-sm/6 text-gray-600 hover:text-gray-900"
-                  >Submit ticket</a
+                <a
+                  href="/softwave"
+                  class="text-sm/6 text-gray-600 hover:text-gray-900"
+                  >Softwave</a
                 >
               </li>
               <li>
-                <a href="/" class="text-sm/6 text-gray-600 hover:text-gray-900"
-                  >Documentation</a
+                <a
+                  href="/wave-for-work"
+                  class="text-sm/6 text-gray-600 hover:text-gray-900"
+                  >Wave for Work</a
                 >
               </li>
               <li>
-                <a href="/" class="text-sm/6 text-gray-600 hover:text-gray-900"
-                  >Guides</a
+                <a
+                  href="/cosmos"
+                  class="text-sm/6 text-gray-600 hover:text-gray-900">Cosmos</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://mimugloves.com/gloves/"
+                  class="text-sm/6 text-gray-600 hover:text-gray-900"
+                  >MIMU Glover</a
                 >
               </li>
             </ul>
@@ -59,18 +65,15 @@
             <h3 class="text-sm/6 font-semibold text-gray-900">Company</h3>
             <ul role="list" class="mt-6 space-y-4">
               <li>
-                <a href="/" class="text-sm/6 text-gray-600 hover:text-gray-900"
-                  >About</a
+                <a
+                  href="/about"
+                  class="text-sm/6 text-gray-600 hover:text-gray-900">About</a
                 >
               </li>
               <li>
-                <a href="/" class="text-sm/6 text-gray-600 hover:text-gray-900"
-                  >Blog</a
-                >
-              </li>
-              <li>
-                <a href="/" class="text-sm/6 text-gray-600 hover:text-gray-900"
-                  >Jobs</a
+                <a
+                  href="/blog"
+                  class="text-sm/6 text-gray-600 hover:text-gray-900">Blog</a
                 >
               </li>
               <li>
@@ -81,21 +84,26 @@
             </ul>
           </div>
           <div class="mt-10 md:mt-0">
-            <h3 class="text-sm/6 font-semibold text-gray-900">Legal</h3>
+            <h3 class="text-sm/6 font-semibold text-gray-900">Support</h3>
             <ul role="list" class="mt-6 space-y-4">
               <li>
+                <!-- [TODO]: Point to correct webpage (March 05, 2025 13:51, ) -->
                 <a href="/" class="text-sm/6 text-gray-600 hover:text-gray-900"
+                  >Documentation</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/terms-of-service"
+                  class="text-sm/6 text-gray-600 hover:text-gray-900"
                   >Terms of service</a
                 >
               </li>
               <li>
-                <a href="/" class="text-sm/6 text-gray-600 hover:text-gray-900"
+                <a
+                  href="/privacy-policy"
+                  class="text-sm/6 text-gray-600 hover:text-gray-900"
                   >Privacy policy</a
-                >
-              </li>
-              <li>
-                <a href="/" class="text-sm/6 text-gray-600 hover:text-gray-900"
-                  >License</a
                 >
               </li>
             </ul>
@@ -107,7 +115,7 @@
           Subscribe to our newsletter
         </h3>
         <p class="mt-2 text-sm/6 text-gray-600">
-          The latest news, articles, and resources.
+          The latest offers, news, articles, and resources.
         </p>
         <form class="mt-6 sm:flex sm:max-w-md">
           <label for="email-address" class="sr-only">Email address</label>
