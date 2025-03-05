@@ -28,8 +28,8 @@
     "vite": "^6.2.0"
   },
   "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild"
-    ]
+    "overrides": {
+      "esbuild": "0.19.12"
+    }
   }
 }
