@@ -41,6 +41,7 @@ out/
 # Environment variables
 .env
 .env.local
+.envrc.local
 .env.development.local
 .env.test.local
 .env.production.local
