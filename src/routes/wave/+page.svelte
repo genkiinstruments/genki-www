@@ -35,7 +35,7 @@
 
 <Header></Header>
 
-<div class="mx-auto pt-6 mt-8 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+<div class="mx-auto mt-8 px-4 pt-6 sm:px-6 lg:max-w-7xl lg:px-8">
   <div class="lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8">
     <div class="lg:col-span-5 lg:col-start-8">
       <div class="flex justify-between">
@@ -52,112 +52,66 @@
           </p>
           <div class="ml-1 flex items-center">
             <!-- Active: "text-yellow-400", Inactive: "text-gray-200" -->
-            <svg
-              class="size-5 shrink-0 text-yellow-400"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-              data-slot="icon"
-            >
+            <svg class="size-5 shrink-0 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
               <path
                 fill-rule="evenodd"
                 d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
-                clip-rule="evenodd"
-              />
+                clip-rule="evenodd" />
             </svg>
-            <svg
-              class="size-5 shrink-0 text-yellow-400"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-              data-slot="icon"
-            >
+            <svg class="size-5 shrink-0 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
               <path
                 fill-rule="evenodd"
                 d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
-                clip-rule="evenodd"
-              />
+                clip-rule="evenodd" />
             </svg>
-            <svg
-              class="size-5 shrink-0 text-yellow-400"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-              data-slot="icon"
-            >
+            <svg class="size-5 shrink-0 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
               <path
                 fill-rule="evenodd"
                 d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
-                clip-rule="evenodd"
-              />
+                clip-rule="evenodd" />
             </svg>
-            <svg
-              class="size-5 shrink-0 text-yellow-400"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-              data-slot="icon"
-            >
+            <svg class="size-5 shrink-0 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
               <path
                 fill-rule="evenodd"
                 d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
-                clip-rule="evenodd"
-              />
+                clip-rule="evenodd" />
             </svg>
-            <svg
-              class="size-5 shrink-0 text-yellow-400"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-              data-slot="icon"
-            >
+            <svg class="size-5 shrink-0 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
               <path
                 fill-rule="evenodd"
                 d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
-                clip-rule="evenodd"
-              />
+                clip-rule="evenodd" />
             </svg>
           </div>
           <div aria-hidden="true" class="ml-4 text-sm text-gray-300">·</div>
           <div class="ml-4 flex">
-            <a
-              href="/"
-              class="text-sm font-medium text-[#FF5F49] hover:text-[#FF5F49]/80"
-              >See all 190 reviews</a
-            >
+            <a href="/" class="text-sm font-medium text-[#FF5F49] hover:text-[#FF5F49]/80">See all 190 reviews</a>
           </div>
         </div>
       </div>
     </div>
 
-    <div
-      class="mt-8 lg:col-span-7 lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:mt-0"
-    >
+    <div class="mt-8 lg:col-span-7 lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:mt-0">
       <h2 class="sr-only">Images</h2>
 
-      <div class="relative lg:col-span-2 lg:row-span-2 w-full aspect-[3/4]">
+      <div class="relative aspect-[3/4] w-full lg:col-span-2 lg:row-span-2">
         <img
           src={hero}
           onmouseenter={() => (is_hovering = true)}
           onmouseleave={() => (is_hovering = false)}
           alt="Back of women's Basic Tee in black."
-          class="rounded-lg absolute inset-0 w-full h-full object-cover"
-        />
+          class="absolute inset-0 h-full w-full rounded-lg object-cover" />
       </div>
     </div>
 
     <div class="lg:col-span-5">
       <form>
-        <a
-          href="/"
-          class="text-sm font-medium text-[#FF5F49] hover:text-[#FF5F49]/80"
-        >
+        <a href="/" class="text-sm font-medium text-[#FF5F49] hover:text-[#FF5F49]/80">
           <button
             type="submit"
             class="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-[#FF5F49] px-8 py-3 text-base font-medium text-white hover:bg-[#FF5F49]/80 focus:ring-2 focus:ring-[#FF5F49]/80 focus:ring-offset-2 focus:outline-hidden"
             >Buy now</button
-          ></a
-        >
+          ></a>
       </form>
 
       <!-- Product details -->
@@ -166,25 +120,15 @@
 
         <div class="mt-4 space-y-4 text-sm/6 text-gray-500">
           <p>
-            Wave is the ring that allows artists and producers to easily control
-            sound, shape effects and send commands. Worn on the index finger,
-            Wave detects the most finesse gestures and enables natural
-            interaction with sound through movement.
+            Wave is the ring that allows artists and producers to easily control sound, shape effects and send commands. Worn on the index finger, Wave detects the most finesse gestures and enables
+            natural interaction with sound through movement.
           </p>
           <p>
-            Included with your purchase of Wave, <a
-              href="/softwave"
-              class="text-sm font-medium text-[#FF5F49] hover:text-[#FF5F49]/80"
-              >Softwave</a
-            > unlocks the full functionality of your wearable technology. Customize
-            each and every input range, CC value, movement curve, and more.
+            Included with your purchase of Wave, <a href="/softwave" class="text-sm font-medium text-[#FF5F49] hover:text-[#FF5F49]/80">Softwave</a> unlocks the full functionality of your wearable technology.
+            Customize each and every input range, CC value, movement curve, and more.
           </p>
           <p>
-            When paired with <a
-              class="text-[#FF5F49] hover:text-[#FF5F49]/80"
-              href="/wavefront">Wavefront</a
-            >, Wave switches to a ultra-low sub millisecond transmission layer
-            for instant feedback.
+            When paired with <a class="text-[#FF5F49] hover:text-[#FF5F49]/80" href="/wavefront">Wavefront</a>, Wave switches to a ultra-low sub millisecond transmission layer for instant feedback.
           </p>
         </div>
       </div>
@@ -193,23 +137,14 @@
         <h2 class="text-sm font-medium text-gray-900">Features</h2>
 
         <div class="mt-4">
-          <ul
-            role="list"
-            class="list-disc space-y-1 pl-5 text-sm/6 text-gray-500 marker:text-gray-300"
-          >
+          <ul role="list" class="list-disc space-y-1 pl-5 text-sm/6 text-gray-500 marker:text-gray-300">
             <li class="pl-2">Used by musicians all over the world</li>
             <li class="pl-2">Press record from anywhere in the studio</li>
-            <li class="pl-2">
-              Use natural movements to interact with your gear like never before
-            </li>
-            <li class="pl-2">
-              Send commands and switch between settings on the ring
-            </li>
+            <li class="pl-2">Use natural movements to interact with your gear like never before</li>
+            <li class="pl-2">Send commands and switch between settings on the ring</li>
             <li class="pl-2">Engineered to enable low-latency Bluetooth LE</li>
             <li class="pl-2">Made with love in Iceland.</li>
-            <li
-              class="pl-2text-sm font-medium text-[#FF5F49] hover:text-[#FF5F49]/80"
-            >
+            <li class="pl-2 text-sm font-medium text-[#FF5F49] hover:text-[#FF5F49]/80">
               <!-- [TODO]: Fix link (March 05, 2025 14:50, ) -->
               <a href="/wave">Technical Specification </a>
             </li>
@@ -245,17 +180,11 @@
 <!--   </div> -->
 <!-- </Carousel.Root> -->
 
-<Carousel.Root
-  plugins={[youtube_plugin]}
-  opts={{ loop: true }}
-  class="w-full py-32"
-  onmouseenter={youtube_plugin.stop}
-  onmouseleave={youtube_plugin.reset}
->
+<Carousel.Root plugins={[youtube_plugin]} opts={{ loop: true }} class="w-full py-32" onmouseenter={youtube_plugin.stop} onmouseleave={youtube_plugin.reset}>
   <div class="relative overflow-hidden">
     <Carousel.Content>
       {#each ["9pEGV0H5nTw", "foX4YGlUg4g", "a8aStUjS6uk", "oOKxmoZd4H8", "vJ-KT38i9Ls"] as id, i (i)}
-        <Carousel.Item class="lg:basis-1/2">
+        <Carousel.Item class="rounded-lg lg:basis-1/2">
           <YouTube {id} />
         </Carousel.Item>
       {/each}

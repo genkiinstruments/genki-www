@@ -81,27 +81,16 @@
       on:mouseleave={handleMouseUp}
       on:touchstart={handleTouchStart}
       on:touchmove={handleTouchMove}
-      on:touchend={handleTouchEnd}
-    >
+      on:touchend={handleTouchEnd}>
       {#each carousel_images as image}
         <div class="carousel-item">
-          <img
-            src={image.src}
-            alt={image.alt}
-            class="rounded-lg w-full h-full object-cover"
-            draggable="false"
-          />
+          <img src={image.src} alt={image.alt} class="h-full w-full rounded-lg object-cover" draggable="false" />
         </div>
       {/each}
       <!-- Duplicate first few items for seamless loop -->
       {#each carousel_images.slice(0, 3) as image}
         <div class="carousel-item">
-          <img
-            src={image.src}
-            alt={image.alt}
-            class="rounded-lg w-full h-full object-cover"
-            draggable="false"
-          />
+          <img src={image.src} alt={image.alt} class="h-full w-full rounded-lg object-cover" draggable="false" />
         </div>
       {/each}
     </div>

@@ -1,8 +1,9 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import Button from "./Button.svelte";
-  import Iframe from "./IFrame.svelte";
   import Image from "./Image.svelte";
+
+  import { playing } from "./YouTubeSharedState.svelte.js";
 
   let { id, altThumb = false, thumbnail = null, play_button = null } = $props();
 
@@ -17,10 +18,7 @@
 
   onMount(async () => {
     try {
-      const response = await fetch(
-        `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${id}&format=json`,
-        { headers: { Accept: "application/json" } },
-      );
+      const response = await fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${id}&format=json`, { headers: { Accept: "application/json" } });
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -41,27 +39,24 @@
   let play = $state(false);
 </script>
 
-<div
-  class="you__tube"
-  style="--aspect-ratio:{width / height || '16/9'}"
-  {title}
->
+<div class="you__tube" style="--aspect-ratio:{width / height || '16/9'}" {title}>
   {#if play}
-    <Iframe {id} {title} />
+    <iframe src="https://www.youtube-nocookie.com/embed/{id}?autoplay=1&rel=0" {title} frameborder="0" allow="autoplay; picture-in-picture; clipboard-write" allowfullscreen></iframe>
+
+    <style>
+      iframe {
+        height: auto;
+        aspect-ratio: var(--aspect-ratio);
+        width: 100%;
+      }
+    </style>
   {:else}
     {#if thumbnail}
       {@render thumbnail()}
     {:else}
       <Image {id} {title} {altThumb} {play} />
     {/if}
-    <div
-      class="b__overlay"
-      onclick={() => (play = true)}
-      onkeypress={() => (play = true)}
-      aria-label="video overlay"
-      role="button"
-      tabindex="0"
-    ></div>
+    <div class="b__overlay" onclick={() => (play = true)} onkeypress={() => (play = true)} aria-label="video overlay" role="button" tabindex="0"></div>
     <div class="v__title hidden">{title}</div>
   {/if}
   {#if !play}
@@ -85,13 +80,7 @@
   }
   .v__title {
     padding: 2ch;
-    font-family: var(
-      --title-font-family,
-      "Segoe UI",
-      Geneva,
-      Verdana,
-      sans-serif
-    );
+    font-family: var(--title-font-family, "Segoe UI", Geneva, Verdana, sans-serif);
     font-size: 18px;
     color: var(--title-color, #ffffff);
     font-weight: 400;

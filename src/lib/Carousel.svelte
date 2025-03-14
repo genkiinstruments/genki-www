@@ -25,16 +25,10 @@
   const plugin = Autoplay({ delay: 2000, stopOnInteraction: true });
 </script>
 
-<Carousel.Root
-  plugins={[plugin]}
-  opts={{ loop: true }}
-  class="w-full max-h-1/5"
-  onmouseenter={plugin.stop}
-  onmouseleave={plugin.reset}
->
+<Carousel.Root plugins={[plugin]} opts={{ loop: true }} class="max-h-1/5 w-full" onmouseenter={plugin.stop} onmouseleave={plugin.reset}>
   <Carousel.Content>
     {#each images as { src, alt }, i (i)}
-      <Carousel.Item class="md:basis-1/2 lg:basis-1/3 border-0">
+      <Carousel.Item class="border-0 md:basis-1/2 lg:basis-1/3">
         <img {src} {alt} />
       </Carousel.Item>
     {/each}
