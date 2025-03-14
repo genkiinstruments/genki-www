@@ -1,5 +1,5 @@
 <footer class="bg-white">
-  <div class="mx-auto max-w-7xl px-6 pt-20 p-8 sm:pt-24 lg:px-8 lg:pt-32">
+  <div class="mx-auto max-w-7xl px-6 p-8 lg:px-8 lg:pt-32">
     <div class="xl:grid xl:grid-cols-3 xl:gap-8">
       <div class="grid grid-cols-2 gap-8 xl:col-span-2">
         <div class="md:grid md:grid-cols-2 md:gap-8">
@@ -54,8 +54,11 @@
                 <a
                   href="https://mimugloves.com/gloves/"
                   class="text-sm/6 text-gray-600 hover:text-gray-900"
-                  >MIMU Glover</a
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
+                  MIMU Glover
+                </a>
               </li>
             </ul>
           </div>
@@ -125,7 +128,7 @@
             id="email-address"
             autocomplete="email"
             required
-            class="w-full min-w-0 rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#FF5F49] sm:w-64 sm:text-sm/6 xl:w-full"
+            class="w-full min-w-0 rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#FF5F49] sm:w-64 sm:text-sm/6 xl:w-full border-2"
             placeholder="Enter your email"
           />
           <div class="mt-4 sm:mt-0 sm:ml-4 sm:shrink-0">

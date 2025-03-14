@@ -2,9 +2,9 @@
   import { onMount, onDestroy } from "svelte";
   import { fade } from "svelte/transition";
 
-  import bergur from "$lib/assets/testimonial_bergur.png";
-  import divinci from "$lib/assets/testimonial_divinci.png";
-  import mash from "$lib/assets/testimonial_davidmash.png";
+  import bergur from "$lib/assets/wave-testimonials-bergur.png";
+  import divinci from "$lib/assets/wave-testimonials-divinci.png";
+  import mash from "$lib/assets/wave-testimonials-davidmash.png";
 
   // Array of testimonials
   const testimonials = [

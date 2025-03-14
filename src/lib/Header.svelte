@@ -23,7 +23,7 @@
     },
   ];
 
-  const software: { title: string; href: string; content: string }[] = [
+  const software: ListItemProps[] = [
     {
       title: "Softwave",
       href: "/softwve",
@@ -37,13 +37,7 @@
     {
       title: "Cosmos",
       href: "/cosmos",
-      content: "Visually or semantically separates content.",
-    },
-    {
-      title: "Glover",
-      href: "https://mimugloves.com/gloves/",
-      content:
-        "Made by our friends at Mi.Mu, Glover allows you to connect more than two Waves for composing and performing music using movement.",
+      content: "Cosmos is the",
     },
   ];
 
@@ -52,10 +46,11 @@
     title: string;
     href: string;
     content: string;
+    rel?: string;
   };
 </script>
 
-{#snippet ListItem({ className, title, content, href }: ListItemProps)}
+{#snippet ListItem({ className, title, content, href, rel }: ListItemProps)}
   <li>
     <NavigationMenu.Link
       class={cn(
@@ -63,6 +58,7 @@
         className,
       )}
       {href}
+      {rel}
     >
       <div class="text-sm font-medium leading-none">{title}</div>
       <p class="text-muted-foreground line-clamp-2 text-sm leading-snug">
