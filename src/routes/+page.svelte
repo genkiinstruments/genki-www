@@ -68,7 +68,7 @@
             <h3>{name}</h3>
             <p>{price}</p>
           </div>
-          <p class="mt-1 overflow-hidden text-sm text-ellipsis whitespace-nowrap text-gray-500 italic">
+          <p class="mt-1 overflow-hidden text-sm text-ellipsis whitespace-nowrap text-gray-500">
             {description}
           </p>
         </a>
