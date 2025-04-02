@@ -21,6 +21,10 @@
   import { type CarouselAPI } from "$lib/components/ui/carousel/context.js";
   let api = $state<CarouselAPI>();
 
+  // Animation state for arrow keys
+  let leftArrowActive = $state(false);
+  let rightArrowActive = $state(false);
+
   // Product slide data
   const slides = [
     {
@@ -153,11 +157,19 @@
 
       // Arrow keys for navigation
       if (event.key === "ArrowRight") {
+        rightArrowActive = true;
         scrollCarouselNext();
+        setTimeout(() => {
+          rightArrowActive = false;
+        }, 150); // Match the animation duration
       }
 
       if (event.key === "ArrowLeft") {
+        leftArrowActive = true;
         scrollCarouselPrev();
+        setTimeout(() => {
+          leftArrowActive = false;
+        }, 150); // Match the animation duration
       }
     };
 
@@ -394,7 +406,7 @@
         <div class="col-span-2 col-start-1 flex items-center">
           <!-- Left Arrow -->
           <button class="p-2 transition-transform duration-150 active:translate-x-[-2px]" onclick={() => scrollCarouselPrev()}>
-            <img src={arrow} alt="Previous" class="h-[18px] rotate-180" />
+            <img src={arrow} alt="Previous" class="h-[18px] rotate-180 transition-transform duration-150" class:translate-x-[-2px]={leftArrowActive} />
           </button>
         </div>
 
@@ -412,7 +424,7 @@
         <div class="col-span-2 col-start-9 flex items-center justify-end">
           <!-- Right Arrow -->
           <button class="p-2 transition-transform duration-150 active:translate-x-[2px]" onclick={() => scrollCarouselNext()}>
-            <img src={arrow} alt="Next" class="h-[18px]" />
+            <img src={arrow} alt="Next" class="h-[18px] transition-transform duration-150" class:translate-x-[2px]={rightArrowActive} />
           </button>
         </div>
       </div>
