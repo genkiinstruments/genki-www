@@ -1,12 +1,56 @@
-<script>
+<script lang="ts">
   import logo from "$lib/assets/logo.svg";
-
+  import katla from "$lib/assets/Katla_Placeholder.png";
+  import katla_logo from "$lib/assets/katla-logo.png";
+  import learn_more from "$lib/assets/learn-more.png";
   import { onMount } from "svelte";
 
+  // For hover-based dropdown
+  let hardwareHovered = false;
+  let softwareHovered = false;
+
+  // Define hardware and software dropdown content
+  const hardware = [
+    {
+      href: "/wave",
+      title: "Wave",
+      content: "The ring for music",
+    },
+    {
+      href: "/wavefront",
+      title: "Wavefront",
+      content: "Move your Eurorack",
+    },
+    {
+      href: "/katla",
+      title: "Katla",
+      content: "Happy-accident machine",
+    },
+  ];
+
+  const software = [
+    {
+      title: "Softwave",
+      href: "/softwave",
+      content: "Customize your Wave",
+    },
+    {
+      title: "Wave for Work",
+      href: "/wave-for-work",
+      content: "Wave as a peripheral",
+    },
+    {
+      title: "Cosmos",
+      href: "/cosmos",
+      content: "Cosmos is the",
+    },
+  ];
+
+  // Grid toggle
   let showGrid = false;
 
   onMount(() => {
-    const handleKeyDown = (/** @type {{ key: string; }} */ event) => {
+    const handleKeyDown = (event) => {
       if (event.key === "'") {
         showGrid = !showGrid;
       }
@@ -24,6 +68,19 @@
   <!-- Circular Std Font -->
   <link href="https://db.onlinewebfonts.com/c/860c3ec7bbc5da3e97233ccecafe512e?family=Circular+Std+Book" rel="stylesheet" type="text/css" />
   <style>
+    @font-face {
+      font-family: "Circular Std Book";
+      src: url("https://db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.eot");
+      src:
+        url("https://db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.eot?#iefix") format("embedded-opentype"),
+        url("https://db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.woff2") format("woff2"),
+        url("https://db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.woff") format("woff"),
+        url("https://db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.ttf") format("truetype"),
+        url("https://db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.svg#Circular Std Book") format("svg");
+      font-weight: normal;
+      font-style: normal;
+    }
+
     @font-face {
       font-family: "Circular Std";
       src: url("https://db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.eot");
@@ -62,6 +119,11 @@
       font-weight: bold;
       font-style: normal;
     }
+
+    .font-book {
+      font-family: "Circular Std Book", sans-serif;
+      font-weight: normal;
+    }
   </style>
 </svelte:head>
 
@@ -88,17 +150,72 @@
       <div class="col-span-4"></div>
 
       <!-- Navigation and Cart (right-most) -->
-      <!-- svelte-ignore a11y_invalid_attribute -->
       <div class="col-span-4 flex items-center justify-end">
-        <a href="#" class="hover:text-gray-300">Hardware</a>
+        <!-- Hardware Dropdown with hover -->
+        <div class="relative" on:mouseenter={() => (hardwareHovered = true)} on:mouseleave={() => (hardwareHovered = false)}>
+          <button class="flex items-center hover:text-gray-300">
+            Hardware
+            <svg class="ml-1 h-3 w-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+
+          <!-- Dropdown content -->
+          {#if hardwareHovered}
+            <div class="absolute top-8 right-0 z-50 w-[300px] rounded bg-[#252525] p-3 shadow-md">
+              <ul class="grid gap-2">
+                {#each hardware as item}
+                  <li>
+                    <a href={item.href} class="block rounded p-2 hover:bg-[#353535]">
+                      <div class="font-medium">{item.title}</div>
+                      <p class="text-sm text-gray-400">{item.content}</p>
+                    </a>
+                  </li>
+                {/each}
+              </ul>
+            </div>
+          {/if}
+        </div>
+
         <span class="inline-block w-10"></span>
         <!-- 40px gap -->
-        <a href="#" class="hover:text-gray-300">Software</a>
+
+        <!-- Software Dropdown with hover -->
+        <div class="relative" on:mouseenter={() => (softwareHovered = true)} on:mouseleave={() => (softwareHovered = false)}>
+          <button class="flex items-center hover:text-gray-300">
+            Software
+            <svg class="ml-1 h-3 w-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+
+          <!-- Dropdown content -->
+          {#if softwareHovered}
+            <div class="absolute top-8 right-0 z-50 w-[300px] rounded bg-[#252525] p-3 shadow-md">
+              <ul class="grid gap-2">
+                {#each software as item}
+                  <li>
+                    <a href={item.href} class="block rounded p-2 hover:bg-[#353535]">
+                      <div class="font-medium">{item.title}</div>
+                      <p class="text-sm text-gray-400">{item.content}</p>
+                    </a>
+                  </li>
+                {/each}
+              </ul>
+            </div>
+          {/if}
+        </div>
+
         <span class="inline-block w-10"></span>
         <!-- 40px gap -->
-        <a href="#" class="hover:text-gray-300">Documentation</a>
+
+        <!-- Documentation Link -->
+        <a href="/documentation" class="hover:text-gray-300">Documentation</a>
+
         <span class="inline-block w-[30px]"></span>
         <!-- 30px gap -->
+
+        <!-- Cart Icon -->
         <a href="#" class="flex items-center justify-center hover:text-gray-300">
           <svg class="h-[1em] w-[1em] translate-y-[0.1em]">
             <use xlink:href="#cart-icon"></use>
@@ -107,37 +224,39 @@
       </div>
     </header>
 
-    <h1 class="mb-4 text-3xl font-bold">Figma Grid Demo</h1>
-    <p class="mb-8">Press the ' key to toggle the grid overlay</p>
+    <!-- Hero Section -->
+    <div class="relative mt-8 grid min-h-[80vh] grid-cols-10 items-center gap-[10px] pb-20">
+      <!-- Hero Text (Left Side - spans 4 columns with more spacing) -->
+      <div class="col-span-3 col-start-2 flex flex-col justify-center">
+        <div class="space-y-10">
+          <h1 class="text-7xl font-bold">
+            <img src={katla_logo} alt="Learn more" />
+          </h1>
+          <p class="font-book text-4xl">Five-voice polyphonic synth, made from the ashes of Katla.</p>
 
-    <!-- Grid column layout -->
-    <div class="relative grid min-h-[500px] grid-cols-10 gap-[10px]">
-      <div class="col-span-4">
-        <h2 class="mb-4 text-2xl font-bold">Your Content</h2>
-        <p>This content spans 4 columns. The grid overlay shows exactly where these columns are positioned.</p>
-      </div>
-
-      <div class="col-span-6">
-        <div class="rounded bg-blue-900/20 p-6">
-          <h3 class="mb-2 text-xl">Content Area</h3>
-          <p>This section spans 6 columns. All content is aligned to the same grid that the overlay visualizes.</p>
-          <p class="mt-4">The grid has 10 columns with 10px gutters and 50px margins on each side.</p>
+          <div class="pt-8">
+            <img src={learn_more} class="w-24" alt="Learn more" />
+          </div>
         </div>
       </div>
 
-      <div class="col-span-10 mt-8">
-        <div class="rounded bg-purple-900/20 p-6">
-          <h3 class="mb-2 text-xl">Full Width</h3>
-          <p>This section spans all 10 columns while still respecting the grid.</p>
+      <!-- Hero Image (starting at column 6 from left and extending to right edge) -->
+      <div class="relative col-span-5 col-start-6 h-full">
+        <div class="absolute inset-y-0 right-[-100px] left-0 flex items-center">
+          <div class="relative h-full w-full rounded-l-lg">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <img src={katla} alt="Katla" class="h-full w-full object-cover" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
     {#if showGrid}
-      <div class="pointer-events-none fixed inset-0 z-[9999]">
+      <div class="pointer-events-none fixed inset-0 z-[9998]">
         <div class="mx-auto h-full" style="max-width: calc(100% - 100px);">
           <div class="flex h-full justify-between">
-            {#each Array(10) as _, i}
+            {#each Array(10) as _, i (i)}
               <div class="mx-[5px] h-full flex-1 bg-[rgba(85,85,85,0.5)] first:ml-0 last:mr-0"></div>
             {/each}
           </div>
