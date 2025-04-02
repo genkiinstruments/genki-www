@@ -11,7 +11,7 @@
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url("/CalSans-SemiBold.woff2") format("woff2");
+  src: url("https://api.fontshare.com/v2/fonts/cal-sans/woff2/CalSans-SemiBold.woff2") format("woff2");
 }
 
 :root {
