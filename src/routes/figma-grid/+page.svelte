@@ -1,13 +1,68 @@
 <script lang="ts">
   import logo from "$lib/assets/logo.svg";
   import katla from "$lib/assets/Katla_Placeholder.png";
+  import softwave from "$lib/assets/Softwave_Placeholder.png";
+  import wave from "$lib/assets/Wave_Main.png";
+  import wavefront from "$lib/assets/Wavefront_Main.png";
+  import cosmos from "$lib/assets/Cosmos_Main.gif";
   import katla_logo from "$lib/assets/katla-logo.png";
   import learn_more from "$lib/assets/learn-more.png";
+
+  import arrow from "$lib/assets/arrow.svg";
+  import dot from "$lib/assets/dot.svg";
+
   import { onMount } from "svelte";
+  import * as Carousel from "$lib/components/ui/carousel/index.js";
+  import Autoplay from "embla-carousel-autoplay";
+
+  // Carousel setup
+  let currentIndex = $state(0);
+  const carouselPlugin = Autoplay({ delay: 50000000, stopOnInteraction: true });
+  import { type CarouselAPI } from "$lib/components/ui/carousel/context.js";
+  let api = $state<CarouselAPI>();
+
+  // Product slide data
+  const slides = [
+    {
+      title: "KATLA",
+      description: "Five-voice polyphonic synth, made from the ashes of Katla.",
+      image: katla,
+      logo: katla_logo,
+      href: "/katla",
+    },
+    {
+      title: "WAVE",
+      description: "Control your sound, shape effects and send commands with the Wave ring.",
+      image: wave,
+      logo: null,
+      href: "/wave",
+    },
+    {
+      title: "SOFTWAVE",
+      description: "The key that unlocks the full potential of your Wave Ring.",
+      image: softwave,
+      logo: null,
+      href: "/softwave",
+    },
+    {
+      title: "Cosmos",
+      description: "Experience the cosmos with  this softsynth, featuring playful effects and a fun interface.",
+      image: cosmos,
+      logo: null,
+      href: "/cosmos",
+    },
+    {
+      title: "WAVEFRONT",
+      description: "The Wavefront instantly elevates any modular setup.",
+      image: wavefront,
+      logo: null,
+      href: "/wavefront",
+    },
+  ];
 
   // For hover-based dropdown
-  let hardwareHovered = false;
-  let softwareHovered = false;
+  let hardwareHovered = $state(false);
+  let softwareHovered = $state(false);
 
   // Define hardware and software dropdown content
   const hardware = [
@@ -46,20 +101,79 @@
     },
   ];
 
+  function scrollCarouselPrev() {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+  }
+
+  function scrollCarouselNext() {
+    currentIndex = (currentIndex + 1 + slides.length) % slides.length;
+  }
+
+  $effect(() => {
+    api?.scrollTo(currentIndex);
+  });
+
   // Grid toggle
-  let showGrid = false;
+  let showGrid = $state(false);
+
+  // Responsive handling
+  let isMobile = $state(false);
+
+  // Handle swipe gestures
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  function handleTouchStart(e: TouchEvent) {
+    touchStartX = e.changedTouches[0].screenX;
+  }
+
+  function handleTouchEnd(e: TouchEvent) {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  }
+
+  function handleSwipe() {
+    // Detect swipe direction and minimum distance (50px)
+    if (touchEndX < touchStartX - 50) {
+      // Swipe left - go next
+      scrollCarouselNext();
+    }
+
+    if (touchEndX > touchStartX + 50) {
+      // Swipe right - go previous
+      scrollCarouselPrev();
+    }
+  }
 
   onMount(() => {
     const handleKeyDown = (event) => {
       if (event.key === "'") {
         showGrid = !showGrid;
       }
+
+      // Arrow keys for navigation
+      if (event.key === "ArrowRight") {
+        scrollCarouselNext();
+      }
+
+      if (event.key === "ArrowLeft") {
+        scrollCarouselPrev();
+      }
     };
 
     window.addEventListener("keydown", handleKeyDown);
 
+    // Check if we need to adapt layout for mobile
+    const handleResize = () => {
+      isMobile = window.innerWidth < 768;
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Initial check
+
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("resize", handleResize);
     };
   });
 </script>
@@ -136,23 +250,23 @@
   </symbol>
 </svg>
 
-<div class="min-h-screen bg-[#151515] font-['Circular_Std'] text-[#F6F6F6]">
-  <!-- Grid-aligned container with 50px margins -->
-  <div class="mx-auto" style="max-width: calc(100% - 100px);">
-    <!-- Header -->
-    <header class="grid grid-cols-10 gap-[10px] py-8">
+<div class="flex h-screen flex-col overflow-hidden bg-[#151515] font-['Circular_Std'] text-[#F6F6F6]">
+  <!-- Grid-aligned container with responsive margins -->
+  <div class="mx-auto flex w-full flex-1 flex-col" style={isMobile ? "max-width: calc(100% - 40px);" : "max-width: calc(100% - 100px);"}>
+    <!-- Header - Fixed height -->
+    <header class="grid h-[72px] flex-shrink-0 grid-cols-10 gap-[10px]">
       <!-- Logo (left-most) -->
-      <div class="col-span-2">
-        <a href="/"><img class="hidden h-6 sm:inline" src={logo} alt="" /></a>
+      <div class="col-span-2 flex items-center">
+        <a href="/"><img class="h-6" src={logo} alt="Logo" /></a>
       </div>
 
-      <!-- Empty space -->
-      <div class="col-span-4"></div>
+      <!-- Empty space (hidden on mobile) -->
+      <div class={isMobile ? "hidden" : "col-span-4"}></div>
 
       <!-- Navigation and Cart (right-most) -->
-      <div class="col-span-4 flex items-center justify-end">
+      <div class={`flex items-center justify-end ${isMobile ? "col-span-8" : "col-span-4"}`}>
         <!-- Hardware Dropdown with hover -->
-        <div class="relative" on:mouseenter={() => (hardwareHovered = true)} on:mouseleave={() => (hardwareHovered = false)}>
+        <div class="relative" onmouseenter={() => (hardwareHovered = true)} onmouseleave={() => (hardwareHovered = false)}>
           <button class="flex items-center hover:text-gray-300">
             Hardware
             <svg class="ml-1 h-3 w-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -177,11 +291,10 @@
           {/if}
         </div>
 
-        <span class="inline-block w-10"></span>
-        <!-- 40px gap -->
+        <span class={`inline-block ${isMobile ? "w-4" : "w-10"}`}></span>
 
         <!-- Software Dropdown with hover -->
-        <div class="relative" on:mouseenter={() => (softwareHovered = true)} on:mouseleave={() => (softwareHovered = false)}>
+        <div class="relative" onmouseenter={() => (softwareHovered = true)} onmouseleave={() => (softwareHovered = false)}>
           <button class="flex items-center hover:text-gray-300">
             Software
             <svg class="ml-1 h-3 w-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -206,14 +319,12 @@
           {/if}
         </div>
 
-        <span class="inline-block w-10"></span>
-        <!-- 40px gap -->
+        <span class={`inline-block ${isMobile ? "w-4" : "w-10"}`}></span>
 
         <!-- Documentation Link -->
         <a href="/documentation" class="hover:text-gray-300">Documentation</a>
 
-        <span class="inline-block w-[30px]"></span>
-        <!-- 30px gap -->
+        <span class={`inline-block ${isMobile ? "w-[15px]" : "w-[30px]"}`}></span>
 
         <!-- Cart Icon -->
         <a href="#" class="flex items-center justify-center hover:text-gray-300">
@@ -224,37 +335,92 @@
       </div>
     </header>
 
-    <!-- Hero Section -->
-    <div class="relative mt-8 grid min-h-[80vh] grid-cols-10 items-center gap-[10px] pb-20">
-      <!-- Hero Text (Left Side - spans 4 columns with more spacing) -->
-      <div class="col-span-3 col-start-2 flex flex-col justify-center">
-        <div class="space-y-10">
-          <h1 class="text-7xl font-bold">
-            <img src={katla_logo} alt="Learn more" />
-          </h1>
-          <p class="font-book text-4xl">Five-voice polyphonic synth, made from the ashes of Katla.</p>
+    <!-- Main content area with vertical centering -->
+    <div class="flex min-h-[580px] flex-1 flex-col justify-center" ontouchstart={handleTouchStart} ontouchend={handleTouchEnd}>
+      <!-- Main Carousel -->
+      <Carousel.Root plugins={[carouselPlugin]} class="w-full" setApi={(emblaApi) => (api = emblaApi)}>
+        <Carousel.Content>
+          {#each slides as slide, i (i)}
+            <Carousel.Item>
+              <!-- Product Slide Content -->
+              <div class="grid grid-cols-10 items-center gap-[10px]">
+                <!-- Text Column -->
+                <div class={`${isMobile ? "col-span-10 p-4" : "col-span-3 col-start-2"}`}>
+                  <div class={isMobile ? "space-y-6 text-center" : "space-y-10"}>
+                    {#if slide.logo}
+                      <h1 class={isMobile ? "text-5xl font-bold" : "text-7xl font-bold"}>
+                        <img src={slide.logo} alt={slide.title} class={isMobile ? "mx-auto" : ""} />
+                      </h1>
+                    {:else}
+                      <h1 class={isMobile ? "text-5xl font-bold" : "text-7xl font-bold"}>{slide.title}</h1>
+                    {/if}
 
-          <div class="pt-8">
-            <img src={learn_more} class="w-24" alt="Learn more" />
-          </div>
-        </div>
-      </div>
+                    <p class={isMobile ? "font-book text-2xl" : "font-book text-4xl"}>{slide.description}</p>
 
-      <!-- Hero Image (starting at column 6 from left and extending to right edge) -->
-      <div class="relative col-span-5 col-start-6 h-full">
-        <div class="absolute inset-y-0 right-[-100px] left-0 flex items-center">
-          <div class="relative h-full w-full rounded-l-lg">
-            <div class="absolute inset-0 flex items-center justify-center">
-              <img src={katla} alt="Katla" class="h-full w-full object-cover" />
-            </div>
-          </div>
-        </div>
-      </div>
+                    <div class={isMobile ? "pt-4" : "pt-8"}>
+                      <a href={slide.href} class="inline-block transition-transform duration-300 ease-in-out hover:translate-x-1">
+                        <img src={learn_more} alt="Learn more" class="cursor-pointer" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Image Column - BIG BEAUTIFUL IMAGES -->
+                <div class={`${isMobile ? "col-span-10 mt-6" : "col-span-5 col-start-6"} relative`}>
+                  {#if isMobile}
+                    <div class="flex h-full justify-center">
+                      <a href={slide.href} class="flex h-full items-center">
+                        <img src={slide.image} alt={slide.title} class="w-[50vw] object-contain transition-transform duration-500 hover:scale-[1.02]" />
+                      </a>
+                    </div>
+                  {:else}
+                    <div class="flex h-full items-center">
+                      <a href={slide.href} class="flex h-full items-center">
+                        <img src={slide.image} alt={slide.title} class="w-[90vw] object-contain transition-transform duration-300 hover:scale-[1.03]" />
+                      </a>
+                    </div>
+                  {/if}
+                </div>
+              </div>
+            </Carousel.Item>
+          {/each}
+        </Carousel.Content>
+      </Carousel.Root>
     </div>
+
+    <!-- Footer with Navigation Controls - Fixed height -->
+    <footer class="h-[72px] flex-shrink-0">
+      <div class="grid h-full grid-cols-10 gap-[10px]">
+        <div class="col-span-2 col-start-1 flex items-center">
+          <!-- Left Arrow -->
+          <button class="p-2 transition-transform duration-150 active:translate-x-[-2px]" onclick={() => scrollCarouselPrev()}>
+            <img src={arrow} alt="Previous" class="h-[18px] rotate-180" />
+          </button>
+        </div>
+
+        <!-- Dots Navigation -->
+        <div class="col-span-6 col-start-3 flex items-center justify-center gap-4">
+          {#each slides as _, i (i)}
+            <button class="p-2 transition-all duration-200" onclick={() => (currentIndex = i)} aria-label={`Navigate to slide ${i + 1}`}>
+              <div class="relative h-[10px] w-[10px] transition-transform duration-300" class:scale-125={currentIndex === i}>
+                <img src={dot} alt="Dot" class="h-full w-full transition-opacity duration-300" class:opacity-100={currentIndex === i} class:opacity-40={currentIndex !== i} />
+              </div>
+            </button>
+          {/each}
+        </div>
+
+        <div class="col-span-2 col-start-9 flex items-center justify-end">
+          <!-- Right Arrow -->
+          <button class="p-2 transition-transform duration-150 active:translate-x-[2px]" onclick={() => scrollCarouselNext()}>
+            <img src={arrow} alt="Next" class="h-[18px]" />
+          </button>
+        </div>
+      </div>
+    </footer>
 
     {#if showGrid}
       <div class="pointer-events-none fixed inset-0 z-[9998]">
-        <div class="mx-auto h-full" style="max-width: calc(100% - 100px);">
+        <div class="mx-auto h-full" style={isMobile ? "max-width: calc(100% - 40px);" : "max-width: calc(100% - 100px);"}>
           <div class="flex h-full justify-between">
             {#each Array(10) as _, i (i)}
               <div class="mx-[5px] h-full flex-1 bg-[rgba(85,85,85,0.5)] first:ml-0 last:mr-0"></div>
