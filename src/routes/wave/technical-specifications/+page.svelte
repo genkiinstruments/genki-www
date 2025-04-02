@@ -83,7 +83,8 @@
                       </div>
                     </div>
                     <div class="ml-4 shrink-0">
-                      <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Download</a>
+                      <!-- [TODO]: Fix link (April 02, 2025 10:06, ) -->
+                      <a href="/about" class="font-medium text-indigo-600 hover:text-indigo-500">Download</a>
                     </div>
                   </li>
                   <li class="flex items-center justify-between py-4 pr-5 pl-4 text-sm/6">
@@ -100,7 +101,8 @@
                       </div>
                     </div>
                     <div class="ml-4 shrink-0">
-                      <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Download</a>
+                      <!-- [TODO]: Fix link (April 02, 2025 10:06, ) -->
+                      <a href="/about" class="font-medium text-indigo-600 hover:text-indigo-500">Download</a>
                     </div>
                   </li>
                 </ul>
