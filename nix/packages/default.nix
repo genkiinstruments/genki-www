@@ -3,18 +3,14 @@
   flake,
   pkgs,
 }:
-with pkgs;
 let
-  # Use the flake source if provided, otherwise this would be replaced with fetchFromGitHub
   src = flake;
-  # Get nodejs version from package.json
   version = (builtins.fromJSON (builtins.readFile "${src}/package.json")).version;
-
 in
-stdenv.mkDerivation {
+pkgs.stdenv.mkDerivation {
   inherit pname src version;
 
-  nativeBuildInputs = [
+  nativeBuildInputs = with pkgs; [
     nodejs
     pnpm.configHook
     esbuild
@@ -22,14 +18,13 @@ stdenv.mkDerivation {
 
   pnpmDeps = pkgs.pnpm.fetchDeps {
     inherit pname version src;
-    hash = "sha256-SajXZyvvpCdfiSAwLreMmom2J8Ky7ldfAK0+xv+ZEmg=";
+    hash = "sha256-e8+ptI4RNdffKbi0oGJgIQtjJ3FDQbtFjTS5rnu1SiI=";
   };
 
   buildPhase = ''
     # fixes: Cannot find base config file "./.svelte-kit/tsconfig.json" [tsconfig.json]
     # See: https://github.com/sveltejs/kit/issues/5390
     pnpm check 
-
     pnpm build
   '';
 
