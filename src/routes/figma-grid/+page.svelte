@@ -116,6 +116,7 @@
   $effect(() => {
     api?.scrollTo(currentIndex);
   });
+  let backgroundImage = $derived(slides[currentIndex].image);
 
   // Grid toggle
   let showGrid = $state(false);
@@ -262,6 +263,8 @@
   </symbol>
 </svg>
 
+<img class="absolute top-0 right-0 bottom-0 z-0 w-[60%]" src={backgroundImage} alt="" />
+
 <div class="flex h-screen flex-col overflow-hidden bg-[#151515] font-['Circular_Std'] text-[#F6F6F6]">
   <!-- Grid-aligned container with responsive margins -->
   <div class="mx-auto flex w-full flex-1 flex-col" style={isMobile ? "max-width: calc(100% - 40px);" : "max-width: calc(100% - 100px);"}>
@@ -375,23 +378,6 @@
                       </a>
                     </div>
                   </div>
-                </div>
-
-                <!-- Image Column - BIG BEAUTIFUL IMAGES -->
-                <div class={`${isMobile ? "col-span-10 mt-6" : "col-span-5 col-start-6"} relative`}>
-                  {#if isMobile}
-                    <div class="flex h-full justify-center">
-                      <a href={slide.href} class="flex h-full items-center">
-                        <img src={slide.image} alt={slide.title} class="w-[50vw] object-contain transition-transform duration-500 hover:scale-[1.02]" />
-                      </a>
-                    </div>
-                  {:else}
-                    <div class="flex h-full items-center">
-                      <a href={slide.href} class="flex h-full items-center">
-                        <img src={slide.image} alt={slide.title} class="w-[90vw] object-contain transition-transform duration-300 hover:scale-[1.03]" />
-                      </a>
-                    </div>
-                  {/if}
                 </div>
               </div>
             </Carousel.Item>
