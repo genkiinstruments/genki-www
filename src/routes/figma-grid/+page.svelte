@@ -1,10 +1,16 @@
 <script lang="ts">
+  // ... (keep all your existing script content) ...
   import logo from "$lib/assets/logo.svg";
   import katla from "$lib/assets/Katla_Placeholder.png";
   import softwave from "$lib/assets/Softwave_Placeholder.png";
   import wave from "$lib/assets/Wave_Main.png";
   import wavefront from "$lib/assets/Wavefront_Main.png";
   import cosmos from "$lib/assets/Cosmos_Main.gif";
+
+  import wavefront_bg from "$lib/assets/wavefront-bg.png";
+  import wave_bg from "$lib/assets/wave-bg.png";
+  import katla_bg from "$lib/assets/katla-bg.png";
+
   import katla_logo from "$lib/assets/katla-logo.png";
   import learn_more from "$lib/assets/learn-more.png";
 
@@ -31,6 +37,7 @@
       title: "KATLA",
       description: "Five-voice polyphonic synth, made from the ashes of Katla.",
       image: katla,
+      background: katla_bg,
       logo: katla_logo,
       href: "/katla",
     },
@@ -38,27 +45,15 @@
       title: "WAVE",
       description: "Control your sound, shape effects and send commands with the Wave ring.",
       image: wave,
+      background: wave_bg,
       logo: null,
       href: "/wave",
-    },
-    {
-      title: "SOFTWAVE",
-      description: "The key that unlocks the full potential of your Wave Ring.",
-      image: softwave,
-      logo: null,
-      href: "/softwave",
-    },
-    {
-      title: "Cosmos",
-      description: "Experience the cosmos with  this softsynth, featuring playful effects and a fun interface.",
-      image: cosmos,
-      logo: null,
-      href: "/cosmos",
     },
     {
       title: "WAVEFRONT",
       description: "The Wavefront instantly elevates any modular setup.",
       image: wavefront,
+      background: wavefront_bg,
       logo: null,
       href: "/wavefront",
     },
@@ -116,7 +111,8 @@
   $effect(() => {
     api?.scrollTo(currentIndex);
   });
-  let backgroundImage = $derived(slides[currentIndex].image);
+
+  let backgroundImage = $derived(slides[currentIndex].background);
 
   // Grid toggle
   let showGrid = $state(false);
@@ -192,7 +188,7 @@
 </script>
 
 <svelte:head>
-  <!-- Circular Std Font -->
+  <!-- ... (keep head content) ... -->
   <link href="https://db.onlinewebfonts.com/c/860c3ec7bbc5da3e97233ccecafe512e?family=Circular+Std+Book" rel="stylesheet" type="text/css" />
   <style>
     @font-face {
@@ -263,11 +259,11 @@
   </symbol>
 </svg>
 
-<img class="absolute top-0 right-0 bottom-0 z-0 w-[60%]" src={backgroundImage} alt="" />
+<div class="relative flex h-screen flex-col overflow-hidden bg-[#151515] font-['Circular_Std'] text-[#F6F6F6]">
+  <img class="absolute inset-0 z-0 h-full w-full object-cover" src={backgroundImage} alt="Background" />
 
-<div class="flex h-screen flex-col overflow-hidden bg-[#151515] font-['Circular_Std'] text-[#F6F6F6]">
-  <!-- Grid-aligned container with responsive margins -->
-  <div class="mx-auto flex w-full flex-1 flex-col" style={isMobile ? "max-width: calc(100% - 40px);" : "max-width: calc(100% - 100px);"}>
+  <!-- Grid-aligned container with responsive margins - Add z-10 or higher if needed -->
+  <div class="relative z-10 mx-auto flex w-full flex-1 flex-col" style={isMobile ? "max-width: calc(100% - 40px);" : "max-width: calc(100% - 100px);"}>
     <!-- Header - Fixed height -->
     <header class="grid h-[72px] flex-shrink-0 grid-cols-10 gap-[10px]">
       <!-- Logo (left-most) -->
@@ -428,4 +424,6 @@
       </div>
     {/if}
   </div>
+  <!-- End of inner content div -->
 </div>
+<!-- End of main h-screen div -->
