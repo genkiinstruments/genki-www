@@ -333,7 +333,7 @@
       <!-- Navigation and Cart (right-most) -->
       <div class={`flex items-center justify-end ${isMobile ? "col-span-8" : "col-span-4"}`}>
         <!-- Hardware Dropdown with hover -->
-        <div class="relative" onmouseenter={() => (hardwareHovered = true)} onmouseleave={() => (hardwareHovered = false)}>
+        <div class="relative" role="navigation" aria-label="Hardware products menu" onmouseenter={() => (hardwareHovered = true)} onmouseleave={() => (hardwareHovered = false)}>
           <button class="flex items-center hover:text-gray-300">
             Hardware
             <svg class="ml-1 h-3 w-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -361,7 +361,7 @@
         <span class={`inline-block ${isMobile ? "w-4" : "w-10"}`}></span>
 
         <!-- Software Dropdown with hover -->
-        <div class="relative" onmouseenter={() => (softwareHovered = true)} onmouseleave={() => (softwareHovered = false)}>
+        <div class="relative" role="navigation" aria-label="Software products menu" onmouseenter={() => (softwareHovered = true)} onmouseleave={() => (softwareHovered = false)}>
           <button class="flex items-center hover:text-gray-300">
             Software
             <svg class="ml-1 h-3 w-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -394,7 +394,7 @@
         <span class={`inline-block ${isMobile ? "w-[15px]" : "w-[30px]"}`}></span>
 
         <!-- Cart Icon -->
-        <a href="#" class="flex items-center justify-center hover:text-gray-300">
+        <a href="/cart" aria-label="View shopping cart" class="flex items-center justify-center hover:text-gray-300">
           <svg class="h-[1em] w-[1em] translate-y-[0.1em]">
             <use xlink:href="#cart-icon"></use>
           </svg>
@@ -456,7 +456,10 @@
       <div class="grid h-full grid-cols-10 gap-[10px]">
         <div class="col-span-2 col-start-1 flex items-center">
           <!-- Left Arrow -->
-          <button class="p-2 opacity-40 transition-transform duration-150 active:translate-x-[-2px]" onclick={() => scrollCarouselPrev()}>
+          <button 
+            class="p-2 transition-transform duration-150 active:translate-x-[-2px] hover:opacity-100" 
+            onclick={() => scrollCarouselPrev()}
+            aria-label="Previous slide">
             <img src={arrow} alt="Previous" class="h-[18px] rotate-180 transition-transform duration-150" class:translate-x-[-2px]={leftArrowActive} />
           </button>
         </div>
@@ -484,7 +487,10 @@
 
         <div class="col-span-2 col-start-9 flex items-center justify-end">
           <!-- Right Arrow -->
-          <button class="p-2 opacity-40 transition-transform duration-150 active:translate-x-[2px]" onclick={() => scrollCarouselNext()}>
+          <button 
+            class="p-2 transition-transform duration-150 active:translate-x-[2px] hover:opacity-100" 
+            onclick={() => scrollCarouselNext()}
+            aria-label="Next slide">
             <img src={arrow} alt="Next" class="h-[18px] transition-transform duration-150" class:translate-x-[2px]={rightArrowActive} />
           </button>
         </div>
