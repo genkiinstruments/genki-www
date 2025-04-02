@@ -2,10 +2,8 @@
   // ... (keep all your existing script content) ...
   import logo from "$lib/assets/logo.svg";
   import katla from "$lib/assets/Katla_Placeholder.png";
-  import softwave from "$lib/assets/Softwave_Placeholder.png";
   import wave from "$lib/assets/Wave_Main.png";
   import wavefront from "$lib/assets/Wavefront_Main.png";
-  import cosmos from "$lib/assets/Cosmos_Main.gif";
 
   import wavefront_bg from "$lib/assets/wavefront-bg.png";
   import wave_bg from "$lib/assets/wave-bg.png";
