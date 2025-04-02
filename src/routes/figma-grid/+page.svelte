@@ -18,14 +18,38 @@
   import dot from "$lib/assets/dot.svg";
 
   import { onMount } from "svelte";
+  import { fade, fly } from "svelte/transition";
+  import { cubicInOut } from "svelte/easing";
   import * as Carousel from "$lib/components/ui/carousel/index.js";
   import Autoplay from "embla-carousel-autoplay";
 
   // Carousel setup
   let currentIndex = $state(0);
-  const carouselPlugin = Autoplay({ delay: 50000000, stopOnInteraction: true });
+  const carouselPlugin = Autoplay({ delay: 4000, stopOnInteraction: true, stopOnMouseEnter: true });
   import { type CarouselAPI } from "$lib/components/ui/carousel/context.js";
   let api = $state<CarouselAPI>();
+
+  // Track if user is currently interacting with navigation
+  let userInteracting = $state(false);
+
+  // Helper to reset autoplay when needed
+  function resetAutoplay() {
+    if (api?.plugins()?.autoplay) {
+      api.plugins().autoplay.reset();
+    }
+  }
+
+  // Listen for carousel changes
+  function setupCarouselListeners() {
+    if (api && api.on) {
+      // Only update from autoplay, not from manual navigation
+      api.on("select", () => {
+        if (!userInteracting) {
+          currentIndex = api?.selectedScrollSnap();
+        }
+      });
+    }
+  }
 
   // Animation state for arrow keys
   let leftArrowActive = $state(false);
@@ -101,17 +125,40 @@
   ];
 
   function scrollCarouselPrev() {
+    userInteracting = true;
     currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    resetAutoplay();
+    setTimeout(() => {
+      userInteracting = false;
+    }, 500);
   }
 
   function scrollCarouselNext() {
+    userInteracting = true;
     currentIndex = (currentIndex + 1 + slides.length) % slides.length;
+    resetAutoplay();
+    setTimeout(() => {
+      userInteracting = false;
+    }, 500);
   }
 
+  // Track if listeners have been set up
+  let listenersSetup = $state(false);
+
   $effect(() => {
-    api?.scrollTo(currentIndex);
+    if (api) {
+      // Scroll to current index when it changes
+      api.scrollTo(currentIndex);
+
+      // Set up listeners once
+      if (!listenersSetup) {
+        setupCarouselListeners();
+        listenersSetup = true;
+      }
+    }
   });
 
+  // Reactive background image that updates when currentIndex changes
   let backgroundImage = $derived(slides[currentIndex].background);
 
   // Grid toggle
@@ -137,11 +184,13 @@
     // Detect swipe direction and minimum distance (50px)
     if (touchEndX < touchStartX - 50) {
       // Swipe left - go next
+      userInteracting = true;
       scrollCarouselNext();
     }
 
     if (touchEndX > touchStartX + 50) {
       // Swipe right - go previous
+      userInteracting = true;
       scrollCarouselPrev();
     }
   }
@@ -154,6 +203,7 @@
 
       // Arrow keys for navigation
       if (event.key === "ArrowRight") {
+        userInteracting = true;
         rightArrowActive = true;
         scrollCarouselNext();
         setTimeout(() => {
@@ -162,6 +212,7 @@
       }
 
       if (event.key === "ArrowLeft") {
+        userInteracting = true;
         leftArrowActive = true;
         scrollCarouselPrev();
         setTimeout(() => {
@@ -260,7 +311,12 @@
 </svg>
 
 <div class="relative flex h-screen flex-col overflow-hidden bg-[#151515] font-['Circular_Std'] text-[#F6F6F6]">
-  <img class="absolute inset-0 z-0 h-full w-full object-cover" src={backgroundImage} alt="Background" />
+  <!-- Background with elegant fade transitions -->
+  {#key currentIndex}
+    <div class="absolute inset-0 z-0" transition:fade={{ duration: 1000, easing: cubicInOut }}>
+      <img class="h-full w-full object-cover" src={backgroundImage} alt="Background" />
+    </div>
+  {/key}
 
   <!-- Grid-aligned container with responsive margins - Add z-10 or higher if needed -->
   <div class="relative z-10 mx-auto flex w-full flex-1 flex-col" style={isMobile ? "max-width: calc(100% - 40px);" : "max-width: calc(100% - 100px);"}>
@@ -349,31 +405,44 @@
     <!-- Main content area with vertical centering -->
     <div class="flex min-h-[580px] flex-1 flex-col justify-center" ontouchstart={handleTouchStart} ontouchend={handleTouchEnd}>
       <!-- Main Carousel -->
-      <Carousel.Root plugins={[carouselPlugin]} class="w-full" setApi={(emblaApi) => (api = emblaApi)}>
+      <Carousel.Root
+        plugins={[carouselPlugin]}
+        class="w-full"
+        setApi={(emblaApi) => {
+          api = emblaApi;
+          // Reset listeners setup flag when API changes
+          if (emblaApi) listenersSetup = false;
+        }}>
         <Carousel.Content>
           {#each slides as slide, i (i)}
             <Carousel.Item>
               <!-- Product Slide Content -->
               <div class="grid grid-cols-10 items-center gap-[10px]">
-                <!-- Text Column -->
+                <!-- Text Column with elegant fade animations -->
                 <div class={`${isMobile ? "col-span-10 p-4" : "col-span-3 col-start-2"}`}>
-                  <div class={isMobile ? "space-y-6 text-center" : "space-y-10"}>
-                    {#if slide.logo}
-                      <h1 class={isMobile ? "text-5xl font-bold" : "text-7xl font-bold"}>
-                        <img src={slide.logo} alt={slide.title} class={isMobile ? "mx-auto" : ""} />
-                      </h1>
-                    {:else}
-                      <h1 class={isMobile ? "text-5xl font-bold" : "text-7xl font-bold"}>{slide.title}</h1>
-                    {/if}
+                  {#if currentIndex === i}
+                    <div class={isMobile ? "space-y-6 text-center" : "space-y-10"} in:fly={{ x: -15, duration: 600, delay: 400, easing: cubicInOut }}>
+                      {#if slide.logo}
+                        <h1 class={isMobile ? "text-5xl font-bold" : "text-5xl font-bold"}>
+                          <img src={slide.logo} alt={slide.title} class={isMobile ? "mx-auto" : ""} />
+                        </h1>
+                      {:else}
+                        <h1 class={isMobile ? "text-5xl font-bold" : "text-5xl font-bold"}>
+                          {slide.title}
+                        </h1>
+                      {/if}
 
-                    <p class={isMobile ? "font-book text-2xl" : "font-book text-4xl"}>{slide.description}</p>
+                      <p class={isMobile ? "font-book text-2xl" : "font-book text-3xl"}>
+                        {slide.description}
+                      </p>
 
-                    <div class={isMobile ? "pt-4" : "pt-8"}>
-                      <a href={slide.href} class="inline-block transition-transform duration-300 ease-in-out hover:translate-x-1">
-                        <img src={learn_more} alt="Learn more" class="cursor-pointer" />
-                      </a>
+                      <div class={isMobile ? "pt-4" : "pt-8"}>
+                        <a href={slide.href} class="inline-block transition-transform duration-300 ease-in-out hover:translate-x-1">
+                          <img src={learn_more} alt="Learn more" class="cursor-pointer" />
+                        </a>
+                      </div>
                     </div>
-                  </div>
+                  {/if}
                 </div>
               </div>
             </Carousel.Item>
@@ -387,7 +456,7 @@
       <div class="grid h-full grid-cols-10 gap-[10px]">
         <div class="col-span-2 col-start-1 flex items-center">
           <!-- Left Arrow -->
-          <button class="p-2 transition-transform duration-150 active:translate-x-[-2px]" onclick={() => scrollCarouselPrev()}>
+          <button class="p-2 opacity-40 transition-transform duration-150 active:translate-x-[-2px]" onclick={() => scrollCarouselPrev()}>
             <img src={arrow} alt="Previous" class="h-[18px] rotate-180 transition-transform duration-150" class:translate-x-[-2px]={leftArrowActive} />
           </button>
         </div>
@@ -395,9 +464,19 @@
         <!-- Dots Navigation -->
         <div class="col-span-6 col-start-3 flex items-center justify-center gap-4">
           {#each slides as _, i (i)}
-            <button class="p-2 transition-all duration-200" onclick={() => (currentIndex = i)} aria-label={`Navigate to slide ${i + 1}`}>
-              <div class="relative h-[10px] w-[10px] transition-transform duration-300" class:scale-125={currentIndex === i}>
-                <img src={dot} alt="Dot" class="h-full w-full transition-opacity duration-300" class:opacity-100={currentIndex === i} class:opacity-40={currentIndex !== i} />
+            <button
+              class="p-2 transition-all duration-200"
+              onclick={() => {
+                userInteracting = true;
+                currentIndex = i;
+                resetAutoplay();
+                setTimeout(() => {
+                  userInteracting = false;
+                }, 500);
+              }}
+              aria-label={`Navigate to slide ${i + 1}`}>
+              <div class="relative h-[10px] w-[10px] transition-all duration-500" class:scale-125={currentIndex === i}>
+                <img src={dot} alt="Dot" class="h-full w-full transition-all duration-500" class:opacity-100={currentIndex === i} class:opacity-40={currentIndex !== i} />
               </div>
             </button>
           {/each}
@@ -405,7 +484,7 @@
 
         <div class="col-span-2 col-start-9 flex items-center justify-end">
           <!-- Right Arrow -->
-          <button class="p-2 transition-transform duration-150 active:translate-x-[2px]" onclick={() => scrollCarouselNext()}>
+          <button class="p-2 opacity-40 transition-transform duration-150 active:translate-x-[2px]" onclick={() => scrollCarouselNext()}>
             <img src={arrow} alt="Next" class="h-[18px] transition-transform duration-150" class:translate-x-[2px]={rightArrowActive} />
           </button>
         </div>
