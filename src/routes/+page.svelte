@@ -222,63 +222,10 @@
 </script>
 
 <svelte:head>
-  <!-- ... (keep head content) ... -->
-  <link href="https://db.onlinewebfonts.com/c/860c3ec7bbc5da3e97233ccecafe512e?family=Circular+Std+Book" rel="stylesheet" type="text/css" />
+  <!-- Page-specific head content -->
   <style>
-    @font-face {
-      font-family: "Circular Std Book";
-      src: url("https://db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.eot");
-      src:
-        url("https://db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.eot?#iefix") format("embedded-opentype"),
-        url("https://db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.woff2") format("woff2"),
-        url("https://db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.woff") format("woff"),
-        url("https://db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.ttf") format("truetype"),
-        url("https://db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.svg#Circular Std Book") format("svg");
-      font-weight: normal;
-      font-style: normal;
-    }
-
-    @font-face {
-      font-family: "Circular Std";
-      src: url("https://db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.eot");
-      src:
-        url("https://db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.eot?#iefix") format("embedded-opentype"),
-        url("https://db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.woff2") format("woff2"),
-        url("https://db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.woff") format("woff"),
-        url("https://db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.ttf") format("truetype"),
-        url("https://db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.svg#Circular Std Book") format("svg");
-      font-weight: normal;
-      font-style: normal;
-    }
-
-    @font-face {
-      font-family: "Circular Std";
-      src: url("https://db.onlinewebfonts.com/t/961a181da27e7cbc072ec2fb5bbfe2a9.eot");
-      src:
-        url("https://db.onlinewebfonts.com/t/961a181da27e7cbc072ec2fb5bbfe2a9.eot?#iefix") format("embedded-opentype"),
-        url("https://db.onlinewebfonts.com/t/961a181da27e7cbc072ec2fb5bbfe2a9.woff2") format("woff2"),
-        url("https://db.onlinewebfonts.com/t/961a181da27e7cbc072ec2fb5bbfe2a9.woff") format("woff"),
-        url("https://db.onlinewebfonts.com/t/961a181da27e7cbc072ec2fb5bbfe2a9.ttf") format("truetype"),
-        url("https://db.onlinewebfonts.com/t/961a181da27e7cbc072ec2fb5bbfe2a9.svg#Circular Std Medium") format("svg");
-      font-weight: 500;
-      font-style: normal;
-    }
-
-    @font-face {
-      font-family: "Circular Std";
-      src: url("https://db.onlinewebfonts.com/t/56855be2ba5bb40d6c2be889b8a96ca3.eot");
-      src:
-        url("https://db.onlinewebfonts.com/t/56855be2ba5bb40d6c2be889b8a96ca3.eot?#iefix") format("embedded-opentype"),
-        url("https://db.onlinewebfonts.com/t/56855be2ba5bb40d6c2be889b8a96ca3.woff2") format("woff2"),
-        url("https://db.onlinewebfonts.com/t/56855be2ba5bb40d6c2be889b8a96ca3.woff") format("woff"),
-        url("https://db.onlinewebfonts.com/t/56855be2ba5bb40d6c2be889b8a96ca3.ttf") format("truetype"),
-        url("https://db.onlinewebfonts.com/t/56855be2ba5bb40d6c2be889b8a96ca3.svg#Circular Std Bold") format("svg");
-      font-weight: bold;
-      font-style: normal;
-    }
-
     .font-book {
-      font-family: "Circular Std Book", sans-serif;
+      font-family: var(--font-book);
       font-weight: normal;
     }
   </style>
@@ -293,7 +240,7 @@
   </symbol>
 </svg>
 
-<div class="relative flex h-screen flex-col overflow-hidden bg-[#151515] font-['Circular_Std'] text-[#DFDFDF]">
+<div class="relative flex h-screen flex-col overflow-hidden bg-[#151515] text-[#DFDFDF]">
   <!-- Background with elegant fade transitions -->
   {#key currentIndex}
     <div class="absolute inset-0 z-0" transition:fade={{ duration: 1000, easing: cubicInOut }}>
