@@ -10,13 +10,6 @@ overrides:
 importers:
 
   .:
-    dependencies:
-      embla-carousel-autoplay:
-        specifier: ^8.5.2
-        version: 8.5.2(embla-carousel@8.5.2)
-      tw-animate-css:
-        specifier: ^1.2.5
-        version: 1.2.5
     devDependencies:
       '@lucide/svelte':
         specifier: ^0.487.0
@@ -42,6 +35,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      embla-carousel-autoplay:
+        specifier: ^8.5.2
+        version: 8.5.2(embla-carousel@8.5.2)
       embla-carousel-svelte:
         specifier: ^8.5.2
         version: 8.5.2(svelte@5.25.6)
@@ -78,6 +74,9 @@ importers:
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@4.1.1)
+      tw-animate-css:
+        specifier: ^1.2.5
+        version: 1.2.5
       typescript:
         specifier: ^5.8.2
         version: 5.8.2
