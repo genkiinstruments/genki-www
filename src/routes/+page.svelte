@@ -8,7 +8,7 @@
   import softwave_bg from "$lib/assets/Softwave_3D.png";
 
   import katla_logo from "$lib/assets/katla-logo.png";
-  import learn_more from "$lib/assets/learn-more.png";
+  import InteractiveString from "$lib/InteractiveString.svelte";
 
   import arrow from "$lib/assets/arrow.svg";
   import dot from "$lib/assets/dot.svg";
@@ -242,8 +242,11 @@
                       </p>
 
                       <div class="pt-4 md:pt-8">
-                        <a href={slide.href} class="inline-block transition-transform duration-300 ease-in-out hover:translate-x-1">
-                          <img src={learn_more} alt="Learn more" class="cursor-pointer" />
+                        <a href={slide.href} class="inline-block">
+                          <div class="relative cursor-pointer flex flex-col items-center">
+                            <InteractiveString />
+                            <span class="mt-2 text-white font-medium">LEARN MORE</span>
+                          </div>
                         </a>
                       </div>
                     </div>
