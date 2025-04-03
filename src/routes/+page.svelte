@@ -17,13 +17,13 @@
   import { onMount } from "svelte";
   import { fade, fly } from "svelte/transition";
   import { cubicInOut } from "svelte/easing";
-  import * as Carousel from "$lib/components/ui/carousel/index.js";
   import Autoplay from "embla-carousel-autoplay";
 
-  let currentIndex = $state(0);
-  const carouselPlugin = Autoplay({ delay: 4000, stopOnInteraction: true, stopOnMouseEnter: true });
+  import * as Carousel from "$lib/components/ui/carousel/index.js";
   import { type CarouselAPI } from "$lib/components/ui/carousel/context.js";
+  const carouselPlugin = Autoplay({ delay: 4000, stopOnInteraction: true, stopOnMouseEnter: true });
   let api = $state<CarouselAPI>();
+  let currentIndex = $state(0);
 
   let userInteracting = $state(false);
 
@@ -321,12 +321,11 @@
 
         <!-- Cart Icon -->
         <!-- [TODO]: Fix link (April 02, 2025 16:17, ) -->
-
-        <!-- <a href="/documentation" aria-label="View shopping cart" class="flex items-center justify-center opacity-40 hover:text-gray-300 hover:opacity-100"> -->
-        <!--   <svg class="h-[1em] w-[1em] translate-y-[0.1em]"> -->
-        <!--     <use xlink:href="#cart-icon"></use> -->
-        <!--   </svg> -->
-        <!-- </a> -->
+        <a href="/documentation" aria-label="View shopping cart" class="flex items-center justify-center opacity-40 hover:text-gray-300 hover:opacity-100">
+          <svg class="h-[1em] w-[1em] translate-y-[0.1em]">
+            <use xlink:href="#cart-icon"></use>
+          </svg>
+        </a>
       </div>
     </header>
 
