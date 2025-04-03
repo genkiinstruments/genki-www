@@ -164,7 +164,6 @@
   let backgroundImage = $derived(slides[currentIndex].background);
 
   let showGrid = $state(false);
-  let isMobile = $state(false);
 
   // Handle swipe gestures
   let touchStartX = 0;
@@ -222,17 +221,8 @@
 
     window.addEventListener("keydown", handleKeyDown);
 
-    // Check if we need to adapt layout for mobile
-    const handleResize = () => {
-      isMobile = window.innerWidth < 768;
-    };
-
-    window.addEventListener("resize", handleResize);
-    handleResize(); // Initial check
-
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("resize", handleResize);
     };
   });
 </script>
@@ -265,7 +255,7 @@
   {/key}
 
   <!-- Grid-aligned container with responsive margins - Add z-10 or higher if needed -->
-  <div class="relative z-10 mx-auto flex w-full flex-1 flex-col" style={isMobile ? "max-width: calc(100% - 40px);" : "max-width: calc(100% - 100px);"}>
+  <div class="relative z-10 mx-auto flex w-full flex-1 flex-col px-5 md:px-[50px]">
     <!-- Header - Fixed height -->
     <header class="grid h-[72px] flex-shrink-0 grid-cols-10 gap-[10px]">
       <!-- Logo (left-most) -->
@@ -274,10 +264,10 @@
       </div>
 
       <!-- Empty space (hidden on mobile) -->
-      <div class={isMobile ? "hidden" : "col-span-4"}></div>
+      <div class="hidden md:col-span-4 md:block"></div>
 
       <!-- Navigation and Cart (right-most) -->
-      <div class={`flex items-center justify-end ${isMobile ? "col-span-8" : "col-span-4"}`}>
+      <div class="col-span-8 flex items-center justify-end md:col-span-4">
         <!-- Hardware Dropdown with hover -->
         <div class="relative" role="navigation" aria-label="Hardware products menu" onmouseenter={() => (hardwareHovered = true)} onmouseleave={() => (hardwareHovered = false)}>
           <button class="flex items-center opacity-40 hover:text-gray-300 hover:opacity-100">
@@ -304,7 +294,7 @@
           {/if}
         </div>
 
-        <span class={`inline-block ${isMobile ? "w-4" : "w-10"}`}></span>
+        <span class="inline-block w-4 md:w-10"></span>
 
         <!-- Software Dropdown with hover -->
         <div class="relative" role="navigation" aria-label="Software products menu" onmouseenter={() => (softwareHovered = true)} onmouseleave={() => (softwareHovered = false)}>
@@ -332,12 +322,12 @@
           {/if}
         </div>
 
-        <span class={`inline-block ${isMobile ? "w-4" : "w-10"}`}></span>
+        <span class="inline-block w-4 md:w-10"></span>
 
         <!-- Documentation Link -->
         <a href="/documentation" class="opacity-40 hover:text-gray-300 hover:opacity-100">Documentation</a>
 
-        <span class={`inline-block ${isMobile ? "w-[15px]" : "w-[30px]"}`}></span>
+        <span class="inline-block w-[15px] md:w-[30px]"></span>
 
         <!-- Cart Icon -->
         <!-- [TODO]: Fix link (April 02, 2025 16:17, ) -->
@@ -367,24 +357,24 @@
               <!-- Product Slide Content -->
               <div class="grid grid-cols-10 items-center gap-[10px]">
                 <!-- Text Column with elegant fade animations -->
-                <div class={`${isMobile ? "col-span-10 p-4" : cn("col-span-3", slide.flipped ? "col-start-7" : "col-start-2")}`}>
+                <div class={cn("col-span-10 p-4 md:col-span-3 md:p-0 md:even:col-start-7", slide.flipped ? "md:col-start-7" : "md:col-start-2")}>
                   {#if currentIndex === i}
-                    <div class={isMobile ? "space-y-6 text-center" : "space-y-10"} in:fly={{ x: -15, duration: 600, delay: 400, easing: cubicInOut }}>
+                    <div class="space-y-6 text-center md:space-y-10 md:text-left" in:fly={{ x: -15, duration: 600, delay: 400, easing: cubicInOut }}>
                       {#if slide.logo}
-                        <h1 class={isMobile ? "text-5xl font-bold" : "text-5xl font-bold"}>
-                          <img src={slide.logo} alt={slide.title} class={isMobile ? "mx-auto" : ""} />
+                        <h1 class="text-5xl font-bold">
+                          <img src={slide.logo} alt={slide.title} class="mx-auto md:mx-0" />
                         </h1>
                       {:else}
-                        <h1 class={isMobile ? "text-4xl font-bold" : "text-4xl font-bold"}>
+                        <h1 class="text-4xl font-bold">
                           {slide.title}
                         </h1>
                       {/if}
 
-                      <p class={isMobile ? "font-book text-2xl" : "font-book text-4xl"}>
+                      <p class="font-book text-2xl md:text-4xl">
                         {slide.description}
                       </p>
 
-                      <div class={isMobile ? "pt-4" : "pt-8"}>
+                      <div class="pt-4 md:pt-8">
                         <a href={slide.href} class="inline-block transition-transform duration-300 ease-in-out hover:translate-x-1">
                           <img src={learn_more} alt="Learn more" class="cursor-pointer" />
                         </a>
@@ -441,7 +431,7 @@
 
     {#if showGrid}
       <div class="pointer-events-none fixed inset-0 z-[9998]">
-        <div class="mx-auto h-full" style={isMobile ? "max-width: calc(100% - 40px);" : "max-width: calc(100% - 100px);"}>
+        <div class="mx-auto h-full px-5 md:px-[50px]">
           <div class="flex h-full justify-between">
             {#each Array(10) as _, i (i)}
               <div class="mx-[5px] h-full flex-1 bg-[rgba(85,85,85,0.5)] first:ml-0 last:mr-0"></div>
