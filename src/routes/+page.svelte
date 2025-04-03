@@ -1,5 +1,4 @@
 <script lang="ts">
-  import logo from "$lib/assets/logo.svg";
   import cn from "clsx";
 
   import wavefront_bg from "$lib/assets/wavefront-bg.png";
@@ -21,6 +20,7 @@
 
   import * as Carousel from "$lib/components/ui/carousel/index.js";
   import { type CarouselAPI } from "$lib/components/ui/carousel/context.js";
+  import Header from "$lib/Header.svelte";
   const carouselPlugin = Autoplay({ delay: 4000, stopOnInteraction: true, stopOnMouseEnter: true });
   let api = $state<CarouselAPI>();
   let currentIndex = $state(0);
@@ -86,47 +86,6 @@
       logo: null,
       href: "/cosmos",
       flipped: true,
-    },
-  ];
-
-  // For hover-based dropdown
-  let hardwareHovered = $state(false);
-  let softwareHovered = $state(false);
-
-  // Define hardware and software dropdown content
-  const hardware = [
-    {
-      href: "/wave",
-      title: "Wave",
-      content: "The ring for music",
-    },
-    {
-      href: "/wavefront",
-      title: "Wavefront",
-      content: "Move your Eurorack",
-    },
-    {
-      href: "/katla",
-      title: "Katla",
-      content: "Happy-accident machine",
-    },
-  ];
-
-  const software = [
-    {
-      title: "Softwave",
-      href: "/softwave",
-      content: "Customize your Wave",
-    },
-    {
-      title: "Wave for Work",
-      href: "/wave-for-work",
-      content: "Wave as a peripheral",
-    },
-    {
-      title: "Cosmos",
-      href: "/cosmos",
-      content: "Cosmos is the",
     },
   ];
 
@@ -246,88 +205,7 @@
 
   <!-- Grid-aligned container with responsive margins - Add z-10 or higher if needed -->
   <div class="relative z-10 mx-auto flex w-full flex-1 flex-col px-5 md:px-[50px]">
-    <!-- Header - Fixed height -->
-    <header class="grid h-[72px] flex-shrink-0 grid-cols-10 gap-[10px]">
-      <!-- Logo (left-most) -->
-      <div class="col-span-2 flex items-center">
-        <a href="/"><img class="h-6" src={logo} alt="Logo" /></a>
-      </div>
-
-      <!-- Empty space (hidden on mobile) -->
-      <div class="hidden md:col-span-4 md:block"></div>
-
-      <!-- Navigation and Cart (right-most) -->
-      <div class="col-span-8 flex items-center justify-end md:col-span-4">
-        <!-- Hardware Dropdown with hover -->
-        <div class="relative" role="navigation" aria-label="Hardware products menu" onmouseenter={() => (hardwareHovered = true)} onmouseleave={() => (hardwareHovered = false)}>
-          <button class="flex items-center opacity-40 hover:text-gray-300 hover:opacity-100">
-            Hardware
-            <svg class="ml-1 h-3 w-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </button>
-
-          <!-- Dropdown content -->
-          {#if hardwareHovered}
-            <div class="absolute top-8 right-0 z-50 w-[300px] rounded bg-[#252525] p-3 shadow-md">
-              <ul class="grid gap-2">
-                {#each hardware as item}
-                  <li>
-                    <a href={item.href} class="block rounded p-2 hover:bg-[#353535]">
-                      <div class="font-medium">{item.title}</div>
-                      <p class="text-sm text-gray-400">{item.content}</p>
-                    </a>
-                  </li>
-                {/each}
-              </ul>
-            </div>
-          {/if}
-        </div>
-
-        <span class="inline-block w-4 md:w-10"></span>
-
-        <!-- Software Dropdown with hover -->
-        <div class="relative" role="navigation" aria-label="Software products menu" onmouseenter={() => (softwareHovered = true)} onmouseleave={() => (softwareHovered = false)}>
-          <button class="flex items-center opacity-40 hover:text-gray-300 hover:opacity-100">
-            Software
-            <svg class="ml-1 h-3 w-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </button>
-
-          <!-- Dropdown content -->
-          {#if softwareHovered}
-            <div class="absolute top-8 right-0 z-50 w-[300px] rounded bg-[#252525] p-3 shadow-md">
-              <ul class="grid gap-2">
-                {#each software as item}
-                  <li>
-                    <a href={item.href} class="block rounded p-2 hover:bg-[#353535]">
-                      <div class="font-medium">{item.title}</div>
-                      <p class="text-sm text-gray-400">{item.content}</p>
-                    </a>
-                  </li>
-                {/each}
-              </ul>
-            </div>
-          {/if}
-        </div>
-
-        <span class="inline-block w-4 md:w-10"></span>
-
-        <!-- Documentation Link -->
-        <a href="/documentation" class="opacity-40 hover:text-gray-300 hover:opacity-100">Documentation</a>
-
-        <span class="inline-block w-[15px] md:w-[30px]"></span>
-
-        <!-- Cart Icon -->
-        <!-- [TODO]: Fix link (April 02, 2025 16:17, ) -->
-        <a href="/documentation" aria-label="View shopping cart" class="flex items-center justify-center opacity-40 hover:text-gray-300 hover:opacity-100">
-          <svg class="h-[1em] w-[1em] translate-y-[0.1em]">
-            <use xlink:href="#cart-icon"></use>
-          </svg>
-        </a>
-      </div>
-    </header>
+    <Header></Header>
 
     <!-- Main content area with vertical centering -->
     <div class="flex min-h-[580px] flex-1 flex-col justify-center" ontouchstart={handleTouchStart} ontouchend={handleTouchEnd}>
