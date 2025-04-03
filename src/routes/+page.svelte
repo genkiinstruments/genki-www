@@ -280,7 +280,7 @@
                 }, 500);
               }}
               aria-label={`Navigate to slide ${i + 1}`}>
-              <div class="relative h-[10px] w-[10px] transition-all duration-500" class:scale-125={currentIndex === i}>
+              <div class="relative h-[8px] w-[8px] transition-all duration-500" class:scale-125={currentIndex === i}>
                 <img src={dot} alt="Dot" class="h-full w-full transition-all duration-500 hover:opacity-100" class:opacity-100={currentIndex === i} class:opacity-40={currentIndex !== i} />
               </div>
             </button>
