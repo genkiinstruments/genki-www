@@ -1,12 +1,12 @@
 <script lang="ts">
   import logo from "$lib/assets/logo.svg";
-  import katla from "$lib/assets/Katla_Placeholder.png";
-  import wave from "$lib/assets/Wave_Main.png";
-  import wavefront from "$lib/assets/Wavefront_Main.png";
+  import cn from "clsx";
 
   import wavefront_bg from "$lib/assets/wavefront-bg.png";
   import wave_bg from "$lib/assets/wave-bg.png";
   import katla_bg from "$lib/assets/katla-bg.png";
+  import cosmos_bg from "$lib/assets/Cosmos_3D.png";
+  import softwave_bg from "$lib/assets/Softwave_3D.png";
 
   import katla_logo from "$lib/assets/katla-logo.png";
   import learn_more from "$lib/assets/learn-more.png";
@@ -50,26 +50,42 @@
     {
       title: "KATLA",
       description: "Five-voice polyphonic synth, made from the ashes of Katla.",
-      image: katla,
       background: katla_bg,
       logo: katla_logo,
       href: "/katla",
+      flipped: false,
     },
     {
       title: "WAVE",
       description: "Control your sound, shape effects and send commands with the Wave ring.",
-      image: wave,
       background: wave_bg,
       logo: null,
       href: "/wave",
+      flipped: false,
     },
     {
       title: "WAVEFRONT",
-      description: "The Wavefront instantly elevates any modular setup.",
-      image: wavefront,
+      description: "Connect Wave, or any Bluetooth device, to your Eurorack.",
       background: wavefront_bg,
       logo: null,
       href: "/wavefront",
+      flipped: false,
+    },
+    {
+      title: "SOFTWAVE",
+      description: "Unlock your setup with Wave's software counterpart.",
+      background: softwave_bg,
+      logo: null,
+      href: "/softwave",
+      flipped: true,
+    },
+    {
+      title: "COSMOS",
+      description: "Experience the cosmos, featuring playful effects and a fun interface.",
+      background: cosmos_bg,
+      logo: null,
+      href: "/cosmos",
+      flipped: true,
     },
   ];
 
@@ -351,7 +367,7 @@
               <!-- Product Slide Content -->
               <div class="grid grid-cols-10 items-center gap-[10px]">
                 <!-- Text Column with elegant fade animations -->
-                <div class={`${isMobile ? "col-span-10 p-4" : "col-span-3 col-start-2"}`}>
+                <div class={`${isMobile ? "col-span-10 p-4" : cn("col-span-3", slide.flipped ? "col-start-7" : "col-start-2")}`}>
                   {#if currentIndex === i}
                     <div class={isMobile ? "space-y-6 text-center" : "space-y-10"} in:fly={{ x: -15, duration: 600, delay: 400, easing: cubicInOut }}>
                       {#if slide.logo}
