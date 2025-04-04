@@ -14,14 +14,14 @@
   import dot from "$lib/assets/dot.svg";
 
   import { onMount } from "svelte";
-  import { fade, fly } from "svelte/transition";
+  import { fade, blur } from "svelte/transition";
   import { cubicInOut } from "svelte/easing";
   import Autoplay from "embla-carousel-autoplay";
 
   import * as Carousel from "$lib/components/ui/carousel/index.js";
   import { type CarouselAPI } from "$lib/components/ui/carousel/context.js";
   import Header from "$lib/Header.svelte";
-  const carouselPlugin = Autoplay({ delay: 4000, stopOnInteraction: true, stopOnMouseEnter: true });
+  const carouselPlugin = Autoplay({ delay: 7000, stopOnInteraction: true, stopOnMouseEnter: true });
   let api = $state<CarouselAPI>();
   let currentIndex = $state(0);
 
@@ -226,7 +226,7 @@
                 <!-- Text Column with elegant fade animations -->
                 <div class={cn("col-span-10 p-4 md:col-span-3 md:p-0 md:even:col-start-7", slide.flipped ? "md:col-start-7" : "md:col-start-2")}>
                   {#if currentIndex === i}
-                    <div class="space-y-6 text-center md:space-y-10 md:text-left" in:fly={{ x: -15, duration: 600, delay: 400, easing: cubicInOut }}>
+                    <div class="space-y-6 text-center md:space-y-10 md:text-left" in:blur={{ amount: 15, duration: 800, delay: 300, easing: cubicInOut }}>
                       {#if slide.logo}
                         <h1 class="text-5xl font-bold">
                           <img src={slide.logo} alt={slide.title} class="mx-auto md:mx-0" />
@@ -243,9 +243,11 @@
 
                       <div class="pt-4 md:pt-8">
                         <a href={slide.href} class="inline-block">
-                          <div class="relative cursor-pointer flex flex-col items-center">
-                            <InteractiveString />
-                            <span class="mt-2 text-white font-medium">LEARN MORE</span>
+                          <div class="relative flex cursor-pointer flex-col items-center">
+                            <span class="relative text-xs tracking-widest text-white">LEARN MORE</span>
+                            <div style="">
+                              <InteractiveString />
+                            </div>
                           </div>
                         </a>
                       </div>
