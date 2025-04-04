@@ -1,15 +1,16 @@
 <script lang="ts">
-  // Control points for the string - optimized parameters
-  const POINTS = 16; // More points for smoother, detailed wave
+  // Control points for the string - optimized for standing waves
+  const POINTS = 18; // More points for smoother standing wave visualization
   const REST_LENGTH = 90; // Length of string in pixels
-  const STRING_TENSION = 0.04; // Reduced for more fluid movement
-  const MOUSE_INFLUENCE = 0.3; // Increased mouse interaction strength
-  const GRAVITY = 0.005; // Minimal gravity
+  const STRING_TENSION = 0.025; // Even lower tension for more dramatic oscillations
+  const MOUSE_INFLUENCE = 0.5; // Stronger mouse interaction for better responsiveness
+  const GRAVITY = 0.002; // Reduced gravity for better standing waves
   const MOUSE_RADIUS = 200; // Mouse influence radius
-  const DAMPING = 0.82; // Reduced damping for livelier motion
-  const LINE_WIDTH = 2.0; // Slightly thicker line for better visibility
-  const AUTO_WAVE_INTERVAL = 40; // More frequent auto-generated waves
-  const AUDIO_WAVE_FREQUENCY = 0.5; // Base frequency for audio-like waves
+  const DAMPING = 0.85; // Lower damping for more energetic motion
+  const LINE_WIDTH = 2.2; // Thicker line for better visibility
+  const STANDING_WAVE_1 = 0.8; // First standing wave frequency - increased for faster animation
+  const STANDING_WAVE_2 = 1.2; // Second standing wave frequency - increased for faster animation
+  const STANDING_WAVE_3 = 1.5; // Third standing wave frequency - increased for faster animation
 
   // Constrain string movement
   const MIN_Y = 10; // Minimum Y position
@@ -137,55 +138,66 @@
     // Clear canvas - only clear what's needed
     ctx.clearRect(0, 0, width, height);
 
-    // Auto-generate waves periodically for more lively idle animation
-    waveTimer += deltaTime;
-    if (waveTimer > AUTO_WAVE_INTERVAL) {
-      waveTimer = 0;
-      autoWaveCounter = (autoWaveCounter + 1) % 5; // More wave patterns
-      
-      // Generate more audio-like wave pulses
-      if (autoWaveCounter === 0) {
-        // Pulse from left to right (like audio ripple)
-        for (let i = 1; i < POINTS - 1; i++) {
-          const delay = i * 3; // Sequential delay
-          setTimeout(() => {
-            if (points[i]) {
-              points[i].vy += (Math.random() * 0.8 - 0.2) * 1.2;
-            }
-          }, delay);
+    // Instead of discrete wave pulses, use continuous standing oscillations
+    // Each section of the string has its own frequency and phase
+    const time = timestamp * 0.001; // Convert to seconds
+    
+    // Define several oscillation regions with faster frequencies and higher amplitudes
+    const regions = [
+      { start: 1, end: 6, frequency: STANDING_WAVE_1 + Math.sin(time * 0.15) * 0.2, amplitude: 0.025 },
+      { start: 7, end: 12, frequency: STANDING_WAVE_2 + Math.cos(time * 0.12) * 0.15, amplitude: 0.030 },
+      { start: 13, end: POINTS-2, frequency: STANDING_WAVE_3 + Math.sin(time * 0.18) * 0.25, amplitude: 0.028 }
+    ];
+    
+    // Apply continuous standing oscillations to each region
+    for (const region of regions) {
+      for (let i = region.start; i <= region.end; i++) {
+        if (i >= 1 && i < POINTS - 1) {
+          // Create a faster standing wave pattern with multiple harmonics
+          // Standing waves have this pattern: A * sin(kx) * sin(ωt)
+          // where k is wave number, x is position, ω is angular frequency, t is time
+          const normalizedPosition = (i - region.start) / (region.end - region.start); // 0 to 1
+          const waveNumber = Math.PI * 2; // One full wave in each region
+          
+          // Add multiple harmonics for richer, faster motion
+          const positionComponent = Math.sin(waveNumber * normalizedPosition);
+          // Use higher frequencies for faster animation
+          const timeComponent = Math.sin(time * region.frequency) * 0.7 + 
+                               Math.sin(time * region.frequency * 2) * 0.2 + 
+                               Math.sin(time * region.frequency * 3) * 0.1;
+          
+          // Modified standing wave equation with higher amplitude
+          const standingWave = positionComponent * timeComponent * region.amplitude * deltaTime * 1.4;
+          
+          // Apply the force to create standing oscillation
+          points[i].vy += standingWave;
         }
-      } else if (autoWaveCounter === 1) {
-        // Center outward pulse (like bass drop)
-        const center = Math.floor(POINTS / 2);
-        points[center].vy += 1.2;
-        // Ripple outward effect
-        for (let i = 1; i < 4; i++) {
-          setTimeout(() => {
-            if (points[center - i]) points[center - i].vy += 0.8;
-            if (points[center + i]) points[center + i].vy += 0.8;
-          }, i * 15);
-        }
-      } else if (autoWaveCounter === 2) {
-        // Random peaks (like equalizer)
-        for (let i = 1; i < POINTS - 1; i++) {
-          if (Math.random() > 0.6) { // Only some points move
-            points[i].vy -= 0.8 + Math.random() * 0.8;
-          }
-        }
-      } else if (autoWaveCounter === 3) {
-        // Right to left wave
-        for (let i = POINTS - 2; i > 0; i--) {
-          const delay = (POINTS - i) * 3;
-          setTimeout(() => {
-            if (points[i]) {
-              points[i].vy += (Math.random() * 0.8 - 0.2) * 1.2;
-            }
-          }, delay);
-        }
-      } else {
-        // Random strong pulse at random position
-        const wavePoint = Math.floor(Math.random() * (POINTS - 2)) + 1;
-        points[wavePoint].vy += (Math.random() > 0.5 ? 2.0 : -2.0);
+      }
+    }
+    
+    // Standing waves naturally create nodes (points with minimal movement)
+    // We'll emphasize this behavior by manually creating node points
+    // Nodes occur at specific positions in standing waves based on wavelength
+    
+    // Create fixed nodes at the junctions between regions and at 1/2 wavelength intervals
+    const nodePoints = [1, 6, 7, 12, 13, POINTS-2]; // Region boundaries become nodes
+    
+    // Also add nodes at specific wavelength divisions within each region
+    for (let r = 0; r < regions.length; r++) {
+      const region = regions[r];
+      // Add a node at the middle of each region
+      const midPoint = Math.floor((region.start + region.end) / 2);
+      if (!nodePoints.includes(midPoint)) {
+        nodePoints.push(midPoint);
+      }
+    }
+    
+    // Apply node behavior - nodes have minimal movement
+    for (const nodeIdx of nodePoints) {
+      if (nodeIdx >= 1 && nodeIdx < POINTS - 1) {
+        // Nodes have restricted movement - multiply by a small factor
+        points[nodeIdx].vy *= 0.3;
+        points[nodeIdx].vx *= 0.3;
       }
     }
 
@@ -215,25 +227,21 @@
       // Apply minimal gravity
       point.vy += GRAVITY * deltaTime;
 
-      // Audio-like wave animations
-      const time = timestamp * 0.001; // Convert to seconds
+      // Faster oscillations with more energy
+      // Add energy through harmonics at higher frequencies
       
-      // Primary wave with variable frequency to simulate audio waves
-      const freq = AUDIO_WAVE_FREQUENCY * (1 + Math.sin(time * 0.08) * 0.2); // Frequency modulation
-      const primaryWave = Math.sin(time * freq * 0.8 + point.phaseOffset) * 0.25 * deltaTime;
+      // Position-dependent parameters for harmonics
+      const relativePos = i / (POINTS - 1); // 0 to 1 along the string
       
-      // Harmonic components for richer audio-like motion
-      const harmonic1 = Math.sin(time * freq * 1.5 + i * 0.4) * 0.15 * deltaTime;
-      const harmonic2 = Math.sin(time * freq * 2.3 + i * 0.7) * 0.12 * deltaTime;
+      // Higher amplitude for more energetic motion
+      const standingAmplitude = 0.08 * Math.sin(relativePos * Math.PI) * deltaTime; // Max amplitude in center
       
-      // Low frequency oscillation like bass waves
-      const bassWave = Math.sin(time * 0.1 + i * 0.2) * 0.15 * deltaTime;
+      // Faster horizontal movement
+      point.vx += Math.sin(time * 0.4 + relativePos * Math.PI * 2) * 0.05 * deltaTime;
       
-      // Add varying horizontal movement for more dynamic behavior
-      point.vx += Math.sin(time * 0.3 + i * 0.5) * 0.08 * deltaTime;
-      
-      // Combine waves for complex audio-like motion
-      point.vy += primaryWave + harmonic1 + harmonic2 + bassWave;
+      // Faster harmonic oscillations with higher amplitudes
+      // Higher frequency multipliers for quicker animation
+      point.vy += Math.sin(time * 0.8 + relativePos * Math.PI * 5) * standingAmplitude * 1.5;
 
       // Stronger mouse interaction
       const mouseDistX = mouseX - point.x;
@@ -261,15 +269,24 @@
       // Constrain vertical movement
       point.y = Math.max(MIN_Y, Math.min(MAX_Y, point.y));
 
-      // Gentler return to neutral position to allow more movement
-      const returnForce = 0.01 * deltaTime; // Even gentler return force for more dramatic waves
+      // Standing waves need to maintain their positions relative to nodes
+      // Use a position-dependent return force to create proper standing wave behavior
       
-      // Apply dynamic breathing effect for audio-like oscillation
-      const audioWaveOffset = Math.sin(time * 0.12 + i * 0.4) * 3 + Math.cos(time * 0.2 + i * 0.6) * 2;
+      // Is this point near a node?
+      let isNearNode = nodePoints.some(nodeIdx => Math.abs(i - nodeIdx) <= 1);
       
-      // Simulate audio visualization with more pronounced vertical movement
-      point.x += (point.targetX - point.x) * returnForce;
-      point.y += (point.targetY + audioWaveOffset - point.y) * returnForce;
+      // Points near nodes return more strongly to baseline (creating nodes)
+      // Points away from nodes have more freedom (creating antinodes)
+      const returnForce = isNearNode ? 0.02 * deltaTime : 0.005 * deltaTime;
+      
+      // Faster and larger offset for more energetic standing waves
+      // The main oscillation comes from the standing wave physics
+      const standingWaveOffset = Math.sin(time * 0.4 + i * Math.PI / POINTS) * 2.5;
+      
+      // Maintain horizontal position precisely for proper standing wave
+      point.x += (point.targetX - point.x) * returnForce * 2;
+      // Allow vertical oscillation with subtle offset
+      point.y += (point.targetY + standingWaveOffset - point.y) * returnForce;
     }
 
     // Optimized rendering - one path, no intermediate variables
