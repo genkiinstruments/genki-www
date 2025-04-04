@@ -6,21 +6,21 @@
   const MOUSE_INFLUENCE = 0.5; // Stronger mouse interaction for better responsiveness
   const GRAVITY = 0.002; // Reduced gravity for better standing waves
   const MOUSE_RADIUS = 200; // Mouse influence radius
-  const DAMPING = 0.85; // Lower damping for more energetic motion
+  const DAMPING = 0.92; // Higher damping to make waves die out faster after interaction
   const LINE_WIDTH = 2.2; // Thicker line for better visibility
   const STANDING_WAVE_1 = 0.8; // First standing wave frequency - increased for faster animation
   const STANDING_WAVE_2 = 1.2; // Second standing wave frequency - increased for faster animation
   const STANDING_WAVE_3 = 1.5; // Third standing wave frequency - increased for faster animation
 
-  // Constrain string movement
-  const MIN_Y = 10; // Minimum Y position
-  const MAX_Y = 35; // Maximum Y position
+  // Moderate range for controlled wave animation with less height
+  const MIN_Y = 10; // Higher minimum to reduce overall range
+  const MAX_Y = 40; // Lower maximum for less dramatic waves
 
   // Canvas variables
   let canvas = $state<HTMLCanvasElement | null>(null);
   let ctx = $state<CanvasRenderingContext2D | null>(null);
   let width = REST_LENGTH + 20; // Add padding
-  let height = 70; // Fixed canvas height
+  let height = 90; // Increased canvas height to accommodate larger waves
 
   // Physics state
   let points = $state<
@@ -46,7 +46,7 @@
 
   // Initial positions with audio-wave like pattern
   function generateNeutralPosition() {
-    const centerY = 22; // Center position
+    const centerY = 25; // Center position moved down to allow more upward movement
     const newPoints = [];
 
     for (let i = 0; i < POINTS; i++) {
@@ -90,29 +90,54 @@
   function handleMouseDown(e: MouseEvent) {
     mouseDown = true;
 
-    // Simplified point finding - only check distance once
     if (!canvas) return;
 
     const rect = canvas.getBoundingClientRect();
     const mx = e.clientX - rect.left;
     const my = e.clientY - rect.top;
 
+    // Instead of grabbing a specific point, we'll create an energy injection
+    // This will cause an energetic ripple throughout the string
+    
+    // Find the nearest point, but we won't directly control it
     let minDist = Infinity;
     let closest = -1;
 
     for (let i = 1; i < POINTS - 1; i++) {
       const dx = points[i].x - mx;
       const dy = points[i].y - my;
-      const dist = dx * dx + dy * dy; // Skip sqrt for performance
+      const dist = dx * dx + dy * dy;
 
       if (dist < minDist) {
         minDist = dist;
         closest = i;
       }
     }
-
-    if (minDist < 900) {
-      // 30² = 900, no need for sqrt
+    
+    // If close enough to any point
+    if (minDist < 2500) { // Increased radius for better interaction
+      // Add energy to all points, with maximum at the closest point
+      for (let i = 1; i < POINTS - 1; i++) {
+        // Calculate distance from click to this point
+        const dx = points[i].x - mx;
+        const dy = points[i].y - my;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        
+        // Energy falls off with distance
+        const energyFactor = Math.exp(-dist * 0.05);
+        
+        // Add a more gentle burst of energy in a wave-like pattern
+        // More controlled burst with scaled magnitude
+        const direction = my < points[i].y ? -1 : 1; // Direction based on click position
+        const burstMagnitude = Math.min(2.0, Math.max(0.7, 1.5 * (1 - my/height))); // More energy at top but less overall
+        points[i].vy += direction * energyFactor * burstMagnitude;
+        
+        // Add minimal horizontal component for more interesting motion
+        // Very slight horizontal movement to focus on vertical wave patterns
+        points[i].vx += (Math.random() * 0.8 - 0.4) * energyFactor * 0.4;
+      }
+      
+      // Store clicked point for potential follow-up interactions
       clickPoint = closest;
     }
   }
@@ -142,11 +167,11 @@
     // Each section of the string has its own frequency and phase
     const time = timestamp * 0.001; // Convert to seconds
     
-    // Define several oscillation regions with faster frequencies and higher amplitudes
+    // Define several oscillation regions with reduced amplitudes
     const regions = [
-      { start: 1, end: 6, frequency: STANDING_WAVE_1 + Math.sin(time * 0.15) * 0.2, amplitude: 0.025 },
-      { start: 7, end: 12, frequency: STANDING_WAVE_2 + Math.cos(time * 0.12) * 0.15, amplitude: 0.030 },
-      { start: 13, end: POINTS-2, frequency: STANDING_WAVE_3 + Math.sin(time * 0.18) * 0.25, amplitude: 0.028 }
+      { start: 1, end: 6, frequency: STANDING_WAVE_1 + Math.sin(time * 0.15) * 0.2, amplitude: 0.018 },
+      { start: 7, end: 12, frequency: STANDING_WAVE_2 + Math.cos(time * 0.12) * 0.15, amplitude: 0.022 },
+      { start: 13, end: POINTS-2, frequency: STANDING_WAVE_3 + Math.sin(time * 0.18) * 0.25, amplitude: 0.020 }
     ];
     
     // Apply continuous standing oscillations to each region
@@ -166,8 +191,8 @@
                                Math.sin(time * region.frequency * 2) * 0.2 + 
                                Math.sin(time * region.frequency * 3) * 0.1;
           
-          // Modified standing wave equation with higher amplitude
-          const standingWave = positionComponent * timeComponent * region.amplitude * deltaTime * 1.4;
+          // Modified standing wave equation with reduced amplitude
+          const standingWave = positionComponent * timeComponent * region.amplitude * deltaTime * 1.0;
           
           // Apply the force to create standing oscillation
           points[i].vy += standingWave;
@@ -205,13 +230,22 @@
     for (let i = 1; i < POINTS - 1; i++) {
       const point = points[i];
 
-      // Handle dragging
+      // Changed from direct dragging to gentler interactive energy control
       if (i === clickPoint && mouseDown) {
-        point.x = mouseX;
-        point.y = Math.max(MIN_Y, Math.min(MAX_Y, mouseY));
-        point.vx = 0;
-        point.vy = 0;
-        continue;
+        // Instead of directly setting position, add energy in the direction of mouse movement
+        const targetY = Math.max(MIN_Y + 5, Math.min(MAX_Y - 5, mouseY));
+        const moveForce = (targetY - point.y) * 0.12; // Gentler force for less dramatic movement
+        
+        // Apply force toward mouse position, but don't directly set position
+        point.vy += moveForce;
+        
+        // More restrictive velocity limits for controlled movement
+        point.vy = Math.max(-6, Math.min(6, point.vy));
+        
+        // Allow some horizontal movement for more natural feel
+        point.vx *= 0.92; // Stronger dampening of horizontal movement
+        
+        // Don't skip other physics updates
       }
 
       // Apply simplified tension forces
@@ -233,17 +267,17 @@
       // Position-dependent parameters for harmonics
       const relativePos = i / (POINTS - 1); // 0 to 1 along the string
       
-      // Higher amplitude for more energetic motion
-      const standingAmplitude = 0.08 * Math.sin(relativePos * Math.PI) * deltaTime; // Max amplitude in center
+      // Reduced amplitude for more subtle motion
+      const standingAmplitude = 0.05 * Math.sin(relativePos * Math.PI) * deltaTime; // Lower amplitude
       
-      // Faster horizontal movement
-      point.vx += Math.sin(time * 0.4 + relativePos * Math.PI * 2) * 0.05 * deltaTime;
+      // Gentler horizontal movement
+      point.vx += Math.sin(time * 0.4 + relativePos * Math.PI * 2) * 0.03 * deltaTime;
       
-      // Faster harmonic oscillations with higher amplitudes
+      // Faster harmonic oscillations but with lower amplitudes
       // Higher frequency multipliers for quicker animation
-      point.vy += Math.sin(time * 0.8 + relativePos * Math.PI * 5) * standingAmplitude * 1.5;
+      point.vy += Math.sin(time * 0.8 + relativePos * Math.PI * 5) * standingAmplitude * 1.0;
 
-      // Stronger mouse interaction
+      // Enhanced interaction that affects the wave properties globally
       const mouseDistX = mouseX - point.x;
       const mouseDistY = mouseY - point.y;
       const mouseDistSq = mouseDistX * mouseDistX + mouseDistY * mouseDistY;
@@ -252,15 +286,48 @@
         const mouseDist = Math.sqrt(mouseDistSq);
         const factor = (1 - mouseDist / MOUSE_RADIUS) * MOUSE_INFLUENCE;
 
-        // Direct, stronger influence
-        point.vx += (mouseDistX / mouseDist) * factor * 0.6 * deltaTime;
-        point.vy += (mouseDistY / mouseDist) * factor * 0.8 * deltaTime;
+        // Calculate relative position in the wave
+        const relativePos = i / (POINTS - 1);
+        
+        // Instead of direct displacement, use mouse position to:
+        // 1. Amplify the wave at that position (amplitude modulation)
+        // 2. Modulate the frequency (frequency modulation)
+        
+        // Amplify nearby wave sections rather than direct displacement
+        // Use controlled amplification to prevent excessive growth
+        const amplificationFactor = 1.0 + factor * 1.5;
+        
+        // The closer to the mouse, the more the oscillation gets boosted
+        // Limit maximum boost to prevent too much growth
+        point.vy *= Math.min(amplificationFactor, 1.8);
+        
+        // Add energy at harmonic frequencies - makes it come alive
+        const mouseFrequencyFactor = 1.5 + (mouseY / height) * 3.0; // Mouse Y controls frequency
+        const mouseHarmonic = Math.sin(time * mouseFrequencyFactor + relativePos * Math.PI * 3) * 
+                              factor * 0.8 * deltaTime;
+        
+        // Add this energy to the wave with better scaling based on mouse position
+        // More responsive but less likely to exceed bounds
+        const verticalScaling = Math.min(2.5, Math.max(0.8, 2.0 * (height - mouseY) / height));
+        point.vy += mouseHarmonic * verticalScaling;
+        
+        // Create a wave-like ripple effect from interaction point
+        const ripplePhase = mouseDist * 0.1 - time * 5;
+        const rippleWave = Math.sin(ripplePhase) * Math.exp(-mouseDist * 0.02) * factor * 0.6 * deltaTime;
+        
+        // Apply to both axes but with reduced effect
+        point.vx += rippleWave * 0.5;
+        point.vy += rippleWave * 0.8;
       }
 
-      // Apply damping and update position with slight variation
-      // Use different damping values for horizontal and vertical for more interesting movement
-      point.vx *= Math.pow(DAMPING + (i % 3) * 0.01, deltaTime); // Slight variation by point index
-      point.vy *= Math.pow(DAMPING - 0.02, deltaTime); // Less vertical damping for more movement
+      // Apply stronger damping to make waves die out faster when not interacting
+      // Higher damping especially when far from mouse or after interaction stops
+      const isInteracting = mouseDistSq < MOUSE_RADIUS * MOUSE_RADIUS * 4 || mouseDown;
+      const baseDamping = isInteracting ? DAMPING - 0.05 : DAMPING + 0.02; // Less damping during interaction
+      
+      // Apply damping with variation
+      point.vx *= Math.pow(baseDamping + (i % 3) * 0.01, deltaTime); // Slight variation by point index
+      point.vy *= Math.pow(baseDamping, deltaTime); // Same damping for vertical
 
       // Apply velocities with slight enhancement to movement
       point.x += point.vx;
@@ -279,9 +346,9 @@
       // Points away from nodes have more freedom (creating antinodes)
       const returnForce = isNearNode ? 0.02 * deltaTime : 0.005 * deltaTime;
       
-      // Faster and larger offset for more energetic standing waves
+      // More moderate offset for gentler standing waves
       // The main oscillation comes from the standing wave physics
-      const standingWaveOffset = Math.sin(time * 0.4 + i * Math.PI / POINTS) * 2.5;
+      const standingWaveOffset = Math.sin(time * 0.4 + i * Math.PI / POINTS) * 1.5;
       
       // Maintain horizontal position precisely for proper standing wave
       point.x += (point.targetX - point.x) * returnForce * 2;
