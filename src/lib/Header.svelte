@@ -1,9 +1,6 @@
 <script lang="ts">
   import { NavigationMenu } from "bits-ui";
   import CaretDown from "phosphor-svelte/lib/CaretDown";
-  import cn from "clsx";
-
-  import logo from "$lib/assets/logo.svg";
 
   // Define hardware and software dropdown content
   type ListItemProps = {
