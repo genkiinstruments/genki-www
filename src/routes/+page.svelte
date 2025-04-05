@@ -1,6 +1,9 @@
 <script lang="ts">
   import cn from "clsx";
 
+  // Import Svelte lifecycle functions
+  import { onMount } from "svelte";
+
   import wavefront_bg from "$lib/assets/wavefront-bg.png";
   import wave_bg from "$lib/assets/wave-bg.png";
   import katla_bg from "$lib/assets/katla-bg.png";
@@ -13,7 +16,6 @@
   import arrow from "$lib/assets/arrow.svg";
   import dot from "$lib/assets/dot.svg";
 
-  import { onMount } from "svelte";
   import { fade, blur } from "svelte/transition";
   import { cubicInOut } from "svelte/easing";
   import Autoplay from "embla-carousel-autoplay";
@@ -152,36 +154,73 @@
     }
   }
 
+  // Mouse movement shouldn't trigger interactive mode, only reset timer if already in interactive mode
+  function trackMouseMovement() {
+    if (userInteracting) {
+      resetInactivityTimer();
+    }
+  }
+
+  // Track user activity
+  function trackUserActivity() {
+    if (!userInteracting) return; // Only reset timer if user is in interactive mode
+    resetInactivityTimer();
+  }
+  
+  // Define the document-level handler - need to ensure this function reference doesn't change
+  function handleKeyDown(event: KeyboardEvent) {
+    if (event.key === "'") {
+      showGrid = !showGrid;
+    } else if (event.key === "ArrowRight") {
+      userInteracting = true;
+      rightArrowActive = true;
+      scrollCarouselNext();
+      setTimeout(() => {
+        rightArrowActive = false;
+      }, 150);
+    } else if (event.key === "ArrowLeft") {
+      userInteracting = true;
+      leftArrowActive = true;
+      scrollCarouselPrev();
+      setTimeout(() => {
+        leftArrowActive = false;
+      }, 150);
+    }
+  }
+  
+  // Install event listener early to ensure keyboard works
+  if (typeof document !== 'undefined') {
+    document.addEventListener('keydown', handleKeyDown);
+  }
+  
   onMount(() => {
-    const handleKeyDown = (event: { key: string }) => {
-      if (event.key === "'") {
-        showGrid = !showGrid;
-      }
-
-      // Arrow keys for navigation
-      if (event.key === "ArrowRight") {
-        userInteracting = true;
-        rightArrowActive = true;
-        scrollCarouselNext();
-        setTimeout(() => {
-          rightArrowActive = false;
-        }, 150); // Match the animation duration
-      }
-
-      if (event.key === "ArrowLeft") {
-        userInteracting = true;
-        leftArrowActive = true;
-        scrollCarouselPrev();
-        setTimeout(() => {
-          leftArrowActive = false;
-        }, 150); // Match the animation duration
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-
+    // Prevent scrolling on this page only
+    document.body.classList.add("index-page-no-scroll");
+    
+    // Start inactivity timer on page load
+    resetInactivityTimer();
+    
+    // Activity tracking event listeners
+    window.addEventListener("mousemove", trackMouseMovement);
+    window.addEventListener("mousedown", trackUserActivity);
+    window.addEventListener("touchstart", trackUserActivity);
+    window.addEventListener("scroll", trackUserActivity);
+    
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
+      // Clean up event listeners
+      document.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("mousemove", trackMouseMovement);
+      window.removeEventListener("mousedown", trackUserActivity);
+      window.removeEventListener("touchstart", trackUserActivity);
+      window.removeEventListener("scroll", trackUserActivity);
+      
+      // Clear any pending timeout
+      if (inactivityTimeout !== null) {
+        clearTimeout(inactivityTimeout);
+      }
+      
+      // Remove the no-scroll class when component unmounts
+      document.body.classList.remove("index-page-no-scroll");
     };
   });
 </script>
@@ -195,7 +234,7 @@
   </symbol>
 </svg>
 
-<div class="relative flex h-screen flex-col overflow-hidden bg-[#151515] text-[#DFDFDF]">
+<div class="carousel-container relative flex h-[100dvh] w-full flex-col overflow-hidden bg-[#151515] text-[#DFDFDF]">
   <!-- Background with elegant fade transitions -->
   {#key currentIndex}
     <div class="absolute inset-0 z-0" transition:fade={{ duration: 1000, easing: cubicInOut }}>
@@ -208,7 +247,7 @@
     <Header></Header>
 
     <!-- Main content area with vertical centering -->
-    <div class="flex min-h-[580px] flex-1 flex-col justify-center" ontouchstart={handleTouchStart} ontouchend={handleTouchEnd}>
+    <div class="flex flex-1 flex-col justify-center" ontouchstart={handleTouchStart} ontouchend={handleTouchEnd}>
       <!-- Main Carousel -->
       <Carousel.Root
         plugins={[carouselPlugin]}
