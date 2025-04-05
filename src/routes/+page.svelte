@@ -28,9 +28,24 @@
   let currentIndex = $state(0);
 
   let userInteracting = $state(false);
+  let inactivityTimeout = $state<number | null>(null);
+  const INACTIVITY_DELAY = 10000; // 10 seconds
 
   function resetAutoplay() {
     api?.plugins().autoplay?.reset();
+  }
+  
+  function resetInactivityTimer() {
+    // Clear existing timeout
+    if (inactivityTimeout !== null) {
+      clearTimeout(inactivityTimeout);
+    }
+    
+    // Set a new timeout
+    inactivityTimeout = window.setTimeout(() => {
+      userInteracting = false;
+      resetAutoplay();
+    }, INACTIVITY_DELAY);
   }
 
   function setupCarouselListeners() {
@@ -166,7 +181,7 @@
     if (!userInteracting) return; // Only reset timer if user is in interactive mode
     resetInactivityTimer();
   }
-  
+
   // Define the document-level handler - need to ensure this function reference doesn't change
   function handleKeyDown(event: KeyboardEvent) {
     if (event.key === "'") {
@@ -187,25 +202,25 @@
       }, 150);
     }
   }
-  
+
   // Install event listener early to ensure keyboard works
-  if (typeof document !== 'undefined') {
-    document.addEventListener('keydown', handleKeyDown);
+  if (typeof document !== "undefined") {
+    document.addEventListener("keydown", handleKeyDown);
   }
-  
+
   onMount(() => {
     // Prevent scrolling on this page only
     document.body.classList.add("index-page-no-scroll");
-    
+
     // Start inactivity timer on page load
     resetInactivityTimer();
-    
+
     // Activity tracking event listeners
     window.addEventListener("mousemove", trackMouseMovement);
     window.addEventListener("mousedown", trackUserActivity);
     window.addEventListener("touchstart", trackUserActivity);
     window.addEventListener("scroll", trackUserActivity);
-    
+
     return () => {
       // Clean up event listeners
       document.removeEventListener("keydown", handleKeyDown);
@@ -213,12 +228,12 @@
       window.removeEventListener("mousedown", trackUserActivity);
       window.removeEventListener("touchstart", trackUserActivity);
       window.removeEventListener("scroll", trackUserActivity);
-      
+
       // Clear any pending timeout
       if (inactivityTimeout !== null) {
         clearTimeout(inactivityTimeout);
       }
-      
+
       // Remove the no-scroll class when component unmounts
       document.body.classList.remove("index-page-no-scroll");
     };
@@ -284,8 +299,12 @@
                         <a href={slide.href} class="inline-block">
                           <div class="relative flex cursor-pointer flex-col items-center">
                             <span class="relative text-xs tracking-widest text-white">LEARN MORE</span>
-                            <div style="">
-                              <InteractiveString />
+                            <div style="height: 90px; width: 110px; margin-top: 10px;">
+                              {#if currentIndex === i}
+                                <div class="interactive-string-wrapper">
+                                  <InteractiveString />
+                                </div>
+                              {/if}
                             </div>
                           </div>
                         </a>
