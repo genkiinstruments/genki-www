@@ -34,13 +34,13 @@
   function resetAutoplay() {
     api?.plugins().autoplay?.reset();
   }
-  
+
   function resetInactivityTimer() {
     // Clear existing timeout
     if (inactivityTimeout !== null) {
       clearTimeout(inactivityTimeout);
     }
-    
+
     // Set a new timeout
     inactivityTimeout = window.setTimeout(() => {
       userInteracting = false;
@@ -239,6 +239,8 @@
     };
   });
 </script>
+
+<div></div>
 
 <!-- Cart Icon SVG -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
