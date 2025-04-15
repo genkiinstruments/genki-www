@@ -327,7 +327,7 @@
         <div class="col-span-2 col-start-1 flex items-center">
           <!-- Left Arrow -->
           <button class="p-2 opacity-40 transition-transform duration-150 hover:opacity-100 active:translate-x-[-3px]" onclick={() => scrollCarouselPrev()} aria-label="Previous slide">
-            <img src={arrow} alt="Previous" class="h-[18px] rotate-180 transition-transform duration-150" class:translate-x-[-3px]={leftArrowActive} />
+            <img src={arrow} alt="Previous" class="h-[16px] rotate-180 transition-transform duration-150" class:translate-x-[-3px]={leftArrowActive} />
           </button>
         </div>
 
@@ -345,7 +345,7 @@
                 }, 500);
               }}
               aria-label={`Navigate to slide ${i + 1}`}>
-              <div class="relative h-[8px] w-[8px] transition-all duration-500" class:scale-125={currentIndex === i}>
+              <div class="relative h-[6px] w-[6px] transition-all duration-500" class:scale-125={currentIndex === i}>
                 <img src={dot} alt="Dot" class="h-full w-full transition-all duration-500 hover:opacity-100" class:opacity-100={currentIndex === i} class:opacity-40={currentIndex !== i} />
               </div>
             </button>
@@ -355,7 +355,7 @@
         <div class="col-span-2 col-start-9 flex items-center justify-end">
           <!-- Right Arrow -->
           <button class="p-2 opacity-40 transition-transform duration-150 hover:opacity-100 active:translate-x-[3px]" onclick={() => scrollCarouselNext()} aria-label="Next slide">
-            <img src={arrow} alt="Next" class="h-[18px] transition-transform duration-150" class:translate-x-[3px]={rightArrowActive} />
+            <img src={arrow} alt="Next" class="h-[16px] transition-transform duration-150" class:translate-x-[3px]={rightArrowActive} />
           </button>
         </div>
       </div>
