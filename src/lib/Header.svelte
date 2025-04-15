@@ -173,11 +173,11 @@
                   </div>
                   <!-- Logo and text that fades out when hovering -->
                   <div class="transition-opacity duration-300 ease-in-out {activeHoverImage ? 'opacity-0' : 'opacity-100'}">
-                    <div class="absolute top-6 left-6 z-10 h-8 w-auto text-white">
+                    <div class="absolute top-6 left-6 z-10 h-10 w-auto text-white">
                       <img src={software_header} alt="" />
                     </div>
                     <div class="z-10 mt-4 mb-2 text-lg font-medium transition-colors duration-300 ease-in-out">Software</div>
-                    <p class="text-muted-foreground z-10 text-sm leading-tight transition-colors duration-300 ease-in-out">Bit-by-bit better</p>
+                    <p class="text-muted-foreground z-10 text-sm leading-tight transition-colors duration-300 ease-in-out">Making you better, bit-by-bit</p>
                   </div>
                 </NavigationMenu.Link>
               </li>
@@ -202,7 +202,7 @@
     </NavigationMenu.List>
     <div class="absolute top-full left-0 flex w-full justify-center perspective-[2000px]">
       <NavigationMenu.Viewport
-        class="text-popover-foreground data-[state=closed]:animate-scale-out data-[state=open]:animate-scale-in relative mt-2.5 h-[var(--bits-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-md border border-gray-800 bg-[#161616] shadow-2xl transition-all duration-200 sm:w-[var(--bits-navigation-menu-viewport-width)]" />
+        class="text-popover-foreground data-[state=closed]:animate-scale-out data-[state=open]:animate-scale-in relative mt-2.5 h-[var(--bits-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-md bg-[#161616] shadow-2xl transition-all duration-200 sm:w-[var(--bits-navigation-menu-viewport-width)]" />
     </div>
 
     <span class="inline-block w-[15px] md:w-[30px]"></span>
