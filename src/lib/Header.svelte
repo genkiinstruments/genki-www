@@ -53,13 +53,13 @@
     {
       title: "Wave for Work",
       href: "/wave-for-work",
-      content: "Swipe for next song",
+      content: "Use Wave to control your devices",
       hoverImage: waveForWorkHoverImg,
     },
     {
       title: "Cosmos",
       href: "/cosmos",
-      content: "Happy accident soft-synth",
+      content: "The Cosmos smiles upon you",
       hoverImage: cosmosHoverImg,
     },
   ];
