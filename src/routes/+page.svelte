@@ -324,13 +324,6 @@
     <!-- Footer with Navigation Controls - Fixed height -->
     <footer class="h-[72px] flex-shrink-0">
       <div class="grid h-full grid-cols-10 gap-[10px]">
-        <div class="col-span-2 col-start-1 flex items-center">
-          <!-- Left Arrow -->
-          <button class="p-2 opacity-40 transition-transform duration-150 hover:opacity-100 active:translate-x-[-3px]" onclick={() => scrollCarouselPrev()} aria-label="Previous slide">
-            <img src={arrow} alt="Previous" class="h-[16px] rotate-180 transition-transform duration-150" class:translate-x-[-3px]={leftArrowActive} />
-          </button>
-        </div>
-
         <!-- Dots Navigation -->
         <div class="col-span-6 col-start-3 flex items-center justify-center gap-4">
           {#each slides as _, i (i)}
@@ -350,13 +343,6 @@
               </div>
             </button>
           {/each}
-        </div>
-
-        <div class="col-span-2 col-start-9 flex items-center justify-end">
-          <!-- Right Arrow -->
-          <button class="p-2 opacity-40 transition-transform duration-150 hover:opacity-100 active:translate-x-[3px]" onclick={() => scrollCarouselNext()} aria-label="Next slide">
-            <img src={arrow} alt="Next" class="h-[16px] transition-transform duration-150" class:translate-x-[3px]={rightArrowActive} />
-          </button>
         </div>
       </div>
     </footer>
