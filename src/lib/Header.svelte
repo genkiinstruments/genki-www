@@ -13,16 +13,17 @@
       href: "/wave",
       title: "Wave",
       content: "The ring for musicians",
+      // content: "Control sound, shape effects, send commands",
     },
     {
       href: "/wavefront",
       title: "Wavefront",
-      content: "Your Wireless Eurorack",
+      content: "Eurorack. Wireless.",
     },
     {
       href: "/katla",
       title: "Katla",
-      content: "Analog. Volcanic. Polysynth.",
+      content: "Volcanic. Caotic. Analog polysynth.",
     },
   ];
 
@@ -58,9 +59,9 @@
 
 <!-- Header - Fixed height -->
 <header class="mt-2 grid h-[72px] flex-shrink-0 grid-cols-10 gap-[10px] bg-transparent">
-  <!-- Logo (left-most) -->
+  <!-- Logo (left-most) in regular header layout -->
   <div class="col-span-2 flex items-center">
-    <a href="/" class="text-white opacity-60 transition-opacity duration-200 hover:opacity-100">
+    <a href="/" class="text-white transition-opacity duration-200 hover:opacity-100">
       <div class="h-6 w-auto">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58.9 97.5" class="h-full" fill="currentColor">
           <path
@@ -88,10 +89,18 @@
           class="data-[motion=from-end]:animate-enter-from-right data-[motion=from-start]:animate-enter-from-left data-[motion=to-end]:animate-exit-to-right data-[motion=to-start]:animate-exit-to-left absolute top-0 left-0 w-full sm:w-auto">
           <ul class="m-0 grid list-none gap-x-2.5 p-3 sm:w-[600px] sm:grid-flow-col sm:grid-rows-3 sm:p-[22px]">
             <li class="row-span-3 mb-2 sm:mb-0">
-              <NavigationMenu.Link class="flex h-full w-full flex-col justify-end rounded-md bg-black p-6 no-underline outline-hidden transition-all duration-200 select-none focus:shadow-md">
-                <!-- <Icons.logo class="h-6 w-6" /> -->
-                <div class="mt-4 mb-2 text-lg font-medium transition-colors duration-200">Our hardware</div>
-                <p class="text-muted-foreground text-sm leading-tight transition-colors duration-200">Handcrafted with Love in Iceland</p>
+              <NavigationMenu.Link class="relative flex h-full w-full flex-col justify-end rounded-md bg-black p-6 no-underline outline-hidden transition-all duration-200 select-none focus:shadow-md">
+                <!-- Logo positioned with the same padding as the text -->
+                <div class="absolute top-6 left-6 h-8 w-auto text-white">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58.9 97.5" class="h-full" fill="currentColor">
+                    <path
+                      d="M16.5 56A29 29 0 0 0 28 58.8h1.5c4.8 0 9.5-1.2 13.8-3.4l1.3-.8c2.9-1.7 5.4-3.9 7.5-6.5l1-1.1A29.5 29.5 0 0 0 29.5 0H28A29.4 29.4 0 0 0 5.3 46.2c2-2.2 4.2-4 6.7-5.7a20.9 20.9 0 0 1 16.7-32h.8a20.8 20.8 0 0 1 0 41.6h-.7l-.8.1a18 18 0 0 0-11.5 5.6" />
+                    <path
+                      d="M29.5 38.5c-4.8 0-9.6 1.2-13.9 3.5l-.6.3-.7.4a29.7 29.7 0 0 0-7.5 6.5l-.4.5-.6.7a29.5 29.5 0 1 0 47.8.8c-2 2.1-4.2 4-6.6 5.6a20.8 20.8 0 1 1-34.1-1.3l.4-.6a20.8 20.8 0 0 1 16-7.7h.1c5 0 9.7-2 13-5.6-4-2-8.4-3-13-3" />
+                  </svg>
+                </div>
+                <div class="mt-4 mb-2 text-lg font-medium transition-colors duration-200">Hardware</div>
+                <p class="text-muted-foreground text-sm leading-tight transition-colors duration-200">Lovingly handcrafted in Iceland</p>
               </NavigationMenu.Link>
             </li>
             {#each hardware as component (component.title)}
@@ -110,8 +119,16 @@
           class="data-[motion=from-end]:animate-enter-from-right data-[motion=from-start]:animate-enter-from-left data-[motion=to-end]:animate-exit-to-right data-[motion=to-start]:animate-exit-to-left absolute top-0 left-0 w-full sm:w-auto">
           <ul class="m-0 grid list-none gap-x-2.5 p-3 sm:w-[600px] sm:grid-flow-col sm:grid-rows-3 sm:p-[22px]">
             <li class="row-span-3 mb-2 sm:mb-0">
-              <NavigationMenu.Link class="flex h-full w-full flex-col justify-end rounded-md bg-black p-6 no-underline outline-hidden transition-all duration-200 select-none focus:shadow-md">
-                <!-- <Icons.logo class="h-6 w-6" /> -->
+              <NavigationMenu.Link class="relative flex h-full w-full flex-col justify-end rounded-md bg-black p-6 no-underline outline-hidden transition-all duration-200 select-none focus:shadow-md">
+                <!-- Logo positioned with the same padding as the text -->
+                <div class="absolute top-6 left-6 h-5 w-auto text-white">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58.9 97.5" class="h-full" fill="currentColor">
+                    <path
+                      d="M16.5 56A29 29 0 0 0 28 58.8h1.5c4.8 0 9.5-1.2 13.8-3.4l1.3-.8c2.9-1.7 5.4-3.9 7.5-6.5l1-1.1A29.5 29.5 0 0 0 29.5 0H28A29.4 29.4 0 0 0 5.3 46.2c2-2.2 4.2-4 6.7-5.7a20.9 20.9 0 0 1 16.7-32h.8a20.8 20.8 0 0 1 0 41.6h-.7l-.8.1a18 18 0 0 0-11.5 5.6" />
+                    <path
+                      d="M29.5 38.5c-4.8 0-9.6 1.2-13.9 3.5l-.6.3-.7.4a29.7 29.7 0 0 0-7.5 6.5l-.4.5-.6.7a29.5 29.5 0 1 0 47.8.8c-2 2.1-4.2 4-6.6 5.6a20.8 20.8 0 1 1-34.1-1.3l.4-.6a20.8 20.8 0 0 1 16-7.7h.1c5 0 9.7-2 13-5.6-4-2-8.4-3-13-3" />
+                  </svg>
+                </div>
                 <div class="mt-4 mb-2 text-lg font-medium transition-colors duration-200">Our software</div>
                 <p class="text-muted-foreground text-sm leading-tight transition-colors duration-200">Tools making you a litle bit more creative</p>
               </NavigationMenu.Link>
