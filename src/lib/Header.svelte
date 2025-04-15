@@ -32,27 +32,6 @@
     activeHoverImage = null;
   }
 
-  const hardware: ListItemProps[] = [
-    {
-      href: "/wave",
-      title: "Wave",
-      content: "The ring for musicians",
-      hoverImage: waveHoverImg,
-    },
-    {
-      href: "/wavefront",
-      title: "Wavefront",
-      content: "Eurorack. Wireless.",
-      hoverImage: wavefrontHoverImg,
-    },
-    {
-      href: "/katla",
-      title: "Katla",
-      content: "Volcanic. Caotic. Analog polysynth.",
-      hoverImage: katlaHoverImg,
-    },
-  ];
-
   const software = [
     {
       title: "Softwave",
@@ -75,7 +54,7 @@
 {#snippet ListItem({ title, content, href, hoverImage }: ListItemProps)}
   <li class="w-full">
     <button
-      class="block w-full space-y-1 rounded-md p-3 text-left leading-none no-underline outline-hidden transition-all duration-200 select-none hover:bg-[#252525] focus:bg-[#252525]"
+      class="block w-full space-y-1 rounded-md p-3 text-left leading-none no-underline outline-hidden transition-all duration-300 ease-in-out select-none hover:bg-[#252525] focus:bg-[#252525]"
       on:mouseenter={() => {
         console.log("Hovering", title, hoverImage);
         if (hoverImage) activeHoverImage = hoverImage;
@@ -87,8 +66,8 @@
       on:click={() => {
         window.location.href = href;
       }}>
-      <div class="text-sm leading-none font-medium transition-colors duration-200">{title}</div>
-      <p class="text-muted-foreground line-clamp-2 text-sm leading-snug transition-colors duration-200 group-hover:text-gray-300">
+      <div class="text-sm leading-none font-medium transition-colors duration-300 ease-in-out">{title}</div>
+      <p class="text-muted-foreground line-clamp-2 text-sm leading-snug transition-colors duration-300 ease-in-out group-hover:text-gray-300">
         {content}
       </p>
     </button>
@@ -119,9 +98,9 @@
     <NavigationMenu.List class="group flex list-none items-center justify-center ">
       <NavigationMenu.Item value="hardware">
         <NavigationMenu.Trigger
-          class="group inline-flex h-8 w-max items-center justify-center rounded-[7px] bg-transparent px-6 py-2 text-sm font-medium opacity-60 transition-colors hover:opacity-100 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 data-[state=open]:opacity-100">
+          class="group inline-flex h-8 w-max items-center justify-center rounded-[7px] bg-transparent px-6 py-2 text-sm font-medium opacity-60 transition-all duration-300 ease-in-out hover:opacity-100 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 data-[state=open]:opacity-100">
           Hardware
-          <CaretDown class="relative top-[1px] ml-1 size-3 transition-transform duration-200 group-data-[state=open]:rotate-180" aria-hidden="true" />
+          <CaretDown class="relative top-[1px] ml-1 size-3 transition-transform duration-300 ease-in-out group-data-[state=open]:rotate-180" aria-hidden="true" />
         </NavigationMenu.Trigger>
         <NavigationMenu.Content
           class="data-[motion=from-end]:animate-enter-from-right data-[motion=from-start]:animate-enter-from-left data-[motion=to-end]:animate-exit-to-right data-[motion=to-start]:animate-exit-to-left absolute top-0 left-0 w-full sm:w-auto">
@@ -129,15 +108,15 @@
             <ul class="relative z-10 m-0 grid list-none gap-x-2.5 p-3 sm:w-[600px] sm:grid-flow-col sm:grid-rows-3 sm:p-[22px]">
               <li class="row-span-3 mb-2 sm:mb-0">
                 <NavigationMenu.Link
-                  class="relative flex h-full w-full flex-col justify-end rounded-md bg-black/80 p-6 no-underline outline-hidden backdrop-blur-sm transition-colors duration-200 select-none focus:shadow-md">
-                  <!-- Background image container - absolute positioned so it doesn't affect layout -->
-                  {#if activeHoverImage}
-                    <div class="absolute inset-0 z-0">
+                  class="relative flex h-full w-full flex-col justify-end rounded-md bg-black/80 p-6 no-underline outline-hidden backdrop-blur-sm transition-all duration-300 ease-in-out select-none focus:shadow-md">
+                  <!-- Background image container with smooth transition -->
+                  <div class="absolute inset-0 z-0 transition-opacity duration-300 ease-in-out" style="opacity: {activeHoverImage ? '1' : '0'}">
+                    {#if activeHoverImage}
                       <img src={activeHoverImage} alt="" class="h-full w-full object-cover opacity-70" />
-                    </div>
-                  {/if}
+                    {/if}
+                  </div>
                   <!-- Logo positioned with the same padding as the text -->
-                  <div class={activeHoverImage ? "opacity-0" : ""}>
+                  <div class="transition-opacity duration-300 ease-in-out {activeHoverImage ? 'opacity-0' : 'opacity-100'}">
                     <div class="absolute top-6 left-6 z-10 h-8 w-auto text-white">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58.9 97.5" class="h-full" fill="currentColor">
                         <path
@@ -146,48 +125,48 @@
                           d="M29.5 38.5c-4.8 0-9.6 1.2-13.9 3.5l-.6.3-.7.4a29.7 29.7 0 0 0-7.5 6.5l-.4.5-.6.7a29.5 29.5 0 1 0 47.8.8c-2 2.1-4.2 4-6.6 5.6a20.8 20.8 0 1 1-34.1-1.3l.4-.6a20.8 20.8 0 0 1 16-7.7h.1c5 0 9.7-2 13-5.6-4-2-8.4-3-13-3" />
                       </svg>
                     </div>
-                    <div class="z-10 mt-4 mb-2 text-lg font-medium transition-colors duration-200">Hardware</div>
-                    <p class="text-muted-foreground z-10 text-sm leading-tight transition-colors duration-200">Lovingly handcrafted in Iceland</p>
+                    <div class="z-10 mt-4 mb-2 text-lg font-medium transition-colors duration-300 ease-in-out">Hardware</div>
+                    <p class="text-muted-foreground z-10 text-sm leading-tight transition-colors duration-300 ease-in-out">Lovingly handcrafted in Iceland</p>
                   </div>
                 </NavigationMenu.Link>
               </li>
               <!-- Direct hover handlers instead of using the ListItem component -->
               <li class="w-full">
                 <button
-                  class="block w-full space-y-1 rounded-md p-3 text-left leading-none no-underline outline-hidden transition-colors duration-200 select-none hover:bg-[#252525] focus:bg-[#252525]"
+                  class="block w-full space-y-1 rounded-md p-3 text-left leading-none no-underline outline-hidden transition-all duration-300 ease-in-out select-none hover:bg-[#252525] focus:bg-[#252525]"
                   on:mouseenter={setWaveHover}
                   on:mouseleave={clearHover}
                   on:click={() => {
                     window.location.href = "/wave";
                   }}>
-                  <div class="text-sm leading-none font-medium transition-colors duration-200">Wave</div>
-                  <p class="text-muted-foreground line-clamp-2 text-sm leading-snug transition-colors duration-200 group-hover:text-gray-300">The ring for musicians</p>
+                  <div class="text-sm leading-none font-medium transition-colors duration-300 ease-in-out">Wave</div>
+                  <p class="text-muted-foreground line-clamp-2 text-sm leading-snug transition-colors duration-300 ease-in-out group-hover:text-gray-300">The ring for musicians</p>
                 </button>
               </li>
 
               <li class="w-full">
                 <button
-                  class="block w-full space-y-1 rounded-md p-3 text-left leading-none no-underline outline-hidden transition-colors duration-200 select-none hover:bg-[#252525] focus:bg-[#252525]"
+                  class="block w-full space-y-1 rounded-md p-3 text-left leading-none no-underline outline-hidden transition-all duration-300 ease-in-out select-none hover:bg-[#252525] focus:bg-[#252525]"
                   on:mouseenter={setWavefrontHover}
                   on:mouseleave={clearHover}
                   on:click={() => {
                     window.location.href = "/wavefront";
                   }}>
-                  <div class="text-sm leading-none font-medium transition-colors duration-200">Wavefront</div>
-                  <p class="text-muted-foreground line-clamp-2 text-sm leading-snug transition-colors duration-200 group-hover:text-gray-300">Eurorack. Wireless.</p>
+                  <div class="text-sm leading-none font-medium transition-colors duration-300 ease-in-out">Wavefront</div>
+                  <p class="text-muted-foreground line-clamp-2 text-sm leading-snug transition-colors duration-300 ease-in-out group-hover:text-gray-300">Eurorack. Wireless.</p>
                 </button>
               </li>
 
               <li class="w-full">
                 <button
-                  class="block w-full space-y-1 rounded-md p-3 text-left leading-none no-underline outline-hidden transition-colors duration-200 select-none hover:bg-[#252525] focus:bg-[#252525]"
+                  class="block w-full space-y-1 rounded-md p-3 text-left leading-none no-underline outline-hidden transition-all duration-300 ease-in-out select-none hover:bg-[#252525] focus:bg-[#252525]"
                   on:mouseenter={setKatlaHover}
                   on:mouseleave={clearHover}
                   on:click={() => {
                     window.location.href = "/katla";
                   }}>
-                  <div class="text-sm leading-none font-medium transition-colors duration-200">Katla</div>
-                  <p class="text-muted-foreground line-clamp-2 text-sm leading-snug transition-colors duration-200 group-hover:text-gray-300">Volcanic. Caotic. Analog polysynth.</p>
+                  <div class="text-sm leading-none font-medium transition-colors duration-300 ease-in-out">Katla</div>
+                  <p class="text-muted-foreground line-clamp-2 text-sm leading-snug transition-colors duration-300 ease-in-out group-hover:text-gray-300">Volcanic. Poly-Caotic. Analog.</p>
                 </button>
               </li>
             </ul>
@@ -195,24 +174,24 @@
       </NavigationMenu.Item>
       <NavigationMenu.Item value="software">
         <NavigationMenu.Trigger
-          class="group inline-flex h-8 w-max items-center justify-center rounded-[7px] bg-transparent px-6 py-2 text-sm font-medium opacity-60 transition-colors hover:opacity-100 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 data-[state=open]:opacity-100">
+          class="group inline-flex h-8 w-max items-center justify-center rounded-[7px] bg-transparent px-6 py-2 text-sm font-medium opacity-60 transition-all duration-300 ease-in-out hover:opacity-100 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 data-[state=open]:opacity-100">
           Software
-          <CaretDown class="relative top-[1px] ml-1 size-3 transition-transform duration-200 group-data-[state=open]:rotate-180" aria-hidden="true" />
+          <CaretDown class="relative top-[1px] ml-1 size-3 transition-transform duration-300 ease-in-out group-data-[state=open]:rotate-180" aria-hidden="true" />
         </NavigationMenu.Trigger>
         <NavigationMenu.Content
           class="data-[motion=from-end]:animate-enter-from-right data-[motion=from-start]:animate-enter-from-left data-[motion=to-end]:animate-exit-to-right data-[motion=to-start]:animate-exit-to-left absolute top-0 left-0 w-full sm:w-auto">
           <div class="relative h-full w-full overflow-hidden">
-            <!-- Background image container - absolute positioned so it doesn't affect layout -->
-            {#if activeHoverImage}
-              <div class="absolute inset-0 z-0">
+            <!-- Background image container with smooth transition -->
+            <div class="absolute inset-0 z-0 transition-opacity duration-300 ease-in-out" style="opacity: {activeHoverImage ? '1' : '0'}">
+              {#if activeHoverImage}
                 <img src={activeHoverImage} alt="" class="h-full w-full object-cover opacity-70" />
-              </div>
-            {/if}
+              {/if}
+            </div>
 
             <ul class="relative z-10 m-0 grid list-none gap-x-2.5 p-3 sm:w-[600px] sm:grid-flow-col sm:grid-rows-3 sm:p-[22px]">
               <li class="row-span-3 mb-2 sm:mb-0">
                 <NavigationMenu.Link
-                  class="relative flex h-full w-full flex-col justify-end rounded-md bg-black/80 p-6 no-underline outline-hidden backdrop-blur-sm transition-colors duration-200 select-none focus:shadow-md">
+                  class="relative flex h-full w-full flex-col justify-end rounded-md bg-black/80 p-6 no-underline outline-hidden backdrop-blur-sm transition-all duration-300 ease-in-out select-none focus:shadow-md">
                   <!-- Logo positioned with the same padding as the text -->
                   <div class="absolute top-6 left-6 z-10 h-5 w-auto text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58.9 97.5" class="h-full" fill="currentColor">
@@ -222,8 +201,8 @@
                         d="M29.5 38.5c-4.8 0-9.6 1.2-13.9 3.5l-.6.3-.7.4a29.7 29.7 0 0 0-7.5 6.5l-.4.5-.6.7a29.5 29.5 0 1 0 47.8.8c-2 2.1-4.2 4-6.6 5.6a20.8 20.8 0 1 1-34.1-1.3l.4-.6a20.8 20.8 0 0 1 16-7.7h.1c5 0 9.7-2 13-5.6-4-2-8.4-3-13-3" />
                     </svg>
                   </div>
-                  <div class="z-10 mt-4 mb-2 text-lg font-medium transition-colors duration-200">Our software</div>
-                  <p class="text-muted-foreground z-10 text-sm leading-tight transition-colors duration-200">Tools making you a litle bit more creative</p>
+                  <div class="z-10 mt-4 mb-2 text-lg font-medium transition-colors duration-300 ease-in-out">Our software</div>
+                  <p class="text-muted-foreground z-10 text-sm leading-tight transition-colors duration-300 ease-in-out">Tools making you a litle bit more creative</p>
                 </NavigationMenu.Link>
               </li>
               {#each software as component (component.title)}
@@ -234,7 +213,7 @@
       </NavigationMenu.Item>
       <NavigationMenu.Item>
         <NavigationMenu.Link
-          class="group inline-flex h-8 w-max items-center justify-center rounded-[7px] bg-transparent px-6 py-2 text-sm font-medium opacity-60 transition-colors hover:opacity-100 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50"
+          class="group inline-flex h-8 w-max items-center justify-center rounded-[7px] bg-transparent px-6 py-2 text-sm font-medium opacity-60 transition-all duration-300 ease-in-out hover:opacity-100 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50"
           href="/documentation">
           <span class="hidden sm:inline"> Documentation </span>
           <span class="inline sm:hidden"> Docs </span>
@@ -254,7 +233,7 @@
 
     <!-- Cart Icon -->
     <!-- [TODO]: Fix link (April 02, 2025 16:17, ) -->
-    <a href="/documentation" aria-label="View shopping cart" class="flex items-center justify-center opacity-60 transition-opacity duration-200 hover:opacity-100">
+    <a href="/documentation" aria-label="View shopping cart" class="flex items-center justify-center opacity-60 transition-opacity duration-300 ease-in-out hover:opacity-100">
       <svg class="h-[1.2em] w-[1.2em]">
         <use xlink:href="#cart-icon"></use>
       </svg>
