@@ -19,32 +19,21 @@
   const MAX_Y = 40; // Lower maximum for less dramatic waves
 
   // Canvas variables
-  let canvas = $state<HTMLCanvasElement | null>(null);
-  let ctx = $state<CanvasRenderingContext2D | null>(null);
+  let canvas = null;
+  let ctx = null;
   let width = REST_LENGTH + 20; // Add padding
   let height = 90; // Increased canvas height to accommodate larger waves
 
   // Physics state
-  let points = $state<
-    {
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      targetX: number;
-      targetY: number;
-      phaseOffset: number;
-      lastY?: number; // For motion smoothing
-    }[]
-  >([]);
-  let mouseX = $state(-1000);
-  let mouseY = $state(-1000);
-  let mouseDown = $state(false);
-  let clickPoint = $state(-1);
-  let animationId = $state<number | null>(null);
-  let lastTime = $state(0); // For time-based animation
-  let waveTimer = $state(0); // For auto-generated waves
-  let autoWaveCounter = $state(0); // For alternating wave patterns
+  let points = [];
+  let mouseX = -1000;
+  let mouseY = -1000;
+  let mouseDown = false;
+  let clickPoint = -1;
+  let animationId = null;
+  let lastTime = 0; // For time-based animation
+  let waveTimer = 0; // For auto-generated waves
+  let autoWaveCounter = 0; // For alternating wave patterns
 
   // Initial positions with audio-wave like pattern
   function generateNeutralPosition() {
@@ -423,12 +412,12 @@
     }, 200);
   });
 
-  $effect(() => {
-    // Initialize when canvas becomes available
-    if (canvas && !isInitialized) {
-      initializeAnimation();
-    }
+  // React to canvas changes
+  $: if (canvas && !isInitialized) {
+    initializeAnimation();
+  }
 
+  onMount(() => {
     // Cleanup on unmount
     return () => {
       if (animationId !== null) {
