@@ -18,7 +18,7 @@
   function animateSkew(timestamp: number) {
     if (!startTime) startTime = timestamp;
     const elapsed = timestamp - startTime;
-    skewAmount = Math.sin(elapsed / 2500) * 5;
+    skewAmount = Math.sin(elapsed / 2500) * 3;
 
     animationFrame = requestAnimationFrame(animateSkew);
   }
