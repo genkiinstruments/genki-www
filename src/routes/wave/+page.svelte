@@ -45,8 +45,6 @@
 <div class="@container mx-auto flex h-[100vh] w-full flex-1 flex-col px-5 md:px-[50px]">
   <Header />
 
-  <!-- [TODO]: Hero icon and text (April 16, 2025 14:38, ) -->
-  <!-- Use flex with items-center and min-h-screen for vertical centering -->
   <div class="flex min-h-[100vh] flex-col items-center justify-center py-20">
     <div class="grid w-full grid-cols-10 items-center gap-10">
       <div class="relative col-span-4 col-start-2" role="button" onmouseenter={() => (isRenderImage = true)} onmouseleave={() => (isRenderImage = false)} aria-roledescription="slide" tabindex="0">
@@ -81,8 +79,6 @@
   </div>
 </div>
 
-<!-- [TODO]: Testimonials (April 16, 2025 14:38, ) -->
-
 <img src={bergur} alt="Bergur Torisson in the studio" class="w-full object-cover" />
 <div class="-mt-4 grid grid-cols-10">
   <div class="col-span-1 col-start-3">
@@ -97,7 +93,6 @@
   </div>
 </div>
 
-<!-- [TODO]: Videos (April 16, 2025 14:38, ) -->
 <Carousel.Root plugins={[youtube_plugin]} opts={{ loop: true }} class="w-full py-68" onmouseenter={youtube_plugin.stop} onmouseleave={youtube_plugin.reset}>
   <div class="relative overflow-hidden">
     <Carousel.Content>
@@ -112,5 +107,4 @@
   </div>
 </Carousel.Root>
 
-<!-- [TODO]: Footer (April 16, 2025 14:38, ) -->
 <Footer />
