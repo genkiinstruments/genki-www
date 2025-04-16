@@ -70,15 +70,15 @@
     <a
       {href}
       class="block w-full space-y-1 rounded-md p-3 text-left leading-none no-underline outline-hidden transition-all duration-300 ease-in-out select-none hover:bg-[#252525] focus:bg-[#252525]"
-      on:mouseenter={() => {
+      onmouseenter={() => {
         console.log("Hovering", title, hoverImage);
         if (hoverImage) activeHoverImage = hoverImage;
       }}
-      on:mouseleave={() => {
+      onmouseleave={() => {
         console.log("Leaving", title);
         activeHoverImage = null;
       }}
-      on:click={() => {
+      onclick={() => {
         window.location.href = href;
       }}>
       <div class="text-sm leading-none font-medium transition-colors duration-300 ease-in-out">{title}</div>
@@ -93,9 +93,9 @@
 <header class="mt-2 grid h-[72px] flex-shrink-0 grid-cols-10 gap-[10px] bg-transparent">
   <!-- Logo (left-most) in regular header layout -->
   <div class="col-span-2 flex items-center">
-    <a href="/" class="text-white transition-opacity duration-200 hover:opacity-100">
+    <a href="/" class="text-white opacity-80 transition-opacity duration-200 hover:opacity-100" aria-label="Go to index page">
       <div class="h-6 w-auto">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58.9 97.5" class="h-full" fill="currentColor">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58.9 97.5" class="h-full" fill="currentColor" aria-hidden="true">
           <path
             d="M16.5 56A29 29 0 0 0 28 58.8h1.5c4.8 0 9.5-1.2 13.8-3.4l1.3-.8c2.9-1.7 5.4-3.9 7.5-6.5l1-1.1A29.5 29.5 0 0 0 29.5 0H28A29.4 29.4 0 0 0 5.3 46.2c2-2.2 4.2-4 6.7-5.7a20.9 20.9 0 0 1 16.7-32h.8a20.8 20.8 0 0 1 0 41.6h-.7l-.8.1a18 18 0 0 0-11.5 5.6" />
           <path
@@ -113,7 +113,7 @@
     <NavigationMenu.List class="group flex list-none items-center justify-center ">
       <NavigationMenu.Item value="hardware">
         <NavigationMenu.Trigger
-          class="group inline-flex h-8 w-max items-center justify-center rounded-[7px] bg-transparent px-6 py-2 text-sm font-medium opacity-60 transition-all duration-300 ease-in-out hover:opacity-100 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 data-[state=open]:opacity-100">
+          class="group inline-flex h-8 w-max items-center justify-center rounded-[7px] bg-transparent px-6 py-2 text-sm font-medium opacity-80 transition-all duration-300 ease-in-out hover:opacity-100 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 data-[state=open]:opacity-100">
           Hardware
           <CaretDown class="relative top-[1px] ml-1 size-3 transition-transform duration-300 ease-in-out group-data-[state=open]:rotate-180" aria-hidden="true" />
         </NavigationMenu.Trigger>
@@ -154,7 +154,7 @@
       </NavigationMenu.Item>
       <NavigationMenu.Item value="software">
         <NavigationMenu.Trigger
-          class="group inline-flex h-8 w-max items-center justify-center rounded-[7px] bg-transparent px-6 py-2 text-sm font-medium opacity-60 transition-all duration-300 ease-in-out hover:opacity-100 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 data-[state=open]:opacity-100">
+          class="group inline-flex h-8 w-max items-center justify-center rounded-[7px] bg-transparent px-6 py-2 text-sm font-medium opacity-80 transition-all duration-300 ease-in-out hover:opacity-100 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 data-[state=open]:opacity-100">
           Software
           <CaretDown class="relative top-[1px] ml-1 size-3 transition-transform duration-300 ease-in-out group-data-[state=open]:rotate-180" aria-hidden="true" />
         </NavigationMenu.Trigger>
@@ -189,7 +189,7 @@
       </NavigationMenu.Item>
       <NavigationMenu.Item>
         <NavigationMenu.Link
-          class="group inline-flex h-8 w-max items-center justify-center rounded-[7px] bg-transparent px-6 py-2 text-sm font-medium opacity-60 transition-all duration-300 ease-in-out hover:opacity-100 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50"
+          class="group inline-flex h-8 w-max items-center justify-center rounded-[7px] bg-transparent px-6 py-2 text-sm font-medium opacity-80 transition-all duration-300 ease-in-out hover:opacity-100 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50"
           href="/documentation">
           <span class="hidden sm:inline"> Documentation </span>
           <span class="inline sm:hidden"> Docs </span>
@@ -209,7 +209,7 @@
 
     <!-- Cart Icon -->
     <!-- [TODO]: Fix link (April 02, 2025 16:17, ) -->
-    <a href="/documentation" aria-label="View shopping cart" class="flex items-center justify-center opacity-60 transition-opacity duration-300 ease-in-out hover:opacity-100">
+    <a href="/documentation" aria-label="View shopping cart" class="flex items-center justify-center opacity-80 transition-opacity duration-300 ease-in-out hover:opacity-100">
       <svg class="h-[1.2em] w-[1.2em]">
         <use xlink:href="#cart-icon"></use>
       </svg>
