@@ -240,7 +240,6 @@
   });
 </script>
 
-<div></div>
 
 <div class="carousel-container relative flex h-[100dvh] w-full flex-col overflow-hidden bg-[#151515] text-[#DFDFDF]">
   <!-- Background with elegant fade transitions -->
@@ -291,14 +290,12 @@
                       <div class="pt-4 md:pt-8">
                         <a href={slide.href} class="inline-block">
                           <div class="relative flex cursor-pointer flex-col items-center">
-                            <span class="relative text-xs tracking-widest text-white">LEARN MORE</span>
-                            <div style="height: 90px; width: 110px; margin-top: 10px;">
-                              {#if currentIndex === i}
-                                <div class="interactive-string-wrapper">
-                                  <InteractiveString />
-                                </div>
-                              {/if}
-                            </div>
+                            {#if currentIndex === i}
+                              <span class="relative -mb-2 text-xs tracking-widest text-white uppercase">Learn more</span>
+                              <div class="interactive-string-wrapper">
+                                <InteractiveString />
+                              </div>
+                            {/if}
                           </div>
                         </a>
                       </div>
