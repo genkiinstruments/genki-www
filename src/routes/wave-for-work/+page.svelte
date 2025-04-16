@@ -1,14 +1,17 @@
 <script lang="ts">
+  import { fade } from "svelte/transition";
+
   import Header from "$lib/Header.svelte";
   import Footer from "$lib/Footer.svelte";
+  import YouTubeCarousel from "$lib/YouTubeCarousel.svelte";
+  import InteractiveString from "$lib/InteractiveString.svelte";
+
+  import cosmos from "$lib/assets/cosmos-main.webp";
+  import viktor from "$lib/assets/viktor-cosmos.webp";
+  import quote from "$lib/assets/quote.webp";
 </script>
 
 <Header />
-
-<div class="bg-white">
-  <div class="pt-6">
-    <div class="mx-auto mt-8 max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8"></div>
-  </div>
-</div>
+We need to implement this website 🚧
 
 <Footer />
