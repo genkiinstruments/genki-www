@@ -3,7 +3,7 @@
   import Footer from "$lib/Footer.svelte";
 </script>
 
-<Header></Header>
+<Header />
 
 <div class="bg-white">
   <div class="pt-6">
@@ -11,4 +11,4 @@
   </div>
 </div>
 
-<Footer></Footer>
+<Footer />

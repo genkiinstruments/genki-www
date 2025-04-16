@@ -252,7 +252,7 @@
 
   <!-- Grid-aligned container with responsive margins - Add z-10 or higher if needed -->
   <div class="relative z-10 mx-auto flex w-full flex-1 flex-col px-5 md:px-[50px]">
-    <Header></Header>
+    <Header />
 
     <!-- Main content area with vertical centering -->
     <div class="flex flex-1 flex-col justify-center" ontouchstart={handleTouchStart} ontouchend={handleTouchEnd}>

@@ -3,7 +3,7 @@
   import Footer from "$lib/Footer.svelte";
 </script>
 
-<Header></Header>
+<Header />
 
 <!-- // [TODO]: Download manual button (March 05, 2025 13:36, ) -->
 

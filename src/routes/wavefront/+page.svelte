@@ -31,7 +31,7 @@
   const youtube_plugin = Autoplay({ delay: 2000, stopOnInteraction: true });
 </script>
 
-<Header></Header>
+<Header />
 
 <div class="mx-auto mt-8 px-4 pt-6 sm:px-6 lg:max-w-7xl lg:px-8">
   <div class="lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8">
