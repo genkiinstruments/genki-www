@@ -20,6 +20,7 @@ pkgs.stdenv.mkDerivation {
     hash = "sha256-/3hpokiIZI6RqtEGpp3NgZEoYsDxU8a9LljTkINmK64=";
   };
 
-  buildPhase = "pnpm build";
+  buildPhase = "pnpm check && pnpm build"; # check fixes: Cannot find base config file "./.svelte-kit/tsconfig.json" [tsconfig.json]
+
   installPhase = "cp -r build $out/";
 }
