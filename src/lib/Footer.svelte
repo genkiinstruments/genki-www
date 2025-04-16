@@ -5,15 +5,15 @@
         <div class="md:grid md:grid-cols-2 md:gap-8">
           <div>
             <h3 class="text-sm/6 font-semibold">Hardware</h3>
-            <ul role="list" class="mt-6 space-y-4">
+            <ul role="list" class="mt-6 space-y-4 text-sm/6">
               <li>
-                <a href="/wave" class="text-sm/6">Wave</a>
+                <a href="/wave" class="opacity-60 transition hover:opacity-100">Wave</a>
               </li>
               <li>
-                <a href="/wavefront" class="text-sm/6">Wavefront</a>
+                <a href="/wavefront" class="opacity-60 transition hover:opacity-100">Wavefront</a>
               </li>
               <li>
-                <a href="/katla" class="text-sm/6">Katla</a>
+                <a href="/katla" class="opacity-60 transition hover:opacity-100">Katla</a>
               </li>
             </ul>
           </div>
@@ -21,16 +21,16 @@
             <h3 class="text-sm/6 font-semibold">Software</h3>
             <ul role="list" class="mt-6 space-y-4">
               <li>
-                <a href="/softwave" class="text-sm/6">Softwave</a>
+                <a href="/softwave" class="opacity-60 transition hover:opacity-100">Softwave</a>
               </li>
               <li>
-                <a href="/wave-for-work" class="text-sm/6">Wave for Work</a>
+                <a href="/wave-for-work" class="opacity-60 transition hover:opacity-100">Wave for Work</a>
               </li>
               <li>
-                <a href="/cosmos" class="text-sm/6">Cosmos</a>
+                <a href="/cosmos" class="opacity-60 transition hover:opacity-100">Cosmos</a>
               </li>
               <li>
-                <a href="https://mimugloves.com/gloves/" class="text-sm/6" target="_blank" rel="noopener noreferrer"> MIMU Glover </a>
+                <a href="https://mimugloves.com/gloves/" class="opacity-60 transition hover:opacity-100" target="_blank" rel="noopener noreferrer"> MIMU Glover </a>
               </li>
             </ul>
           </div>
@@ -40,13 +40,13 @@
             <h3 class="text-sm/6 font-semibold">Company</h3>
             <ul role="list" class="mt-6 space-y-4">
               <li>
-                <a href="/about" class="text-sm/6">About</a>
+                <a href="/about" class="opacity-60 transition hover:opacity-100">About</a>
               </li>
               <li>
-                <a href="/blog" class="text-sm/6">Blog</a>
+                <a href="/blog" class="opacity-60 transition hover:opacity-100">Blog</a>
               </li>
               <li>
-                <a href="/" class="text-sm/6">Press</a>
+                <a href="/" class="opacity-60 transition hover:opacity-100">Press</a>
               </li>
             </ul>
           </div>
@@ -55,13 +55,13 @@
             <ul role="list" class="mt-6 space-y-4">
               <li>
                 <!-- [TODO]: Point to correct webpage (March 05, 2025 13:51, ) -->
-                <a href="/" class="text-sm/6">Documentation</a>
+                <a href="/" class="opacity-60 transition hover:opacity-100">Documentation</a>
               </li>
               <li>
-                <a href="/terms-of-service" class="text-sm/6">Terms of service</a>
+                <a href="/terms-of-service" class="opacity-60 transition hover:opacity-100">Terms of service</a>
               </li>
               <li>
-                <a href="/privacy-policy" class="text-sm/6">Privacy policy</a>
+                <a href="/privacy-policy" class="opacity-60 transition hover:opacity-100">Privacy policy</a>
               </li>
             </ul>
           </div>
