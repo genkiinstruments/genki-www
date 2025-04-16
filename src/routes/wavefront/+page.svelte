@@ -4,15 +4,15 @@
   import YouTube from "$lib/YouTube.svelte";
   import Testimonials from "$lib/Testimonials.svelte";
 
-  import toti from "$lib/assets/index-toti-studio.png";
-  import wave from "$lib/assets/wave-hand.png";
-  import box from "$lib/assets/wave-open-box.png";
-  import korg from "$lib/assets/wave-korg.png";
-  import cool from "$lib/assets/wave-cool.png";
-  import fabris from "$lib/assets/wave-fabris.png";
-  import korg_red from "$lib/assets/wave-korg-orange.png";
-  import piano from "$lib/assets/wave-piano.png";
-  import wavefront from "$lib/assets/wavefront-hero.png";
+  import toti from "$lib/assets/index-toti-studio.webp";
+  import wave from "$lib/assets/wave-hand.webp";
+  import box from "$lib/assets/wave-open-box.webp";
+  import korg from "$lib/assets/wave-korg.webp";
+  import cool from "$lib/assets/wave-cool.webp";
+  import fabris from "$lib/assets/wave-fabris.webp";
+  import korg_red from "$lib/assets/wave-korg-orange.webp";
+  import piano from "$lib/assets/wave-piano.webp";
+  import wavefront from "$lib/assets/wavefront-hero.webp";
 
   const images = [
     { src: box, alt: "Side profile" },

@@ -2,15 +2,15 @@
   import { NavigationMenu } from "bits-ui";
   import CaretDown from "phosphor-svelte/lib/CaretDown";
 
-  import waveHoverImg from "$lib/assets/wave-header-hover.png";
-  import wavefrontHoverImg from "$lib/assets/wavefront-header-hover.png";
-  import katlaHoverImg from "$lib/assets/katla-header-hover.png";
+  import waveHoverImg from "$lib/assets/wave-header-hover.webp";
+  import wavefrontHoverImg from "$lib/assets/wavefront-header-hover.webp";
+  import katlaHoverImg from "$lib/assets/katla-header-hover.webp";
 
-  import softwaveHoverImg from "$lib/assets/wave-header-hover.png"; // Using wave image as placeholder for now
-  import waveForWorkHoverImg from "$lib/assets/wavefront-header-hover.png"; // Using wavefront image as placeholder for now
-  import cosmosHoverImg from "$lib/assets/cosmos-space.png"; // Using cosmos space image
+  import softwaveHoverImg from "$lib/assets/wave-header-hover.webp"; // Using wave image as placeholder for now
+  import waveForWorkHoverImg from "$lib/assets/wavefront-header-hover.webp"; // Using wavefront image as placeholder for now
+  import cosmosHoverImg from "$lib/assets/cosmos-space.webp"; // Using cosmos space image
 
-  import software_header from "$lib/assets/software-header.png"; // Using cosmos space image
+  import software_header from "$lib/assets/software-header.webp"; // Using cosmos space image
 
   let activeHoverImage: string | null = $state(null);
 

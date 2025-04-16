@@ -4,13 +4,13 @@
   // Import Svelte lifecycle functions
   import { onMount } from "svelte";
 
-  import wavefront_bg from "$lib/assets/wavefront-bg.png";
-  import wave_bg from "$lib/assets/wave-bg.png";
-  import katla_bg from "$lib/assets/katla-bg.png";
-  import cosmos_bg from "$lib/assets/Cosmos_3D.png";
-  import softwave_bg from "$lib/assets/Softwave_3D.png";
+  import wavefront_bg from "$lib/assets/wavefront-bg.webp";
+  import wave_bg from "$lib/assets/wave-bg.webp";
+  import katla_bg from "$lib/assets/katla-bg.webp";
+  import cosmos_bg from "$lib/assets/Cosmos_3D.webp";
+  import softwave_bg from "$lib/assets/Softwave_3D.webp";
 
-  import katla_logo from "$lib/assets/katla-logo.png";
+  import katla_logo from "$lib/assets/katla-logo.webp";
   import InteractiveString from "$lib/InteractiveString.svelte";
 
   import arrow from "$lib/assets/arrow.svg";

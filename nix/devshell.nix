@@ -1,10 +1,14 @@
 { pkgs, perSystem }:
 pkgs.mkShell {
   # Add build dependencies
-  packages = with pkgs; [
-    pnpm
-    perSystem.self.figma-sync
-  ];
+  packages =
+    with pkgs;
+    with perSystem.self;
+    [
+      pnpm
+      figma-sync
+      png-to-webp
+    ];
 
   # Add environment variables
   env = { };
