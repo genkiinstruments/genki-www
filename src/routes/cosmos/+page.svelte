@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { fade } from "svelte/transition";
+  import { onMount, onDestroy } from "svelte";
 
   import Header from "$lib/Header.svelte";
   import Footer from "$lib/Footer.svelte";
@@ -10,20 +10,34 @@
   import viktor from "$lib/assets/viktor-cosmos.webp";
   import quote from "$lib/assets/quote.webp";
 
-  let isRenderImage = $state(false);
+  let skewAmount = $state(0);
+
+  let animationFrame: number;
+  let startTime: number;
+
+  function animateSkew(timestamp: number) {
+    if (!startTime) startTime = timestamp;
+    const elapsed = timestamp - startTime;
+    skewAmount = Math.sin(elapsed / 2500) * 5;
+
+    animationFrame = requestAnimationFrame(animateSkew);
+  }
+
+  onMount(() => {
+    animationFrame = requestAnimationFrame(animateSkew);
+  });
+
+  onDestroy(() => {
+    if (animationFrame) cancelAnimationFrame(animationFrame);
+  });
 </script>
 
 <div class="@container mx-auto flex h-[100vh] w-full flex-1 flex-col px-5 md:px-[50px]">
   <Header />
   <div class="flex min-h-[100vh] flex-col items-center justify-center py-20">
     <div class="grid w-full grid-cols-10 items-center gap-10">
-      <div class="relative col-span-4 col-start-2" role="button" onmouseenter={() => (isRenderImage = true)} onmouseleave={() => (isRenderImage = false)} aria-roledescription="slide" tabindex="0">
-        <img src={cosmos} alt="Cosmos" class="w-full transition-opacity duration-300" class:opacity-0={isRenderImage} />
-        {#if isRenderImage}
-          <div class="absolute inset-0 flex items-center justify-center">
-            <img src={cosmos} alt="Cosmos softsynth close-up" class="w-full" transition:fade={{ duration: 300 }} />
-          </div>
-        {/if}
+      <div class="relative col-span-6 col-start-1 overflow-hidden" role="button" aria-roledescription="slide" tabindex="0">
+        <img src={cosmos} alt="Cosmos" class="w-full transition-all duration-300" style="transform: skew({skewAmount}deg, 0deg);" />
       </div>
       <div class="col-span-3 col-start-7 md:text-2xl lg:text-4xl">
         <div>
