@@ -55,7 +55,7 @@
   </div>
 </div>
 
-<img src={herdis} alt="Bergur Torisson in the studio" class="w-full object-cover" />
+<img src={herdis} alt="Herdís Stefánsdóttir in the studio" class="w-full object-cover" />
 <div class="@container -mt-4 grid grid-cols-10">
   <div class="col-span-1 col-start-3">
     <img src={quote} alt="Quotation mark" />

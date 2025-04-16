@@ -4,7 +4,6 @@
   import Header from "$lib/Header.svelte";
   import Footer from "$lib/Footer.svelte";
   import YouTubeCarousel from "$lib/YouTubeCarousel.svelte";
-  import InteractiveString from "$lib/InteractiveString.svelte";
 
   import softwave_hero from "$lib/assets/softwave-hero.webp";
   import toti from "$lib/assets/toti-cool.webp";
@@ -19,10 +18,10 @@
   <div class="flex min-h-[100vh] flex-col items-center justify-center py-20">
     <div class="grid w-full grid-cols-10 items-center gap-10">
       <div class="relative col-span-4 col-start-2" role="button" onmouseenter={() => (isRenderImage = true)} onmouseleave={() => (isRenderImage = false)} aria-roledescription="slide" tabindex="0">
-        <img src={softwave_hero} alt="Wave ring for musicians" class="w-full transition-opacity duration-300" class:opacity-0={isRenderImage} />
+        <img src={softwave_hero} alt="Softwave, companion software to the Wave music ring" class="w-full transition-opacity duration-300" class:opacity-0={isRenderImage} />
         {#if isRenderImage}
           <div class="absolute inset-0 flex items-center justify-center">
-            <img src={softwave_hero} alt="Wave ring close-up render" class="w-full" transition:fade={{ duration: 300 }} />
+            <img src={softwave_hero} alt="Softwave close-up render" class="w-full" transition:fade={{ duration: 300 }} />
           </div>
         {/if}
       </div>
@@ -37,7 +36,7 @@
   </div>
 </div>
 
-<img src={toti} alt="Bergur Torisson in the studio" class="w-full object-cover" />
+<img src={toti} alt="Tóti Guðnason in the studio" class="w-full object-cover" />
 <div class="@container -mt-4 grid grid-cols-10">
   <div class="col-span-1 col-start-3">
     <img src={quote} alt="Quotation mark" />
