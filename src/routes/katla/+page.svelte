@@ -44,7 +44,7 @@
             <div>$4,990</div>
             <a href="/" class="inline-block">
               <div class="relative flex cursor-pointer flex-col items-center">
-                <span class="relative -mb-2 text-sm tracking-widest text-white uppercase">Add to cart</span>
+                <span class="relative -mb-2 text-xs tracking-widest text-white uppercase">Add to cart</span>
                 <InteractiveString />
               </div>
             </a>
