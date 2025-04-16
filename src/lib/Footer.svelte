@@ -55,7 +55,7 @@
             <ul role="list" class="mt-6 space-y-4">
               <li>
                 <!-- [TODO]: Point to correct webpage (March 05, 2025 13:51, ) -->
-                <a href="/" class="opacity-60 transition hover:opacity-100">Documentation</a>
+                <a href="https://genkiinstruments.github.io/" target="_blank" class="opacity-60 transition hover:opacity-100">Documentation</a>
               </li>
               <li>
                 <a href="/terms-of-service" class="opacity-60 transition hover:opacity-100">Terms of service</a>

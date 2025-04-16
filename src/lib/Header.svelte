@@ -188,9 +188,11 @@
           </div></NavigationMenu.Content>
       </NavigationMenu.Item>
       <NavigationMenu.Item>
+        <!-- [TODO]: Fix link (April 02, 2025 16:17, ) -->
         <NavigationMenu.Link
           class="group inline-flex h-8 w-max items-center justify-center rounded-[7px] bg-transparent px-6 py-2 text-sm font-medium opacity-80 transition-all duration-300 ease-in-out hover:opacity-100 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50"
-          href="/documentation">
+          href="https://genkiinstruments.github.io/"
+          target="_blank">
           <span class="hidden sm:inline"> Documentation </span>
           <span class="inline sm:hidden"> Docs </span>
         </NavigationMenu.Link>
