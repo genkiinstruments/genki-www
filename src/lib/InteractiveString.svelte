@@ -5,7 +5,7 @@
   const POINTS = 18; // More points for smoother standing wave visualization
   const REST_LENGTH = 90; // Length of string in pixels
   const STRING_TENSION = 0.025; // Even lower tension for more dramatic oscillations
-  const MOUSE_INFLUENCE = 0.5; // Stronger mouse interaction for better responsiveness
+  const MOUSE_INFLUENCE = 0.3; // Stronger mouse interaction for better responsiveness
   const GRAVITY = 0.002; // Reduced gravity for better standing waves
   const MOUSE_RADIUS = 200; // Mouse influence radius
   const DAMPING = 0.92; // Higher damping to make waves die out faster after interaction
