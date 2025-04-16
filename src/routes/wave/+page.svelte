@@ -1,45 +1,17 @@
 <script lang="ts">
+  import { fade } from "svelte/transition";
+
   import Header from "$lib/Header.svelte";
   import Footer from "$lib/Footer.svelte";
-  import YouTube from "$lib/YouTube.svelte";
-  import Testimonials from "$lib/Testimonials.svelte";
-  import { fade } from "svelte/transition";
-  import { fly } from "svelte/transition";
+  import InteractiveString from "$lib/InteractiveString.svelte";
+  import YouTubeCarousel from "$lib/YouTubeCarousel.svelte";
 
-  import toti from "$lib/assets/index-toti-studio.webp";
-  import wave from "$lib/assets/wave-hand.webp";
-  import box from "$lib/assets/wave-open-box.webp";
-  import korg from "$lib/assets/wave-korg.webp";
-  import cool from "$lib/assets/wave-cool.webp";
-  import fabris from "$lib/assets/wave-fabris.webp";
-  import korg_red from "$lib/assets/wave-korg-orange.webp";
-  import piano from "$lib/assets/wave-piano.webp";
   import wave_hand from "$lib/assets/wave-hand.webp";
   import wave_render from "$lib/assets/wave-render.webp";
   import bergur from "$lib/assets/bergur-in-the-studio.webp";
   import quote from "$lib/assets/quote.webp";
 
-  let wave_img = $state(wave_hand);
   let isRenderImage = $state(false);
-
-  const images = [
-    { src: box, alt: "Side profile" },
-    { src: korg, alt: "Front view" },
-    { src: wave, alt: "Side profile" },
-    { src: cool, alt: "Side profile" },
-    { src: fabris, alt: "Front view" },
-    { src: korg_red, alt: "Side profile" },
-    { src: piano, alt: "Side profile" },
-    { src: toti, alt: "Front view" },
-  ];
-
-  import Autoplay from "embla-carousel-autoplay";
-  import * as Carousel from "$lib/components/ui/carousel/index.js";
-  import InteractiveString from "$lib/InteractiveString.svelte";
-  const youtube_plugin = Autoplay({ delay: 4000, stopOnInteraction: true });
-
-  let is_hovering = $state(false);
-  let hero = $derived(is_hovering ? box : wave);
 </script>
 
 <div class="@container mx-auto flex h-[100vh] w-full flex-1 flex-col px-5 md:px-[50px]">
@@ -93,18 +65,6 @@
   </div>
 </div>
 
-<Carousel.Root plugins={[youtube_plugin]} opts={{ loop: true }} class="w-full py-68" onmouseenter={youtube_plugin.stop} onmouseleave={youtube_plugin.reset}>
-  <div class="relative overflow-hidden">
-    <Carousel.Content>
-      {#each ["9pEGV0H5nTw", "foX4YGlUg4g", "a8aStUjS6uk", "oOKxmoZd4H8", "vJ-KT38i9Ls"] as id, i (i)}
-        <Carousel.Item class="rounded-lg lg:basis-1/2">
-          <YouTube {id} />
-        </Carousel.Item>
-      {/each}
-    </Carousel.Content>
-    <Carousel.Previous />
-    <Carousel.Next />
-  </div>
-</Carousel.Root>
+<YouTubeCarousel ids={["9pEGV0H5nTw", "foX4YGlUg4g", "a8aStUjS6uk", "oOKxmoZd4H8", "vJ-KT38i9Ls", "puQloBX3XPQ"]} />
 
 <Footer />

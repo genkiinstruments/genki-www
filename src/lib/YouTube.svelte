@@ -3,8 +3,6 @@
   import Button from "./Button.svelte";
   import Image from "./Image.svelte";
 
-  import { playing } from "./YouTubeSharedState.svelte.js";
-
   let { id, altThumb = false, thumbnail = null, play_button = null } = $props();
 
   interface VideoInfo {

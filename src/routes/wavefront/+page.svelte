@@ -1,8 +1,10 @@
 <script lang="ts">
+  import { fade } from "svelte/transition";
+
   import Header from "$lib/Header.svelte";
   import Footer from "$lib/Footer.svelte";
-  import YouTube from "$lib/YouTube.svelte";
-  import { fade } from "svelte/transition";
+  import YouTubeCarousel from "$lib/YouTubeCarousel.svelte";
+  import InteractiveString from "$lib/InteractiveString.svelte";
 
   import wavefront_stack from "$lib/assets/wavefront-stack.webp";
   import wavefront_single from "$lib/assets/wavefront-clean-hero-transparent.webp";
@@ -10,11 +12,6 @@
   import quote from "$lib/assets/quote.webp";
 
   let isRenderImage = $state(false);
-
-  import Autoplay from "embla-carousel-autoplay";
-  import * as Carousel from "$lib/components/ui/carousel/index.js";
-  import InteractiveString from "$lib/InteractiveString.svelte";
-  const youtube_plugin = Autoplay({ delay: 4000, stopOnInteraction: true });
 </script>
 
 <div class="@container mx-auto flex h-[100vh] w-full flex-1 flex-col px-5 md:px-[50px]">
@@ -70,18 +67,6 @@
   </div>
 </div>
 
-<Carousel.Root plugins={[youtube_plugin]} opts={{ loop: true }} class="w-full py-68" onmouseenter={youtube_plugin.stop} onmouseleave={youtube_plugin.reset}>
-  <div class="relative overflow-hidden">
-    <Carousel.Content>
-      {#each ["Mxx2AuXiYWM", "I3hlnmP7yJU", "OxGjLVSPjCE", "MqfF2m-Mi-Y"] as id, i (i)}
-        <Carousel.Item class="rounded-lg lg:basis-1/2">
-          <YouTube {id} />
-        </Carousel.Item>
-      {/each}
-    </Carousel.Content>
-    <Carousel.Previous />
-    <Carousel.Next />
-  </div>
-</Carousel.Root>
+<YouTubeCarousel ids={["Mxx2AuXiYWM", "I3hlnmP7yJU", "OxGjLVSPjCE", "MqfF2m-Mi-Y"]} />
 
 <Footer />
