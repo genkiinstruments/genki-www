@@ -80,7 +80,7 @@
 </div>
 
 <img src={bergur} alt="Bergur Torisson in the studio" class="w-full object-cover" />
-<div class="-mt-4 grid grid-cols-10">
+<div class="@container -mt-4 grid grid-cols-10">
   <div class="col-span-1 col-start-3">
     <img src={quote} alt="Quotation mark" />
   </div>
