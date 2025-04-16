@@ -3,6 +3,8 @@
   import Footer from "$lib/Footer.svelte";
   import YouTube from "$lib/YouTube.svelte";
   import Testimonials from "$lib/Testimonials.svelte";
+  import { fade } from "svelte/transition";
+  import { fly } from "svelte/transition";
 
   import toti from "$lib/assets/index-toti-studio.webp";
   import wave from "$lib/assets/wave-hand.webp";
@@ -12,6 +14,13 @@
   import fabris from "$lib/assets/wave-fabris.webp";
   import korg_red from "$lib/assets/wave-korg-orange.webp";
   import piano from "$lib/assets/wave-piano.webp";
+  import wave_hand from "$lib/assets/wave-hand.webp";
+  import wave_render from "$lib/assets/wave-render.webp";
+  import bergur from "$lib/assets/bergur-in-the-studio.webp";
+  import quote from "$lib/assets/quote.webp";
+
+  let wave_img = $state(wave_hand);
+  let isRenderImage = $state(false);
 
   const images = [
     { src: box, alt: "Side profile" },
@@ -26,161 +35,70 @@
 
   import Autoplay from "embla-carousel-autoplay";
   import * as Carousel from "$lib/components/ui/carousel/index.js";
-  const images_plugin = Autoplay({ delay: 2000, stopOnInteraction: true });
-  const youtube_plugin = Autoplay({ delay: 2000, stopOnInteraction: true });
+  import InteractiveString from "$lib/InteractiveString.svelte";
+  const youtube_plugin = Autoplay({ delay: 4000, stopOnInteraction: true });
 
   let is_hovering = $state(false);
   let hero = $derived(is_hovering ? box : wave);
 </script>
 
-<Header></Header>
+<div class="@container mx-auto flex h-[100vh] w-full flex-1 flex-col px-5 md:px-[50px]">
+  <Header />
 
-<div class="mx-auto mt-8 px-4 pt-6 sm:px-6 lg:max-w-7xl lg:px-8">
-  <div class="lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8">
-    <div class="lg:col-span-5 lg:col-start-8">
-      <div class="flex justify-between">
-        <h1 class="text-xl font-medium text-gray-900">Wave Ring</h1>
-        <p class="text-xl font-medium text-gray-900">$349</p>
-      </div>
-      <!-- Reviews -->
-      <div class="mt-4">
-        <h2 class="sr-only">Reviews</h2>
-        <div class="flex items-center">
-          <p class="text-sm text-gray-700">
-            4.8
-            <span class="sr-only"> out of 5 stars</span>
-          </p>
-          <div class="ml-1 flex items-center">
-            <!-- Active: "text-yellow-400", Inactive: "text-gray-200" -->
-            <svg class="size-5 shrink-0 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-              <path
-                fill-rule="evenodd"
-                d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
-                clip-rule="evenodd" />
-            </svg>
-            <svg class="size-5 shrink-0 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-              <path
-                fill-rule="evenodd"
-                d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
-                clip-rule="evenodd" />
-            </svg>
-            <svg class="size-5 shrink-0 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-              <path
-                fill-rule="evenodd"
-                d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
-                clip-rule="evenodd" />
-            </svg>
-            <svg class="size-5 shrink-0 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-              <path
-                fill-rule="evenodd"
-                d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
-                clip-rule="evenodd" />
-            </svg>
-            <svg class="size-5 shrink-0 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-              <path
-                fill-rule="evenodd"
-                d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
-                clip-rule="evenodd" />
-            </svg>
+  <!-- [TODO]: Hero icon and text (April 16, 2025 14:38, ) -->
+  <!-- Use flex with items-center and min-h-screen for vertical centering -->
+  <div class="flex min-h-[100vh] flex-col items-center justify-center py-20">
+    <div class="grid w-full grid-cols-10 items-center gap-10">
+      <div class="relative col-span-4 col-start-2" role="button" onmouseenter={() => (isRenderImage = true)} onmouseleave={() => (isRenderImage = false)} aria-roledescription="slide" tabindex="0">
+        <img src={wave_hand} alt="Wave ring for musicians" class="w-full transition-opacity duration-300" class:opacity-0={isRenderImage} />
+        {#if isRenderImage}
+          <div class="absolute inset-0 flex items-center justify-center">
+            <img src={wave_render} alt="Wave ring close-up render" class="w-full" transition:fade={{ duration: 300 }} />
           </div>
-          <div aria-hidden="true" class="ml-4 text-sm text-gray-300">·</div>
-          <div class="ml-4 flex">
-            <a href="/" class="text-sm font-medium text-[#FF5F49] hover:text-[#FF5F49]/80">See all 190 reviews</a>
+        {/if}
+      </div>
+      <div class="col-span-3 col-start-7 md:text-2xl lg:text-4xl">
+        <div>
+          <div class="font-bold">WAVE</div>
+          <br />
+          <div>
+            Wave is the ring that allows artists and producers to easily control sound, shape effects and send commands. Wave detects the most finesse gestures and enables natural interaction with
+            sound through movement.
+          </div>
+          <br />
+          <div class="flex w-full flex-row space-x-10">
+            <div>$349</div>
+            <a href="/" class="inline-block">
+              <div class="relative flex cursor-pointer flex-col items-center">
+                <span class="relative -mb-2 text-sm tracking-widest text-white uppercase">Add to cart</span>
+                <InteractiveString />
+              </div>
+            </a>
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="mt-8 lg:col-span-7 lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:mt-0">
-      <h2 class="sr-only">Images</h2>
-
-      <div class="relative aspect-[3/4] w-full lg:col-span-2 lg:row-span-2">
-        <img
-          src={hero}
-          onmouseenter={() => (is_hovering = true)}
-          onmouseleave={() => (is_hovering = false)}
-          alt="Back of women's Basic Tee in black."
-          class="absolute inset-0 h-full w-full rounded-lg object-cover" />
-      </div>
-    </div>
-
-    <div class="lg:col-span-5">
-      <form>
-        <a href="/" class="text-sm font-medium text-[#FF5F49] hover:text-[#FF5F49]/80">
-          <button
-            type="submit"
-            class="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-[#FF5F49] px-8 py-3 text-base font-medium text-white hover:bg-[#FF5F49]/80 focus:ring-2 focus:ring-[#FF5F49]/80 focus:ring-offset-2 focus:outline-hidden"
-            >Buy now</button
-          ></a>
-      </form>
-
-      <!-- Product details -->
-      <div class="mt-10">
-        <h2 class="text-sm font-medium text-gray-900">Description</h2>
-
-        <div class="mt-4 space-y-4 text-sm/6 text-gray-500">
-          <p>
-            Wave is the ring that allows artists and producers to easily control sound, shape effects and send commands. Worn on the index finger, Wave detects the most finesse gestures and enables
-            natural interaction with sound through movement.
-          </p>
-          <p>
-            Included with your purchase of Wave, <a href="/softwave" class="text-sm font-medium text-[#FF5F49] hover:text-[#FF5F49]/80">Softwave</a> unlocks the full functionality of your wearable technology.
-            Customize each and every input range, CC value, movement curve, and more.
-          </p>
-          <p>
-            When paired with <a class="text-[#FF5F49] hover:text-[#FF5F49]/80" href="/wavefront">Wavefront</a>, Wave switches to a ultra-low sub millisecond transmission layer for instant feedback.
-          </p>
-        </div>
-      </div>
-
-      <div class="mt-8 border-t border-gray-200 pt-8">
-        <h2 class="text-sm font-medium text-gray-900">Features</h2>
-
-        <div class="mt-4">
-          <ul role="list" class="list-disc space-y-1 pl-5 text-sm/6 text-gray-500 marker:text-gray-300">
-            <li class="pl-2">Used by musicians all over the world</li>
-            <li class="pl-2">Press record from anywhere in the studio</li>
-            <li class="pl-2">Use natural movements to interact with your gear like never before</li>
-            <li class="pl-2">Send commands and switch between settings on the ring</li>
-            <li class="pl-2">Engineered to enable low-latency Bluetooth LE</li>
-            <li class="pl-2">Made with love in Iceland.</li>
-            <li class="pl-2 text-sm font-medium text-[#FF5F49] hover:text-[#FF5F49]/80">
-              <!-- [TODO]: Fix link (March 05, 2025 14:50, ) -->
-              <a href="/wave">Technical Specification </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="mt-8 border-gray-200 pt-8"></div>
     </div>
   </div>
 </div>
 
-<!-- <Carousel.Root -->
-<!--   plugins={[images_plugin]} -->
-<!--   opts={{ loop: true }} -->
-<!--   class="w-full py-32" -->
-<!--   onmouseenter={images_plugin.stop} -->
-<!--   onmouseleave={images_plugin.reset} -->
-<!-- > -->
-<!--   <div class="relative overflow-hidden"> -->
-<!--     <Carousel.Content class="flex"> -->
-<!--       {#each images as { src, alt }, i (i)} -->
-<!--         <Carousel.Item class="lg:basis-1/4 min-w-0 flex-shrink-0"> -->
-<!--           <div class="relative aspect-[2/3] w-full"> -->
-<!--             <img -->
-<!--               {src} -->
-<!--               {alt} -->
-<!--               class="absolute inset-0 h-full w-full object-cover rounded-lg" -->
-<!--             /> -->
-<!--           </div> -->
-<!--         </Carousel.Item> -->
-<!--       {/each} -->
-<!--     </Carousel.Content> -->
-<!--   </div> -->
-<!-- </Carousel.Root> -->
+<!-- [TODO]: Testimonials (April 16, 2025 14:38, ) -->
 
-<Carousel.Root plugins={[youtube_plugin]} opts={{ loop: true }} class="w-full py-32" onmouseenter={youtube_plugin.stop} onmouseleave={youtube_plugin.reset}>
+<img src={bergur} alt="Bergur Torisson in the studio" class="w-full object-cover" />
+<div class="-mt-4 grid grid-cols-10">
+  <div class="col-span-1 col-start-3">
+    <img src={quote} alt="Quotation mark" />
+  </div>
+</div>
+<div class="grid grid-cols-10 pt-7">
+  <div class="col-span-3 col-start-3 text-4xl">Wave adds a dimension to musical creativity</div>
+  <div class="col-span-2 col-start-8 flex flex-col space-y-2">
+    <div class=" text-4xl">Bergur Þórisson</div>
+    <div class=" text-sm">Grammy nominated engineer and musical director (Björk)</div>
+  </div>
+</div>
+
+<!-- [TODO]: Videos (April 16, 2025 14:38, ) -->
+<Carousel.Root plugins={[youtube_plugin]} opts={{ loop: true }} class="w-full py-68" onmouseenter={youtube_plugin.stop} onmouseleave={youtube_plugin.reset}>
   <div class="relative overflow-hidden">
     <Carousel.Content>
       {#each ["9pEGV0H5nTw", "foX4YGlUg4g", "a8aStUjS6uk", "oOKxmoZd4H8", "vJ-KT38i9Ls"] as id, i (i)}
@@ -194,6 +112,5 @@
   </div>
 </Carousel.Root>
 
-<Testimonials></Testimonials>
-
-<Footer></Footer>
+<!-- [TODO]: Footer (April 16, 2025 14:38, ) -->
+<Footer />

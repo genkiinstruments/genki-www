@@ -9,31 +9,29 @@
   const GRAVITY = 0.002; // Reduced gravity for better standing waves
   const MOUSE_RADIUS = 200; // Mouse influence radius
   const DAMPING = 0.92; // Higher damping to make waves die out faster after interaction
-  const LINE_WIDTH = 2.2; // Thicker line for better visibility
+  const LINE_WIDTH = 1.7; // Thicker line for better visibility
   const STANDING_WAVE_1 = 0.8; // First standing wave frequency - increased for faster animation
   const STANDING_WAVE_2 = 1.2; // Second standing wave frequency - increased for faster animation
   const STANDING_WAVE_3 = 1.5; // Third standing wave frequency - increased for faster animation
 
   // Moderate range for controlled wave animation with less height
   const MIN_Y = 10; // Higher minimum to reduce overall range
-  const MAX_Y = 40; // Lower maximum for less dramatic waves
+  const MAX_Y = 30; // Lower maximum for less dramatic waves
 
   // Canvas variables
-  let canvas = null;
-  let ctx = null;
-  let width = REST_LENGTH + 20; // Add padding
-  let height = 90; // Increased canvas height to accommodate larger waves
+  let canvas: HTMLCanvasElement | null = null;
+  let ctx: CanvasRenderingContext2D | null = null;
+  const width = REST_LENGTH + 20; // Add padding
+  const height = 100; // Increased canvas height to accommodate larger waves
 
   // Physics state
-  let points = [];
+  let points: { y: number; x: number; vy: number; vx: number; targetX: number; targetY: number }[] = [];
   let mouseX = -1000;
   let mouseY = -1000;
   let mouseDown = false;
   let clickPoint = -1;
-  let animationId = null;
+  let animationId: number | null = null;
   let lastTime = 0; // For time-based animation
-  let waveTimer = 0; // For auto-generated waves
-  let autoWaveCounter = 0; // For alternating wave patterns
 
   // Initial positions with audio-wave like pattern
   function generateNeutralPosition() {

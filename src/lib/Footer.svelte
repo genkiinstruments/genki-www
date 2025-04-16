@@ -1,79 +1,76 @@
-<footer class="bg-white">
-  <div class="mx-auto max-w-7xl p-8 px-6 lg:px-8 lg:pt-32">
+<footer>
+  <div class="mx-auto max-w-7xl p-8 px-6 text-[#F6F6F6] lg:px-8 lg:pt-32">
     <div class="xl:grid xl:grid-cols-3 xl:gap-8">
       <div class="grid grid-cols-2 gap-8 xl:col-span-2">
         <div class="md:grid md:grid-cols-2 md:gap-8">
           <div>
-            <h3 class="text-sm/6 font-semibold text-gray-900">Hardware</h3>
+            <h3 class="text-sm/6 font-semibold">Hardware</h3>
             <ul role="list" class="mt-6 space-y-4">
               <li>
-                <a href="/wave" class="text-sm/6 text-gray-600 hover:text-gray-900">Wave</a>
+                <a href="/wave" class="text-sm/6">Wave</a>
               </li>
               <li>
-                <a href="/wavefront" class="text-sm/6 text-gray-600 hover:text-gray-900">Wavefront</a>
+                <a href="/wavefront" class="text-sm/6">Wavefront</a>
               </li>
               <li>
-                <a href="/katla" class="text-sm/6 text-gray-600 hover:text-gray-900">Katla</a>
+                <a href="/katla" class="text-sm/6">Katla</a>
               </li>
             </ul>
           </div>
           <div class="mt-10 md:mt-0">
-            <h3 class="text-sm/6 font-semibold text-gray-900">Software</h3>
+            <h3 class="text-sm/6 font-semibold">Software</h3>
             <ul role="list" class="mt-6 space-y-4">
               <li>
-                <a href="/softwave" class="text-sm/6 text-gray-600 hover:text-gray-900">Softwave</a>
+                <a href="/softwave" class="text-sm/6">Softwave</a>
               </li>
               <li>
-                <a href="/wave-for-work" class="text-sm/6 text-gray-600 hover:text-gray-900">Wave for Work</a>
+                <a href="/wave-for-work" class="text-sm/6">Wave for Work</a>
               </li>
               <li>
-                <a href="/cosmos" class="text-sm/6 text-gray-600 hover:text-gray-900">Cosmos</a>
+                <a href="/cosmos" class="text-sm/6">Cosmos</a>
               </li>
               <li>
-                <a href="https://mimugloves.com/gloves/" class="text-sm/6 text-gray-600 hover:text-gray-900" target="_blank" rel="noopener noreferrer"> MIMU Glover </a>
+                <a href="https://mimugloves.com/gloves/" class="text-sm/6" target="_blank" rel="noopener noreferrer"> MIMU Glover </a>
               </li>
             </ul>
           </div>
         </div>
         <div class="md:grid md:grid-cols-2 md:gap-8">
           <div>
-            <h3 class="text-sm/6 font-semibold text-gray-900">Company</h3>
+            <h3 class="text-sm/6 font-semibold">Company</h3>
             <ul role="list" class="mt-6 space-y-4">
               <li>
-                <a href="/about" class="text-sm/6 text-gray-600 hover:text-gray-900">About</a>
+                <a href="/about" class="text-sm/6">About</a>
               </li>
               <li>
-                <a href="/blog" class="text-sm/6 text-gray-600 hover:text-gray-900">Blog</a>
+                <a href="/blog" class="text-sm/6">Blog</a>
               </li>
               <li>
-                <a href="/" class="text-sm/6 text-gray-600 hover:text-gray-900">Press</a>
+                <a href="/" class="text-sm/6">Press</a>
               </li>
             </ul>
           </div>
           <div class="mt-10 md:mt-0">
-            <h3 class="text-sm/6 font-semibold text-gray-900">Support</h3>
+            <h3 class="text-sm/6 font-semibold">Support</h3>
             <ul role="list" class="mt-6 space-y-4">
               <li>
                 <!-- [TODO]: Point to correct webpage (March 05, 2025 13:51, ) -->
-                <a href="/" class="text-sm/6 text-gray-600 hover:text-gray-900">Documentation</a>
+                <a href="/" class="text-sm/6">Documentation</a>
               </li>
               <li>
-                <a href="/terms-of-service" class="text-sm/6 text-gray-600 hover:text-gray-900">Terms of service</a>
+                <a href="/terms-of-service" class="text-sm/6">Terms of service</a>
               </li>
               <li>
-                <a href="/privacy-policy" class="text-sm/6 text-gray-600 hover:text-gray-900">Privacy policy</a>
-              </li>
-              <li>
-                <a href="/privacy-policy" class="text-sm/6 text-gray-600 hover:text-gray-900">Privacy policy</a>
+                <a href="/privacy-policy" class="text-sm/6">Privacy policy</a>
               </li>
             </ul>
           </div>
         </div>
       </div>
       <div class="mt-10 xl:mt-0">
-        <h3 class="text-sm/6 font-semibold text-gray-900">Subscribe to our newsletter</h3>
-        <p class="mt-2 text-sm/6 text-gray-600">The latest offers, news, articles, and resources.</p>
-        <form class="mt-6 sm:flex sm:max-w-md">
+        <h3 class="text-sm/6 font-semibold">Subscribe to our newsletter</h3>
+        <p class="font-book pt-7 text-sm/6">The latest offers, news, articles, and resources.</p>
+        <form class="mt-6 rounded-lg border border-gray-400 sm:flex sm:max-w-md">
           <label for="email-address" class="sr-only">Email address</label>
           <input
             type="email"
@@ -81,20 +78,22 @@
             id="email-address"
             autocomplete="email"
             required
-            class="w-full min-w-0 rounded-md border-2 bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#FF5F49] sm:w-64 sm:text-sm/6 xl:w-full"
+            class="w-full min-w-0 rounded-md border-2 px-3 py-1.5 text-base outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#FF5F49] sm:w-64 sm:text-sm/6 xl:w-full"
             placeholder="Enter your email" />
           <div class="mt-4 sm:mt-0 sm:ml-4 sm:shrink-0">
+            <!-- [TODO]: Add e-mail marketing subscription stuff (April 16, 2025 16:28, ) -->
             <button
               type="submit"
-              class="flex w-full items-center justify-center rounded-md bg-[#FF5F49] px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-[#FF5F49]/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF5F49]"
+              class="flex w-full items-center justify-center rounded-md px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-[#FF5F49]/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF5F49]"
               >Subscribe</button>
           </div>
         </form>
+        <p class="pt-7 text-sm/6 text-gray-700">&copy; 2025 Genki Instruments ehf. All rights reserved.</p>
       </div>
     </div>
-    <div class="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 md:flex md:items-center md:justify-between lg:mt-24">
-      <div class="flex gap-x-6 md:order-2">
-        <a href="/" class="text-gray-600 hover:text-gray-800">
+    <div class="col-auto flex justify-center pt-20 pb-16">
+      <div class="flex gap-x-6">
+        <a href="https://www.facebook.com/genkiinstruments" class="">
           <span class="sr-only">Facebook</span>
           <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path
@@ -103,7 +102,7 @@
               clip-rule="evenodd" />
           </svg>
         </a>
-        <a href="/" class="text-gray-600 hover:text-gray-800">
+        <a href="https://https://www.instagram.com/genkiinstruments/" class="">
           <span class="sr-only">Instagram</span>
           <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path
@@ -112,14 +111,14 @@
               clip-rule="evenodd" />
           </svg>
         </a>
-        <a href="/" class="text-gray-600 hover:text-gray-800">
+        <a href="https://x.com/bygenki" class="">
           <span class="sr-only">X</span>
           <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path
               d="M13.6823 10.6218L20.2391 3H18.6854L12.9921 9.61788L8.44486 3H3.2002L10.0765 13.0074L3.2002 21H4.75404L10.7663 14.0113L15.5685 21H20.8131L13.6819 10.6218H13.6823ZM11.5541 13.0956L10.8574 12.0991L5.31391 4.16971H7.70053L12.1742 10.5689L12.8709 11.5655L18.6861 19.8835H16.2995L11.5541 13.096V13.0956Z" />
           </svg>
         </a>
-        <a href="/" class="text-gray-600 hover:text-gray-800">
+        <a href="https://github.com/genkiinstruments" class="">
           <span class="sr-only">GitHub</span>
           <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path
@@ -128,7 +127,7 @@
               clip-rule="evenodd" />
           </svg>
         </a>
-        <a href="/" class="text-gray-600 hover:text-gray-800">
+        <a href="https://www.youtube.com/@GenkiInstruments" class="">
           <span class="sr-only">YouTube</span>
           <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path
@@ -138,7 +137,6 @@
           </svg>
         </a>
       </div>
-      <p class="mt-8 text-sm/6 text-gray-600 md:order-1 md:mt-0">&copy; 2025 Genki Instruments ehf. All rights reserved.</p>
     </div>
   </div>
 </footer>

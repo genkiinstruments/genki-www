@@ -353,6 +353,14 @@
     -webkit-text-size-adjust: 100%;
     font-variation-settings: normal;
     scrollbar-color: var(--bg-muted);
+    /* Hide scrollbar for the entire page */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  html::-webkit-scrollbar {
+    display: none;
   }
 
   body {
@@ -360,6 +368,14 @@
     font-feature-settings:
       "rlig" 1,
       "calt" 1;
+    /* Ensure the body also doesn't show scrollbars */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera on body */
+  body::-webkit-scrollbar {
+    display: none;
   }
 
   ::selection {
