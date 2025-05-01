@@ -1,83 +1,25 @@
 <script lang="ts">
-  import { fade } from "svelte/transition";
-
   import Header from "$lib/Header.svelte";
   import Footer from "$lib/Footer.svelte";
   import YouTubeCarousel from "$lib/YouTubeCarousel.svelte";
-  import InteractiveString from "$lib/InteractiveString.svelte";
-  import ScrollIndicator from "$lib/ScrollIndicator.svelte";
+  import Hero from "$lib/Hero.svelte";
+  import Testimonial from "$lib/Testimonial.svelte";
 
   import wavefront_stack from "$lib/assets/wavefront-stack.webp";
   import wavefront_single from "$lib/assets/wavefront-clean-hero-transparent.webp";
   import heymun from "$lib/assets/heymun.webp";
-  import quote from "$lib/assets/quote.webp";
-
-  let isRenderImage = $state(false);
-
-  // Touch handlers for mobile
-  function handleTouch() {
-    isRenderImage = !isRenderImage;
-  }
-
-  function handleTouchStartEvent(event: TouchEvent) {
-    event.preventDefault();
-    handleTouch();
-  }
 </script>
 
-<div class="@container mx-auto flex w-full flex-1 flex-col px-5 md:px-[50px]">
+<div class="relative mx-auto flex min-h-screen w-full flex-1 flex-col px-5 md:px-[50px]">
   <Header />
-
-  <ScrollIndicator />
-
-  <div class="flex min-h-[100vh] flex-col items-center justify-center py-10 md:py-20">
-    <!-- Mobile layout stacks the elements vertically -->
-    <div class="grid w-full grid-cols-1 items-center gap-6 md:grid-cols-10 md:gap-10">
-      <!-- Product image - full width on mobile, positioned columns on desktop -->
-      <div
-        class="relative mx-auto w-full max-w-[300px] md:col-span-4 md:col-start-2 md:max-w-none"
-        role="button"
-        onmouseenter={() => (isRenderImage = true)}
-        onmouseleave={() => (isRenderImage = false)}
-        onclick={handleTouch}
-        onkeydown={(e) => e.key === "Enter" && handleTouch()}
-        ontouchstart={handleTouchStartEvent}
-        aria-roledescription="slide"
-        tabindex="0">
-        <img src={wavefront_stack} alt="Wavefront Bluetooth LE Eurorack module" class="w-full transition-opacity duration-300" class:opacity-0={isRenderImage} />
-        {#if isRenderImage}
-          <div class="absolute inset-0 flex items-center justify-center">
-            <img src={wavefront_single} alt="Wavefront close-up render" class="w-full" transition:fade={{ duration: 300 }} />
-          </div>
-        {/if}
-      </div>
-
-      <!-- Product info - full width on mobile, positioned columns on desktop -->
-      <div class="mt-8 w-full text-lg md:col-span-3 md:col-start-7 md:mt-0 md:text-2xl lg:text-4xl">
-        <div>
-          <div class="flex items-center justify-between">
-            <div class="font-bold">WAVEFRONT</div>
-            <div class="text-xl md:hidden">$349</div>
-          </div>
-          <br />
-          <div>
-            Elevate any modular setup. This customizable Eurorack receiver puts you in control of shaping effects, triggering samples and controlling gates — with your Wave Ring or your other favorite
-            Bluetooth device.
-          </div>
-          <br />
-          <div class="flex w-full flex-row items-center justify-center md:flex md:items-center md:justify-start md:space-x-10">
-            <div class="hidden md:flex md:items-center">$349</div>
-            <a href="/" class="flex items-center">
-              <div class="relative flex cursor-pointer flex-col items-center">
-                <span class="text-xs tracking-widest text-white uppercase">Add to cart</span>
-                <InteractiveString />
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <Hero
+    title="WAVEFRONT"
+    description="Elevate any modular setup. This customizable Eurorack receiver puts you in control of shaping effects, triggering samples and controlling gates — with your Wave Ring or your other favorite Bluetooth device."
+    price="$349"
+    mainImage={wavefront_stack}
+    altImage={wavefront_single}
+    altText="Wavefront Bluetooth LE Eurorack module"
+    cartUrl="/" />
 </div>
 
 <div class="w-full overflow-hidden">

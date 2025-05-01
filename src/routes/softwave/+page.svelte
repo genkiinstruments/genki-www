@@ -1,65 +1,24 @@
 <script lang="ts">
-  import { fade } from "svelte/transition";
-
   import Header from "$lib/Header.svelte";
   import Footer from "$lib/Footer.svelte";
   import YouTubeCarousel from "$lib/YouTubeCarousel.svelte";
-  import ScrollIndicator from "$lib/ScrollIndicator.svelte";
+  import Testimonial from "$lib/Testimonial.svelte";
+  import Hero from "$lib/Hero.svelte";
 
   import softwave_hero from "$lib/assets/softwave-hero.webp";
   import toti from "$lib/assets/toti-cool.webp";
-  import quote from "$lib/assets/quote.webp";
-
-  let isRenderImage = $state(false);
-
-  // Touch handlers for mobile
-  function handleTouch() {
-    isRenderImage = !isRenderImage;
-  }
-
-  function handleTouchStartEvent(event: TouchEvent) {
-    event.preventDefault();
-    handleTouch();
-  }
 </script>
 
-<div class="@container mx-auto flex w-full flex-1 flex-col px-5 md:px-[50px]">
+<div class="relative mx-auto flex min-h-screen w-full flex-1 flex-col px-5 md:px-[50px]">
   <Header />
-
-  <ScrollIndicator />
-
-  <div class="flex min-h-[100vh] flex-col items-center justify-center py-10 md:py-20">
-    <!-- Mobile layout stacks the elements vertically -->
-    <div class="grid w-full grid-cols-1 items-center gap-6 md:grid-cols-10 md:gap-10">
-      <!-- Product image - full width on mobile, positioned columns on desktop -->
-      <div
-        class="relative mx-auto w-full max-w-[300px] md:col-span-4 md:col-start-2 md:max-w-none"
-        role="button"
-        onmouseenter={() => (isRenderImage = true)}
-        onmouseleave={() => (isRenderImage = false)}
-        onclick={handleTouch}
-        onkeydown={(e) => e.key === "Enter" && handleTouch()}
-        ontouchstart={handleTouchStartEvent}
-        aria-roledescription="slide"
-        tabindex="0">
-        <img src={softwave_hero} alt="Softwave, companion software to the Wave music ring" class="w-full transition-opacity duration-300" class:opacity-0={isRenderImage} />
-        {#if isRenderImage}
-          <div class="absolute inset-0 flex items-center justify-center">
-            <img src={softwave_hero} alt="Softwave close-up render" class="w-full" transition:fade={{ duration: 300 }} />
-          </div>
-        {/if}
-      </div>
-
-      <!-- Product info - full width on mobile, positioned columns on desktop -->
-      <div class="mt-8 w-full text-lg md:col-span-3 md:col-start-7 md:mt-0 md:text-2xl lg:text-4xl">
-        <div>
-          <div class="font-bold uppercase">Softwave</div>
-          <br />
-          <div>The key that unlocks the full potential of your Wave Ring. Control music with gestures, customize each button, and create saved presets from one seamlessly integrated application.</div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <Hero
+    title="Softwave"
+    description="The key that unlocks the full potential of your Wave Ring. Control music with gestures, customize each button, and create saved presets from one seamlessly integrated application."
+    price="FREE"
+    mainImage={softwave_hero}
+    altText="Softwave, companion software to the Wave music ring"
+    cartUrl="/"
+    flippedLayout={true} />
 </div>
 
 <div class="w-full overflow-hidden">
@@ -81,4 +40,3 @@
 <YouTubeCarousel class="w-full overflow-hidden py-40 md:py-68" ids={["9pEGV0H5nTw", "foX4YGlUg4g", "a8aStUjS6uk", "oOKxmoZd4H8", "vJ-KT38i9Ls", "puQloBX3XPQ"]} />
 
 <Footer />
-
