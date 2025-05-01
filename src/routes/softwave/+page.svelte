@@ -10,14 +10,36 @@
   import quote from "$lib/assets/quote.webp";
 
   let isRenderImage = $state(false);
+
+  // Touch handlers for mobile
+  function handleTouch() {
+    isRenderImage = !isRenderImage;
+  }
+
+  function handleTouchStartEvent(event) {
+    event.preventDefault();
+    handleTouch();
+  }
 </script>
 
-<div class="@container mx-auto flex h-[100vh] w-full flex-1 flex-col px-5 md:px-[50px]">
+<div class="@container mx-auto flex w-full flex-1 flex-col px-5 md:px-[50px]">
   <Header />
 
-  <div class="flex min-h-[100vh] flex-col items-center justify-center py-20">
-    <div class="grid w-full grid-cols-10 items-center gap-10">
-      <div class="relative col-span-4 col-start-2" role="button" onmouseenter={() => (isRenderImage = true)} onmouseleave={() => (isRenderImage = false)} aria-roledescription="slide" tabindex="0">
+  <div class="flex flex-col items-center justify-center py-10 md:py-20 min-h-[90vh]">
+    <!-- Mobile layout stacks the elements vertically -->
+    <div class="grid w-full grid-cols-1 items-center gap-6 md:grid-cols-10 md:gap-10">
+      <!-- Product image - full width on mobile, positioned columns on desktop -->
+      <div 
+        class="relative mx-auto w-full max-w-[300px] md:col-span-4 md:col-start-2 md:max-w-none" 
+        role="button" 
+        onmouseenter={() => (isRenderImage = true)} 
+        onmouseleave={() => (isRenderImage = false)} 
+        onclick={handleTouch}
+        onkeydown={(e) => e.key === "Enter" && handleTouch()}
+        ontouchstart={handleTouchStartEvent}
+        aria-roledescription="slide" 
+        tabindex="0"
+      >
         <img src={softwave_hero} alt="Softwave, companion software to the Wave music ring" class="w-full transition-opacity duration-300" class:opacity-0={isRenderImage} />
         {#if isRenderImage}
           <div class="absolute inset-0 flex items-center justify-center">
@@ -25,7 +47,9 @@
           </div>
         {/if}
       </div>
-      <div class="col-span-3 col-start-7 md:text-2xl lg:text-4xl">
+
+      <!-- Product info - full width on mobile, positioned columns on desktop -->
+      <div class="mt-8 w-full text-lg md:col-span-3 md:col-start-7 md:mt-0 md:text-2xl lg:text-4xl">
         <div>
           <div class="font-bold uppercase">Softwave</div>
           <br />
@@ -36,17 +60,21 @@
   </div>
 </div>
 
-<img src={toti} alt="Tóti Guðnason in the studio" class="w-full object-cover" />
+<div class="w-full overflow-hidden">
+  <img src={toti} alt="Tóti Guðnason in the studio" class="w-full object-cover" />
+</div>
 <div class="@container -mt-4 grid grid-cols-10">
-  <div class="col-span-1 col-start-3">
+  <div class="col-span-3 col-start-1 md:col-span-1 md:col-start-3">
     <img src={quote} alt="Quotation mark" />
   </div>
 </div>
-<div class="grid grid-cols-10 pt-7">
-  <div class="col-span-3 col-start-3 text-4xl">The depth of this software knows no bounds</div>
-  <div class="col-span-2 col-start-8 flex flex-col space-y-2">
-    <div class=" text-4xl">Tóti Guðnason</div>
-    <div class=" text-sm">Music composer, producer and musician</div>
+<div class="grid grid-cols-10 gap-4 px-5 pt-7 md:gap-0 md:px-0">
+  <div class="col-span-8 col-start-3 text-xl md:col-span-3 md:col-start-3 md:text-4xl">
+    The depth of this software knows no bounds
+  </div>
+  <div class="col-span-8 col-start-3 mt-4 space-y-2 md:col-span-2 md:col-start-8 md:mt-0 md:flex md:flex-col">
+    <div class="text-xl md:text-4xl">Tóti Guðnason</div>
+    <div class="text-lg leading-tight opacity-50 md:text-base">Music composer, producer and musician</div>
   </div>
 </div>
 
