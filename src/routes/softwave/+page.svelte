@@ -21,21 +21,7 @@
     flippedLayout={true} />
 </div>
 
-<div class="w-full overflow-hidden">
-  <img src={toti} alt="Tóti Guðnason in the studio" class="w-full object-cover" />
-</div>
-<div class="@container -mt-4 grid grid-cols-10">
-  <div class="col-span-3 col-start-1 md:col-span-1 md:col-start-3">
-    <img src={quote} alt="Quotation mark" />
-  </div>
-</div>
-<div class="grid grid-cols-10 gap-4 px-5 pt-7 md:gap-0 md:px-0">
-  <div class="col-span-8 col-start-3 text-xl md:col-span-3 md:col-start-3 md:text-4xl">The depth of this software knows no bounds</div>
-  <div class="col-span-8 col-start-3 mt-4 space-y-2 md:col-span-2 md:col-start-8 md:mt-0 md:flex md:flex-col">
-    <div class="text-xl md:text-4xl">Tóti Guðnason</div>
-    <div class="text-lg leading-tight opacity-50 md:text-base">Music composer, producer and musician</div>
-  </div>
-</div>
+<Testimonial src={toti} quote="The depth of this software knows no bounds" name="Tóti Guðnason" occupation="Music composer, producer and musician" alt="Tóti Guðnason in the studio" />
 
 <YouTubeCarousel class="w-full overflow-hidden py-40 md:py-68" ids={["9pEGV0H5nTw", "foX4YGlUg4g", "a8aStUjS6uk", "oOKxmoZd4H8", "vJ-KT38i9Ls", "puQloBX3XPQ"]} />
 

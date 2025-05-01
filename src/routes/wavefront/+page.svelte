@@ -22,23 +22,13 @@
     cartUrl="/" />
 </div>
 
-<div class="w-full overflow-hidden">
-  <img src={heymun} alt="HEYMUN is a Malaysian born Sydney based." class="w-full object-cover" />
-</div>
-<div class="@container -mt-4 grid grid-cols-10">
-  <div class="col-span-3 col-start-1 md:col-span-1 md:col-start-3">
-    <img src={quote} alt="Quotation mark" />
-  </div>
-</div>
-<div class="grid grid-cols-10 gap-4 px-5 pt-7 md:gap-0 md:px-0">
-  <div class="col-span-8 col-start-3 text-xl md:col-span-3 md:col-start-3 md:text-4xl">
-    I am blown away by the Wave ring and the Wavefront module, I am now able to communicate, express, and explore sounds via my movements from my Eurorack system.
-  </div>
-  <div class="col-span-8 col-start-3 mt-4 space-y-2 md:col-span-2 md:col-start-8 md:mt-0 md:flex md:flex-col">
-    <div class="text-xl md:text-4xl">Heymun</div>
-    <div class="text-lg leading-tight opacity-50 md:text-base">Music composer, producer and musician</div>
-  </div>
-</div>
+<Testimonial 
+  src={heymun}
+  quote="I am blown away by the Wavefront module. Now I am able to communicate, express, and explore sounds via my movements on my Eurorack system."
+  name="Heymun"
+  occupation="Music composer, producer and musician"
+  alt="HEYMUN is a Malaysian born Sydney based."
+/>
 
 <YouTubeCarousel class="w-full overflow-hidden py-40 md:py-68" ids={["Mxx2AuXiYWM", "I3hlnmP7yJU", "OxGjLVSPjCE", "MqfF2m-Mi-Y"]} />
 
