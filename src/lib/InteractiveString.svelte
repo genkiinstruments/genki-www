@@ -2,10 +2,10 @@
   import { onMount } from "svelte";
 
   // Control points for the string - optimized for standing waves
-  const POINTS = 18; // More points for smoother standing wave visualization
+  const POINTS = 12; // More points for smoother standing wave visualization
   const REST_LENGTH = 90; // Length of string in pixels
   const STRING_TENSION = 0.025; // Even lower tension for more dramatic oscillations
-  const MOUSE_INFLUENCE = 0.3; // Stronger mouse interaction for better responsiveness
+  const MOUSE_INFLUENCE = 0.5; // Stronger mouse interaction for better responsiveness
   const GRAVITY = 0.002; // Reduced gravity for better standing waves
   const MOUSE_RADIUS = 200; // Mouse influence radius
   const DAMPING = 0.92; // Higher damping to make waves die out faster after interaction
@@ -14,15 +14,16 @@
   const STANDING_WAVE_2 = 1.2; // Second standing wave frequency - increased for faster animation
   const STANDING_WAVE_3 = 1.5; // Third standing wave frequency - increased for faster animation
 
-  // Moderate range for controlled wave animation with less height
-  const MIN_Y = 10; // Higher minimum to reduce overall range
-  const MAX_Y = 30; // Lower maximum for less dramatic waves
+  const height = 35; // Much smaller height for better alignment with text
+
+  // Significantly reduced range for very tight vertical animation
+  const MIN_Y = height / 2 - 2; // Very narrow range for minimal height
+  const MAX_Y = height / 2 + 10; // Very narrow range for minimal height
 
   // Canvas variables
   let canvas: HTMLCanvasElement | null = null;
   let ctx: CanvasRenderingContext2D | null = null;
   const width = REST_LENGTH + 20; // Add padding
-  const height = 100; // Increased canvas height to accommodate larger waves
 
   // Physics state
   let points: { y: number; x: number; vy: number; vx: number; targetX: number; targetY: number }[] = [];
@@ -35,7 +36,7 @@
 
   // Initial positions with audio-wave like pattern
   function generateNeutralPosition() {
-    const centerY = 25; // Center position moved down to allow more upward movement
+    const centerY = height / 2; // Center position exactly in the middle of our 30px height
     const newPoints = [];
 
     for (let i = 0; i < POINTS; i++) {
@@ -379,8 +380,8 @@
 
     ctx.clearRect(0, 0, width, height);
     ctx.beginPath();
-    ctx.moveTo(10, 25);
-    ctx.lineTo(10 + REST_LENGTH, 25);
+    ctx.moveTo(10, height / 2); // Center position at 15px (half of 30px height)
+    ctx.lineTo(10 + REST_LENGTH, height / 2);
     ctx.lineWidth = LINE_WIDTH;
     ctx.strokeStyle = "rgba(255, 255, 255, 1.0)";
     ctx.stroke();
@@ -451,6 +452,6 @@
   });
 </script>
 
-<div class="h-auto w-auto overflow-visible">
+<div class="flex h-[{height}px] w-auto items-center overflow-visible">
   <canvas bind:this={canvas} {width} {height} class="block cursor-pointer overflow-visible"></canvas>
 </div>
