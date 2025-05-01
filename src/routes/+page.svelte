@@ -209,7 +209,7 @@
 
   // Handle vertical scrolling to control carousel
   let lastScrollTime = 0;
-  const scrollCooldown = 1000; // Milliseconds cooldown between scroll actions
+  const scrollCooldown = 500; // Milliseconds cooldown between scroll actions
   let scrollAccumulator = 0;
   const scrollThreshold = 50; // Accumulated scroll amount needed to trigger navigation
 
