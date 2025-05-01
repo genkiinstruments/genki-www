@@ -371,7 +371,6 @@
   }
 
   // Initial loading state
-  let preload = $state(true);
   let isInitialized = false;
 
   // Simplified placeholder until fully loaded
@@ -417,7 +416,6 @@
       window.addEventListener("mouseup", handleMouseUp);
       canvas?.addEventListener("mouseleave", handleMouseLeave);
 
-      preload = false;
       isInitialized = true;
     }, 50); // Much shorter delay for background init
   }
