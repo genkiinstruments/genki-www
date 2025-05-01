@@ -208,10 +208,47 @@
     document.addEventListener("keydown", handleKeyDown);
   }
 
-  onMount(() => {
-    // Prevent scrolling on this page only
-    document.body.classList.add("index-page-no-scroll");
+  // Handle vertical scrolling to control carousel
+  let lastScrollTime = 0;
+  const scrollCooldown = 1000; // Milliseconds cooldown between scroll actions
+  let scrollAccumulator = 0;
+  const scrollThreshold = 50; // Accumulated scroll amount needed to trigger navigation
 
+  function handleVerticalScroll(event: WheelEvent) {
+    // Always prevent default scroll behavior
+    event.preventDefault();
+
+    // Add to scroll accumulator
+    scrollAccumulator += event.deltaY;
+
+    const now = Date.now();
+    const timeSinceLastScroll = now - lastScrollTime;
+
+    // Reset accumulator if it's been a while since last scroll
+    if (timeSinceLastScroll > 500) {
+      scrollAccumulator = event.deltaY;
+    }
+
+    // Check if we've scrolled past threshold and cooldown period has passed
+    if (Math.abs(scrollAccumulator) >= scrollThreshold && timeSinceLastScroll >= scrollCooldown) {
+      // Use accumulated scroll direction to determine navigation
+      if (scrollAccumulator > 0) {
+        // Scrolling down - go next
+        userInteracting = true;
+        scrollCarouselNext();
+      } else {
+        // Scrolling up - go previous
+        userInteracting = true;
+        scrollCarouselPrev();
+      }
+
+      // Reset accumulator and update last scroll time
+      scrollAccumulator = 0;
+      lastScrollTime = now;
+    }
+  }
+
+  onMount(() => {
     // Start inactivity timer on page load
     resetInactivityTimer();
 
@@ -219,7 +256,7 @@
     window.addEventListener("mousemove", trackMouseMovement);
     window.addEventListener("mousedown", trackUserActivity);
     window.addEventListener("touchstart", trackUserActivity);
-    window.addEventListener("scroll", trackUserActivity);
+    window.addEventListener("wheel", handleVerticalScroll, { passive: false });
 
     return () => {
       // Clean up event listeners
@@ -227,19 +264,15 @@
       window.removeEventListener("mousemove", trackMouseMovement);
       window.removeEventListener("mousedown", trackUserActivity);
       window.removeEventListener("touchstart", trackUserActivity);
-      window.removeEventListener("scroll", trackUserActivity);
+      window.removeEventListener("wheel", handleVerticalScroll);
 
       // Clear any pending timeout
       if (inactivityTimeout !== null) {
         clearTimeout(inactivityTimeout);
       }
-
-      // Remove the no-scroll class when component unmounts
-      document.body.classList.remove("index-page-no-scroll");
     };
   });
 </script>
-
 
 <div class="carousel-container relative flex h-[100dvh] w-full flex-col overflow-hidden bg-[#151515] text-[#DFDFDF]">
   <!-- Background with elegant fade transitions -->
@@ -309,31 +342,29 @@
       </Carousel.Root>
     </div>
 
-    <!-- Footer with Navigation Controls - Fixed height -->
-    <footer class="h-[72px] flex-shrink-0">
-      <div class="grid h-full grid-cols-10 gap-[10px]">
-        <!-- Dots Navigation -->
-        <div class="col-span-6 col-start-3 flex items-center justify-center gap-4">
-          {#each slides as _, i (i)}
-            <button
-              class="p-2 transition-all duration-200"
-              onclick={() => {
-                userInteracting = true;
-                currentIndex = i;
-                resetAutoplay();
-                setTimeout(() => {
-                  userInteracting = false;
-                }, 500);
-              }}
-              aria-label={`Navigate to slide ${i + 1}`}>
-              <div class="relative h-[6px] w-[6px] transition-all duration-500" class:scale-125={currentIndex === i}>
-                <img src={dot} alt="Dot" class="h-full w-full transition-all duration-500 hover:opacity-100" class:opacity-100={currentIndex === i} class:opacity-40={currentIndex !== i} />
-              </div>
-            </button>
-          {/each}
-        </div>
-      </div>
-    </footer>
+    <!-- Vertical Dots Navigation - Fixed on right side, vertically centered -->
+    <div class="absolute top-1/2 right-5 z-20 flex -translate-y-1/2 flex-col gap-5 md:right-10">
+      {#each slides as _, i (i)}
+        <button
+          class="p-1 transition-all duration-200"
+          onclick={() => {
+            userInteracting = true;
+            currentIndex = i;
+            resetAutoplay();
+            setTimeout(() => {
+              userInteracting = false;
+            }, 500);
+          }}
+          aria-label={`Navigate to slide ${i + 1}`}>
+          <div class="relative h-[7px] w-[7px] transition-all duration-500" class:scale-150={currentIndex === i}>
+            <img src={dot} alt="Dot" class="h-full w-full transition-all duration-500 hover:opacity-100" class:opacity-100={currentIndex === i} class:opacity-40={currentIndex !== i} />
+          </div>
+        </button>
+      {/each}
+    </div>
+
+    <!-- Footer spacer (previous footer replaced with vertical navigation) -->
+    <div class="h-[72px] flex-shrink-0"></div>
 
     {#if showGrid}
       <div class="pointer-events-none fixed inset-0 z-[9998]">
