@@ -5,6 +5,7 @@
   import Footer from "$lib/Footer.svelte";
   import InteractiveString from "$lib/InteractiveString.svelte";
   import YouTubeCarousel from "$lib/YouTubeCarousel.svelte";
+  import ScrollIndicator from "$lib/ScrollIndicator.svelte";
 
   import wave_hand from "$lib/assets/wave-hand.webp";
   import wave_render from "$lib/assets/wave-render.webp";
@@ -19,7 +20,7 @@
     isRenderImage = !isRenderImage;
   }
 
-  function handleTouchStartEvent(event) {
+  function handleTouchStartEvent(event: TouchEvent) {
     event.preventDefault();
     handleTouch();
   }
@@ -30,7 +31,9 @@
 <div class="@container mx-auto flex w-full flex-1 flex-col px-5 md:px-[50px]">
   <Header />
 
-  <div class="flex flex-col items-center justify-center py-10 md:py-20 min-h-[90vh]">
+  <ScrollIndicator />
+
+  <div class="flex min-h-[100vh] flex-col items-center justify-center py-10 md:py-20">
     <!-- Mobile layout stacks the elements vertically -->
     <div class="grid w-full grid-cols-1 items-center gap-6 md:grid-cols-10 md:gap-10">
       <!-- Product image - full width on mobile, positioned columns on desktop -->
@@ -61,16 +64,16 @@
             <div class="text-xl md:hidden">$349</div>
           </div>
           <br />
-          <div>
+          <div class="md:text-2xl">
             Wave is the ring that allows artists and producers to easily control sound, shape effects and send commands. Detecting the most finesse gestures, Wave enables natural interaction with
             sound through movement.
           </div>
           <br />
-          <div class="flex w-full flex-row items-center justify-center md:items-baseline md:justify-start md:space-x-10">
-            <div class="hidden md:block md:self-center">$349</div>
-            <a href="/" class="inline-block">
-              <div class="relative flex cursor-pointer flex-col items-center md:items-start">
-                <span class="relative -mb-2 text-xs tracking-widest text-white uppercase">Add to cart</span>
+          <div class="flex w-full flex-row items-center justify-center md:flex md:items-center md:justify-start md:space-x-10">
+            <div class="hidden md:flex md:items-center">$349</div>
+            <a href="/" class="flex">
+              <div class="relative flex cursor-pointer flex-col items-center">
+                <span class="text-xs/5 tracking-widest text-white uppercase">Add to cart</span>
                 <InteractiveString />
               </div>
             </a>

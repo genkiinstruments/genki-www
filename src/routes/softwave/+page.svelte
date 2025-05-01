@@ -4,6 +4,7 @@
   import Header from "$lib/Header.svelte";
   import Footer from "$lib/Footer.svelte";
   import YouTubeCarousel from "$lib/YouTubeCarousel.svelte";
+  import ScrollIndicator from "$lib/ScrollIndicator.svelte";
 
   import softwave_hero from "$lib/assets/softwave-hero.webp";
   import toti from "$lib/assets/toti-cool.webp";
@@ -16,7 +17,7 @@
     isRenderImage = !isRenderImage;
   }
 
-  function handleTouchStartEvent(event) {
+  function handleTouchStartEvent(event: TouchEvent) {
     event.preventDefault();
     handleTouch();
   }
@@ -25,21 +26,22 @@
 <div class="@container mx-auto flex w-full flex-1 flex-col px-5 md:px-[50px]">
   <Header />
 
-  <div class="flex flex-col items-center justify-center py-10 md:py-20 min-h-[90vh]">
+  <ScrollIndicator />
+
+  <div class="flex min-h-[100vh] flex-col items-center justify-center py-10 md:py-20">
     <!-- Mobile layout stacks the elements vertically -->
     <div class="grid w-full grid-cols-1 items-center gap-6 md:grid-cols-10 md:gap-10">
       <!-- Product image - full width on mobile, positioned columns on desktop -->
-      <div 
-        class="relative mx-auto w-full max-w-[300px] md:col-span-4 md:col-start-2 md:max-w-none" 
-        role="button" 
-        onmouseenter={() => (isRenderImage = true)} 
-        onmouseleave={() => (isRenderImage = false)} 
+      <div
+        class="relative mx-auto w-full max-w-[300px] md:col-span-4 md:col-start-2 md:max-w-none"
+        role="button"
+        onmouseenter={() => (isRenderImage = true)}
+        onmouseleave={() => (isRenderImage = false)}
         onclick={handleTouch}
         onkeydown={(e) => e.key === "Enter" && handleTouch()}
         ontouchstart={handleTouchStartEvent}
-        aria-roledescription="slide" 
-        tabindex="0"
-      >
+        aria-roledescription="slide"
+        tabindex="0">
         <img src={softwave_hero} alt="Softwave, companion software to the Wave music ring" class="w-full transition-opacity duration-300" class:opacity-0={isRenderImage} />
         {#if isRenderImage}
           <div class="absolute inset-0 flex items-center justify-center">
@@ -69,9 +71,7 @@
   </div>
 </div>
 <div class="grid grid-cols-10 gap-4 px-5 pt-7 md:gap-0 md:px-0">
-  <div class="col-span-8 col-start-3 text-xl md:col-span-3 md:col-start-3 md:text-4xl">
-    The depth of this software knows no bounds
-  </div>
+  <div class="col-span-8 col-start-3 text-xl md:col-span-3 md:col-start-3 md:text-4xl">The depth of this software knows no bounds</div>
   <div class="col-span-8 col-start-3 mt-4 space-y-2 md:col-span-2 md:col-start-8 md:mt-0 md:flex md:flex-col">
     <div class="text-xl md:text-4xl">Tóti Guðnason</div>
     <div class="text-lg leading-tight opacity-50 md:text-base">Music composer, producer and musician</div>
@@ -81,3 +81,4 @@
 <YouTubeCarousel class="w-full overflow-hidden py-40 md:py-68" ids={["9pEGV0H5nTw", "foX4YGlUg4g", "a8aStUjS6uk", "oOKxmoZd4H8", "vJ-KT38i9Ls", "puQloBX3XPQ"]} />
 
 <Footer />
+

@@ -5,6 +5,7 @@
   import Footer from "$lib/Footer.svelte";
   import YouTubeCarousel from "$lib/YouTubeCarousel.svelte";
   import InteractiveString from "$lib/InteractiveString.svelte";
+  import ScrollIndicator from "$lib/ScrollIndicator.svelte";
 
   import wavefront_stack from "$lib/assets/wavefront-stack.webp";
   import wavefront_single from "$lib/assets/wavefront-clean-hero-transparent.webp";
@@ -18,7 +19,7 @@
     isRenderImage = !isRenderImage;
   }
 
-  function handleTouchStartEvent(event) {
+  function handleTouchStartEvent(event: TouchEvent) {
     event.preventDefault();
     handleTouch();
   }
@@ -27,21 +28,22 @@
 <div class="@container mx-auto flex w-full flex-1 flex-col px-5 md:px-[50px]">
   <Header />
 
-  <div class="flex flex-col items-center justify-center py-10 md:py-20 min-h-[90vh]">
+  <ScrollIndicator />
+
+  <div class="flex min-h-[100vh] flex-col items-center justify-center py-10 md:py-20">
     <!-- Mobile layout stacks the elements vertically -->
     <div class="grid w-full grid-cols-1 items-center gap-6 md:grid-cols-10 md:gap-10">
       <!-- Product image - full width on mobile, positioned columns on desktop -->
-      <div 
-        class="relative mx-auto w-full max-w-[300px] md:col-span-4 md:col-start-2 md:max-w-none" 
-        role="button" 
-        onmouseenter={() => (isRenderImage = true)} 
-        onmouseleave={() => (isRenderImage = false)} 
+      <div
+        class="relative mx-auto w-full max-w-[300px] md:col-span-4 md:col-start-2 md:max-w-none"
+        role="button"
+        onmouseenter={() => (isRenderImage = true)}
+        onmouseleave={() => (isRenderImage = false)}
         onclick={handleTouch}
         onkeydown={(e) => e.key === "Enter" && handleTouch()}
         ontouchstart={handleTouchStartEvent}
-        aria-roledescription="slide" 
-        tabindex="0"
-      >
+        aria-roledescription="slide"
+        tabindex="0">
         <img src={wavefront_stack} alt="Wavefront Bluetooth LE Eurorack module" class="w-full transition-opacity duration-300" class:opacity-0={isRenderImage} />
         {#if isRenderImage}
           <div class="absolute inset-0 flex items-center justify-center">
@@ -63,11 +65,11 @@
             Bluetooth device.
           </div>
           <br />
-          <div class="flex w-full flex-row items-center justify-center md:items-baseline md:justify-start md:space-x-10">
-            <div class="hidden md:block md:self-center">$349</div>
-            <a href="/" class="inline-block">
-              <div class="relative flex cursor-pointer flex-col items-center md:items-start">
-                <span class="relative -mb-2 text-xs tracking-widest text-white uppercase">Add to cart</span>
+          <div class="flex w-full flex-row items-center justify-center md:flex md:items-center md:justify-start md:space-x-10">
+            <div class="hidden md:flex md:items-center">$349</div>
+            <a href="/" class="flex items-center">
+              <div class="relative flex cursor-pointer flex-col items-center">
+                <span class="text-xs tracking-widest text-white uppercase">Add to cart</span>
                 <InteractiveString />
               </div>
             </a>
