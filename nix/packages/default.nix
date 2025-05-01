@@ -17,7 +17,7 @@ pkgs.stdenv.mkDerivation {
 
   pnpmDeps = pkgs.pnpm.fetchDeps {
     inherit pname version src;
-    hash = "sha256-/3hpokiIZI6RqtEGpp3NgZEoYsDxU8a9LljTkINmK64=";
+    hash = "sha256-mHvE4Nv/iEefwy/QU7uKKn4k0kcAicFZhQv0qOACXxI=";
   };
 
   buildPhase = "pnpm check && pnpm build"; # check fixes: Cannot find base config file "./.svelte-kit/tsconfig.json" [tsconfig.json]
