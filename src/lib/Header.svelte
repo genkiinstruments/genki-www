@@ -1,6 +1,7 @@
 <script lang="ts">
   import { NavigationMenu } from "bits-ui";
   import CaretDown from "phosphor-svelte/lib/CaretDown";
+  import List from "phosphor-svelte/lib/List";
 
   import waveHoverImg from "$lib/assets/wave-header-hover.webp";
   import wavefrontHoverImg from "$lib/assets/wavefront-header-hover.webp";
@@ -13,6 +14,11 @@
   import software_header from "$lib/assets/software-header.webp"; // Using cosmos space image
 
   let activeHoverImage: string | null = $state(null);
+  let mobileMenuOpen = $state(false);
+
+  function toggleMobileMenu() {
+    mobileMenuOpen = !mobileMenuOpen;
+  }
 
   // Define hardware and software dropdown content
   type ListItemProps = {
@@ -92,24 +98,31 @@
 <!-- Header - Fixed height -->
 <header class="mt-2 grid h-[72px] flex-shrink-0 grid-cols-10 gap-[10px] bg-transparent">
   <!-- Logo (left-most) in regular header layout -->
-  <div class="col-span-2 flex items-center">
-    <a href="/" class="text-white opacity-80 transition-opacity duration-200 hover:opacity-100" aria-label="Go to index page">
-      <div class="h-6 w-auto">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58.9 97.5" class="h-full" fill="currentColor" aria-hidden="true">
-          <path
-            d="M16.5 56A29 29 0 0 0 28 58.8h1.5c4.8 0 9.5-1.2 13.8-3.4l1.3-.8c2.9-1.7 5.4-3.9 7.5-6.5l1-1.1A29.5 29.5 0 0 0 29.5 0H28A29.4 29.4 0 0 0 5.3 46.2c2-2.2 4.2-4 6.7-5.7a20.9 20.9 0 0 1 16.7-32h.8a20.8 20.8 0 0 1 0 41.6h-.7l-.8.1a18 18 0 0 0-11.5 5.6" />
-          <path
-            d="M29.5 38.5c-4.8 0-9.6 1.2-13.9 3.5l-.6.3-.7.4a29.7 29.7 0 0 0-7.5 6.5l-.4.5-.6.7a29.5 29.5 0 1 0 47.8.8c-2 2.1-4.2 4-6.6 5.6a20.8 20.8 0 1 1-34.1-1.3l.4-.6a20.8 20.8 0 0 1 16-7.7h.1c5 0 9.7-2 13-5.6-4-2-8.4-3-13-3" />
-        </svg>
-      </div>
+  <div class="col-span-1 flex items-center justify-start overflow-auto sm:col-span-2">
+    <!-- Give the anchor appropriate height, remove fixed width, remove overflow-visible (likely not needed now) -->
+    <a href="/" class="h-8 w-auto text-white opacity-80 transition-opacity duration-200 hover:opacity-100" aria-label="Go to index page">
+      <!-- SVG remains h-full w-full to fill the anchor -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-full w-full" viewBox="0 0 60 100" fill="currentColor" aria-hidden="true">
+        <path
+          d="M16.5 56A29 29 0 0 0 28 58.8h1.5c4.8 0 9.5-1.2 13.8-3.4l1.3-.8c2.9-1.7 5.4-3.9 7.5-6.5l1-1.1A29.5 29.5 0 0 0 29.5 0H28A29.4 29.4 0 0 0 5.3 46.2c2-2.2 4.2-4 6.7-5.7a20.9 20.9 0 0 1 16.7-32h.8a20.8 20.8 0 0 1 0 41.6h-.7l-.8.1a18 18 0 0 0-11.5 5.6" />
+        <path
+          d="M29.5 38.5c-4.8 0-9.6 1.2-13.9 3.5l-.6.3-.7.4a29.7 29.7 0 0 0-7.5 6.5l-.4.5-.6.7a29.5 29.5 0 1 0 47.8.8c-2 2.1-4.2 4-6.6 5.6a20.8 20.8 0 1 1-34.1-1.3l.4-.6a20.8 20.8 0 0 1 16-7.7h.1c5 0 9.7-2 13-5.6-4-2-8.4-3-13-3" />
+      </svg>
     </a>
   </div>
 
   <!-- Empty space (hidden on mobile) -->
   <div class="hidden md:col-span-4 md:block"></div>
 
+  <!-- Mobile menu toggle button (only visible on small screens) -->
+  <div class="col-start-10 flex items-center justify-end md:hidden">
+    <button aria-label="Toggle menu" class="text-white opacity-80 transition-opacity hover:opacity-100" onclick={toggleMobileMenu}>
+      <List size={24} />
+    </button>
+  </div>
+
   <!-- Navigation and Cart (right-most) -->
-  <NavigationMenu.Root class="jusity relative z-10 col-span-8 flex  w-full items-center justify-end md:col-span-4">
+  <NavigationMenu.Root class="jusity relative z-10 col-span-8 hidden w-full items-center justify-end md:col-span-4 md:flex">
     <NavigationMenu.List class="group flex list-none items-center justify-center ">
       <NavigationMenu.Item value="hardware">
         <NavigationMenu.Trigger
@@ -225,5 +238,53 @@
       </symbol>
     </svg>
   </NavigationMenu.Root>
-  <span class="inline-block w-4 md:w-10"></span>
+  <span class="hidden w-10 md:inline-block"></span>
 </header>
+
+<!-- Mobile Navigation Menu (only visible when toggled) -->
+{#if mobileMenuOpen}
+  <div class="fixed inset-0 z-50 flex flex-col overflow-auto bg-black/95 backdrop-blur-sm">
+    <div class="flex justify-end p-5">
+      <button aria-label="Close menu" class="p-2 text-white" onclick={toggleMobileMenu}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <nav class="flex-1 p-6">
+      <div class="mb-8">
+        <h2 class="mb-4 text-xl font-bold">Hardware</h2>
+        <ul class="space-y-4">
+          {#each hardware as item}
+            <li>
+              <a href={item.href} class="block py-2" onclick={toggleMobileMenu}>
+                <div class="font-medium">{item.title}</div>
+                <div class="text-sm text-gray-400">{item.content}</div>
+              </a>
+            </li>
+          {/each}
+        </ul>
+      </div>
+
+      <div class="mb-8">
+        <h2 class="mb-4 text-xl font-bold">Software</h2>
+        <ul class="space-y-4">
+          {#each software as item}
+            <li>
+              <a href={item.href} class="block py-2" onclick={toggleMobileMenu}>
+                <div class="font-medium">{item.title}</div>
+                <div class="text-sm text-gray-400">{item.content}</div>
+              </a>
+            </li>
+          {/each}
+        </ul>
+      </div>
+
+      <div>
+        <a href="https://genkiinstruments.github.io/" target="_blank" class="block py-2 font-medium" onclick={toggleMobileMenu}> Documentation </a>
+      </div>
+    </nav>
+  </div>
+{/if}
