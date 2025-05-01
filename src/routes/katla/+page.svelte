@@ -5,6 +5,7 @@
   import Footer from "$lib/Footer.svelte";
   import YouTubeCarousel from "$lib/YouTubeCarousel.svelte";
   import InteractiveString from "$lib/InteractiveString.svelte";
+  import ScrollIndicator from "$lib/ScrollIndicator.svelte";
 
   import quote from "$lib/assets/quote.webp";
   import katla_fill from "$lib/assets/katla-hero.webp";
@@ -19,7 +20,7 @@
     isRenderImage = !isRenderImage;
   }
 
-  function handleTouchStartEvent(event) {
+  function handleTouchStartEvent(event: TouchEvent) {
     event.preventDefault();
     handleTouch();
   }
@@ -28,7 +29,9 @@
 <div class="@container mx-auto flex w-full flex-1 flex-col px-5 md:px-[50px]">
   <Header />
 
-  <div class="flex min-h-[90vh] flex-col items-center justify-center py-10 md:py-20">
+  <ScrollIndicator />
+
+  <div class="flex min-h-[100vh] flex-col items-center justify-center py-10 md:py-20">
     <div class="absolute inset-0 -z-10">
       <img class="h-full w-full object-cover" src={katla_bg} alt="Background" />
     </div>
@@ -45,11 +48,11 @@
             instrument.
           </div>
           <br />
-          <div class="flex w-full flex-row items-center justify-center md:items-baseline md:justify-start md:space-x-10">
-            <div class="hidden md:block md:self-center">$4,990</div>
-            <a href="/" class="inline-block">
-              <div class="relative flex cursor-pointer flex-col items-center md:items-start">
-                <span class="relative -mb-2 text-xs tracking-widest text-white uppercase">Add to cart</span>
+          <div class="flex w-full flex-row items-center justify-center md:flex md:items-center md:justify-start md:space-x-10">
+            <div class="hidden md:flex md:items-center">$4,990</div>
+            <a href="/" class="flex inline-block items-center">
+              <div class="relative flex cursor-pointer flex-col items-center">
+                <span class="text-xs tracking-widest text-white uppercase">Add to cart</span>
                 <InteractiveString />
               </div>
             </a>
@@ -103,4 +106,3 @@
 <YouTubeCarousel class="w-full overflow-hidden py-40 md:py-68" ids={["vPgHiyOXmMQ", "By-shXpcjSg", "BpfhsBbgY8M"]} />
 
 <Footer />
-

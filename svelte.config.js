@@ -9,13 +9,7 @@ const config = {
 
   kit: {
     // Use static adapter for simplicity
-    adapter: adapter({
-      // Output directory for the static site
-      pages: 'build',
-      assets: 'build',
-      fallback: 'index.html',
-      precompress: false
-    })
+    adapter: adapter()
   },
 };
 
