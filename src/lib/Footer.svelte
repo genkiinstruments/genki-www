@@ -158,7 +158,7 @@
               clip-rule="evenodd" />
           </svg>
         </a>
-        <a href="https://https://www.instagram.com/genkiinstruments/" class="opacity-60 transition hover:opacity-100" target="_blank">
+        <a href="https://www.instagram.com/genkiinstruments/" class="opacity-60 transition hover:opacity-100" target="_blank">
           <span class="sr-only">Instagram</span>
           <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path
