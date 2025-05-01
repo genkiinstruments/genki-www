@@ -69,6 +69,6 @@
   </div>
 </div>
 
-<YouTubeCarousel ids={["vPgHiyOXmMQ", "By-shXpcjSg", "BpfhsBbgY8M"]} />
+<YouTubeCarousel class="overflow-hidden w-full py-40 md:py-68" ids={["vPgHiyOXmMQ", "By-shXpcjSg", "BpfhsBbgY8M"]} />
 
 <Footer />
