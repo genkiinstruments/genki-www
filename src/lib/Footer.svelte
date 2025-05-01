@@ -1,11 +1,90 @@
 <footer>
-  <div class="mx-auto max-w-7xl p-8 px-6 text-[#F6F6F6] lg:px-8 lg:pt-32">
-    <div class="xl:grid xl:grid-cols-3 xl:gap-8">
-      <div class="grid grid-cols-2 gap-8 xl:col-span-2">
-        <div class="md:grid md:grid-cols-2 md:gap-8">
+  <div class="mx-auto max-w-7xl border-b px-6 py-8 text-[#F6F6F6] lg:px-8 lg:pt-32">
+    <!-- Newsletter subscription section on top for mobile -->
+    <div class="mb-12 md:hidden">
+      <h3 class="text-lg font-semibold">Subscribe to our newsletter</h3>
+      <p class="font-book text-sm/6 opacity-50">The latest offers, news, articles, and resources.</p>
+      <form class="mt-6 flex flex-row rounded-lg border border-gray-400">
+        <label for="email-address-mobile" class="sr-only">Email address</label>
+        <input
+          type="email"
+          name="email-address"
+          id="email-address-mobile"
+          autocomplete="email"
+          required
+          class="w-full min-w-0 grow rounded-md bg-black px-3 py-1.5 text-base outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#FF5F49] sm:text-sm/6"
+          placeholder="Enter your email" />
+        <button
+          type="submit"
+          class="flex w-full items-center justify-end rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-white opacity-80 shadow-xs hover:bg-[#FF5F49]/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF5F49]"
+          >SUBSCRIBE</button>
+      </form>
+    </div>
+
+    <div class="py-10 text-base sm:grid sm:grid-cols-3 sm:gap-8 sm:text-sm/6">
+      <!-- Footer links in a two-column grid for mobile -->
+      <div class="grid grid-cols-2 gap-8 sm:col-span-2">
+        <div>
+          <h3 class="font-semibold">Hardware</h3>
+          <ul role="list" class="mt-4 space-y-2">
+            <li>
+              <a href="/wave" class="opacity-60 transition hover:opacity-100">Wave</a>
+            </li>
+            <li>
+              <a href="/wavefront" class="opacity-60 transition hover:opacity-100">Wavefront</a>
+            </li>
+            <li>
+              <a href="/katla" class="opacity-60 transition hover:opacity-100">Katla</a>
+            </li>
+          </ul>
+
+          <h3 class="mt-8 font-semibold">Company</h3>
+          <ul role="list" class="mt-4 space-y-2">
+            <li>
+              <a href="/about" class="opacity-60 transition hover:opacity-100">About</a>
+            </li>
+            <li>
+              <a href="/blog" class="opacity-60 transition hover:opacity-100">Blog</a>
+            </li>
+            <li>
+              <a href="/" class="opacity-60 transition hover:opacity-100">Press</a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-semibold">Software</h3>
+          <ul role="list" class="mt-4 space-y-2">
+            <li>
+              <a href="/softwave" class="opacity-60 transition hover:opacity-100">Softwave</a>
+            </li>
+            <li>
+              <a href="/wave-for-work" class="opacity-60 transition hover:opacity-100">Wave for Work</a>
+            </li>
+            <li>
+              <a href="/cosmos" class="opacity-60 transition hover:opacity-100">Cosmos</a>
+            </li>
+          </ul>
+
+          <h3 class="mt-8 font-semibold">Support</h3>
+          <ul role="list" class="mt-4 space-y-2">
+            <li>
+              <a href="https://genkiinstruments.github.io/" target="_blank" class="opacity-60 transition hover:opacity-100">Documentation</a>
+            </li>
+            <li>
+              <a href="/terms-of-service" class="opacity-60 transition hover:opacity-100">Terms of service</a>
+            </li>
+            <li>
+              <a href="/privacy-policy" class="opacity-60 transition hover:opacity-100">Privacy policy</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Desktop-only layout for larger screens -->
+        <div class="col-span-2 hidden md:grid md:grid-cols-2 md:gap-8">
           <div>
-            <h3 class="text-sm/6 font-semibold">Hardware</h3>
-            <ul role="list" class="mt-6 space-y-4 text-sm/6">
+            <h3 class="font-semibold md:hidden">Hardware</h3>
+            <ul role="list" class="mt-6 space-y-4 md:hidden">
               <li>
                 <a href="/wave" class="opacity-60 transition hover:opacity-100">Wave</a>
               </li>
@@ -18,8 +97,8 @@
             </ul>
           </div>
           <div class="mt-10 md:mt-0">
-            <h3 class="text-sm/6 font-semibold">Software</h3>
-            <ul role="list" class="mt-6 space-y-4">
+            <h3 class="font-semibold md:hidden">Software</h3>
+            <ul role="list" class="mt-6 space-y-4 md:hidden">
               <li>
                 <a href="/softwave" class="opacity-60 transition hover:opacity-100">Softwave</a>
               </li>
@@ -35,41 +114,12 @@
             </ul>
           </div>
         </div>
-        <div class="md:grid md:grid-cols-2 md:gap-8">
-          <div>
-            <h3 class="text-sm/6 font-semibold">Company</h3>
-            <ul role="list" class="mt-6 space-y-4">
-              <li>
-                <a href="/about" class="opacity-60 transition hover:opacity-100">About</a>
-              </li>
-              <li>
-                <a href="/blog" class="opacity-60 transition hover:opacity-100">Blog</a>
-              </li>
-              <li>
-                <a href="/" class="opacity-60 transition hover:opacity-100">Press</a>
-              </li>
-            </ul>
-          </div>
-          <div class="mt-10 md:mt-0">
-            <h3 class="text-sm/6 font-semibold">Support</h3>
-            <ul role="list" class="mt-6 space-y-4">
-              <li>
-                <!-- [TODO]: Point to correct webpage (March 05, 2025 13:51, ) -->
-                <a href="https://genkiinstruments.github.io/" target="_blank" class="opacity-60 transition hover:opacity-100">Documentation</a>
-              </li>
-              <li>
-                <a href="/terms-of-service" class="opacity-60 transition hover:opacity-100">Terms of service</a>
-              </li>
-              <li>
-                <a href="/privacy-policy" class="opacity-60 transition hover:opacity-100">Privacy policy</a>
-              </li>
-            </ul>
-          </div>
-        </div>
       </div>
-      <div class="mt-10 xl:mt-0">
-        <h3 class="text-sm/6 font-semibold">Subscribe to our newsletter</h3>
-        <p class="font-book pt-7 text-sm/6">The latest offers, news, articles, and resources.</p>
+
+      <!-- Newsletter - Desktop only version -->
+      <div class="hidden sm:mt-0 sm:block">
+        <h3 class="font-semibold">Subscribe to our newsletter</h3>
+        <p class="font-book pt-7">The latest offers, news, articles, and resources.</p>
         <form class="mt-6 rounded-lg border border-gray-400 sm:flex sm:max-w-md">
           <label for="email-address" class="sr-only">Email address</label>
           <input
@@ -78,21 +128,27 @@
             id="email-address"
             autocomplete="email"
             required
-            class="w-full min-w-0 rounded-md border-2 px-3 py-1.5 text-base outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#FF5F49] sm:w-64 sm:text-sm/6 xl:w-full"
+            class="w-full min-w-0 rounded-md border-0 bg-black px-3 py-1.5 text-base outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#FF5F49] sm:w-64 sm:text-sm/6"
             placeholder="Enter your email" />
           <div class="mt-4 sm:mt-0 sm:ml-4 sm:shrink-0">
-            <!-- [TODO]: Add e-mail marketing subscription stuff (April 16, 2025 16:28, ) -->
             <button
               type="submit"
-              class="flex w-full items-center justify-center rounded-md px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-[#FF5F49]/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF5F49]"
-              >Subscribe</button>
+              class="flex w-full items-center justify-center rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-[#FF5F49]/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF5F49]"
+              >SUBSCRIBE</button>
           </div>
         </form>
-        <p class="pt-7 text-sm/6">&copy; 2025 Genki Instruments ehf. All rights reserved.</p>
       </div>
     </div>
-    <div class="col-auto flex justify-center pt-20 pb-16">
-      <div class="flex gap-x-6">
+  </div>
+  <!-- Copyright and social links -->
+  <p class="mt-12 mb-6 hidden text-center text-sm/6 opacity-70 sm:block">&copy; 2025 Genki Instruments ehf. All rights reserved.</p>
+
+  <!-- Full-width border that extends beyond container to screen edges -->
+  <div class="w-full border-b border-[#F6F6F6] py-1 opacity-50 sm:hidden"></div>
+
+  <div class="mx-auto max-w-7xl border-b px-6 py-20 text-[#F6F6F6] sm:py-0 lg:px-8 lg:pt-32">
+    <div class="flex justify-center pb-8">
+      <div class="flex gap-x-12 sm:gap-x-6">
         <a href="https://www.facebook.com/genkiinstruments" class="opacity-60 transition hover:opacity-100" target="_blank">
           <span class="sr-only">Facebook</span>
           <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -138,5 +194,6 @@
         </a>
       </div>
     </div>
+    <p class="text-center text-xs opacity-70 sm:hidden">&copy; 2025 Genki Instruments ehf. All rights reserved.</p>
   </div>
 </footer>
