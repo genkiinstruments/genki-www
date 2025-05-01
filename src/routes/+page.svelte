@@ -13,7 +13,6 @@
   import katla_logo from "$lib/assets/katla-logo.webp";
   import InteractiveString from "$lib/InteractiveString.svelte";
 
-  import arrow from "$lib/assets/arrow.svg";
   import dot from "$lib/assets/dot.svg";
 
   import { fade, blur } from "svelte/transition";

@@ -37,9 +37,9 @@
     currentIndex = (currentIndex + 1) % testimonials.length;
   }
 
-  function previousTestimonial() {
-    currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
-  }
+  // function previousTestimonial() {
+  //   currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
+  // }
 
   // Auto-rotation
   function startAutoRotation() {

@@ -50,7 +50,7 @@
           <br />
           <div class="flex w-full flex-row items-center justify-center md:flex md:items-center md:justify-start md:space-x-10">
             <div class="hidden md:flex md:items-center">$4,990</div>
-            <a href="/" class="flex inline-block items-center">
+            <a href="/" class="flex items-center">
               <div class="relative flex cursor-pointer flex-col items-center">
                 <span class="text-xs tracking-widest text-white uppercase">Add to cart</span>
                 <InteractiveString />
