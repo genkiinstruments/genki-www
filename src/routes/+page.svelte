@@ -10,6 +10,12 @@
   import cosmos_bg from "$lib/assets/Cosmos_3D.webp";
   import softwave_bg from "$lib/assets/Softwave_3D.webp";
 
+  import wavefront_mobile from "$lib/assets/index-wavefront-mobile.webp";
+  import wave_mobile from "$lib/assets/index-wave-mobile.webp";
+  import katla_mobile from "$lib/assets/index-katla-mobile.webp";
+  import cosmos_mobile from "$lib/assets/index-cosmos-mobile.webp";
+  import softwave_mobile from "$lib/assets/index-softwave-mobile.webp";
+
   import katla_logo from "$lib/assets/katla-logo.webp";
   import InteractiveString from "$lib/InteractiveString.svelte";
 
@@ -67,6 +73,7 @@
       title: "KATLA",
       description: "Five-voice polyphonic synth, made from the ashes of Katla.",
       background: katla_bg,
+      mobile: katla_mobile,
       logo: katla_logo,
       href: "/katla",
       flipped: false,
@@ -75,6 +82,7 @@
       title: "WAVE",
       description: "Control your sound, shape effects and send commands with the Wave ring.",
       background: wave_bg,
+      mobile: wave_mobile,
       logo: null,
       href: "/wave",
       flipped: false,
@@ -83,6 +91,7 @@
       title: "WAVEFRONT",
       description: "Connect Wave, or any Bluetooth device, to your Eurorack.",
       background: wavefront_bg,
+      mobile: wavefront_mobile,
       logo: null,
       href: "/wavefront",
       flipped: false,
@@ -91,6 +100,7 @@
       title: "SOFTWAVE",
       description: "Unlock your setup with Wave's software counterpart.",
       background: softwave_bg,
+      mobile: softwave_mobile,
       logo: null,
       href: "/softwave",
       flipped: true,
@@ -99,6 +109,7 @@
       title: "COSMOS",
       description: "Experience the cosmos, featuring playful effects and a fun interface.",
       background: cosmos_bg,
+      mobile: cosmos_mobile,
       logo: null,
       href: "/cosmos",
       flipped: true,
@@ -137,8 +148,7 @@
   });
 
   let backgroundImage = $derived(slides[currentIndex].background);
-
-  let showGrid = $state(false);
+  let mobileImage = $derived(slides[currentIndex].mobile);
 
   // Handle swipe gestures
   let touchStartX = 0;
@@ -183,16 +193,14 @@
 
   // Define the document-level handler - need to ensure this function reference doesn't change
   function handleKeyDown(event: KeyboardEvent) {
-    if (event.key === "'") {
-      showGrid = !showGrid;
-    } else if (event.key === "ArrowRight") {
+    if (event.key === "ArrowRight" || event.key === "ArrowUp") {
       userInteracting = true;
       rightArrowActive = true;
       scrollCarouselNext();
       setTimeout(() => {
         rightArrowActive = false;
       }, 150);
-    } else if (event.key === "ArrowLeft") {
+    } else if (event.key === "ArrowLeft" || event.key === "ArrowDown") {
       userInteracting = true;
       leftArrowActive = true;
       scrollCarouselPrev();
@@ -204,7 +212,6 @@
 
   // Install event listener early to ensure keyboard works
   if (typeof document !== "undefined") {
-    document.addEventListener("keydown", handleKeyDown);
   }
 
   // Handle vertical scrolling to control carousel
@@ -219,7 +226,7 @@
       // This is primarily horizontal scrolling - don't interfere
       return;
     }
-    
+
     // Only prevent default for vertical scrolling
     event.preventDefault();
 
@@ -258,6 +265,7 @@
     resetInactivityTimer();
 
     // Activity tracking event listeners
+    document.addEventListener("keydown", handleKeyDown);
     window.addEventListener("mousemove", trackMouseMovement);
     window.addEventListener("mousedown", trackUserActivity);
     window.addEventListener("touchstart", trackUserActivity);
@@ -279,21 +287,18 @@
   });
 </script>
 
-<div class="carousel-container relative flex h-[100dvh] w-full flex-col overflow-hidden bg-[#151515] text-[#DFDFDF]">
-  <!-- Background with elegant fade transitions -->
+<div class="relative flex h-[100dvh] w-full flex-col overflow-hidden bg-[#151515] text-[#DFDFDF]">
   {#key currentIndex}
     <div class="absolute inset-0 z-0" transition:fade={{ duration: 1000, easing: cubicInOut }}>
-      <img class="h-full w-full object-cover" src={backgroundImage} alt="Background" />
+      <img class="hidden h-full w-full object-cover object-top sm:block" src={backgroundImage} alt="Background" />
+      <img class="block h-full w-full object-cover object-top sm:hidden" src={mobileImage} alt="Background" />
     </div>
   {/key}
 
-  <!-- Grid-aligned container with responsive margins - Add z-10 or higher if needed -->
   <div class="relative z-10 mx-auto flex w-full flex-1 flex-col px-5 md:px-[50px]">
     <Header />
 
-    <!-- Main content area with vertical centering -->
-    <div class="flex flex-1 flex-col justify-center" ontouchstart={handleTouchStart} ontouchend={handleTouchEnd}>
-      <!-- Main Carousel -->
+    <div class="flex-1 flex-col justify-center sm:flex" ontouchstart={handleTouchStart} ontouchend={handleTouchEnd}>
       <Carousel.Root
         plugins={[carouselPlugin]}
         class="w-full"
@@ -305,39 +310,35 @@
         <Carousel.Content>
           {#each slides as slide, i (i)}
             <Carousel.Item>
-              <!-- Product Slide Content -->
               <div class="grid grid-cols-10 items-center gap-[10px]">
-                <!-- Text Column with elegant fade animations -->
                 <div class={cn("col-span-10 p-4 md:col-span-3 md:p-0 md:even:col-start-7", slide.flipped ? "md:col-start-7" : "md:col-start-2")}>
                   {#if currentIndex === i}
-                    <div class="space-y-6 text-center md:space-y-10 md:text-left" in:blur={{ amount: 15, duration: 800, delay: 300, easing: cubicInOut }}>
-                      {#if slide.logo}
-                        <h1 class="text-5xl font-bold">
-                          <img src={slide.logo} alt={slide.title} class="mx-auto md:mx-0" />
-                        </h1>
-                      {:else}
-                        <h1 class="text-4xl font-bold">
-                          {slide.title}
-                        </h1>
-                      {/if}
+                    <a href={slide.href}>
+                      <div class="mt-12 space-y-6 text-center md:mt-0 md:space-y-10 md:pb-0 md:text-left" in:blur={{ amount: 15, duration: 800, delay: 300, easing: cubicInOut }}>
+                        {#if slide.logo}
+                          <h1 class="text-5xl font-bold">
+                            <img src={slide.logo} alt={slide.title} class="mx-auto pl-1 md:mx-0" />
+                          </h1>
+                        {:else}
+                          <h1 class="text-4xl font-bold">
+                            {slide.title}
+                          </h1>
+                        {/if}
 
-                      <p class="font-book text-2xl md:text-4xl">
-                        {slide.description}
-                      </p>
+                        <p class="font-book text-2xl md:text-4xl">
+                          {slide.description}
+                        </p>
 
-                      <div class="pt-4 md:pt-8">
-                        <a href={slide.href} class="inline-block">
+                        <div class="inline-block pt-4 md:pt-8">
                           <div class="relative flex cursor-pointer flex-col items-center">
-                            {#if currentIndex === i}
-                              <span class="relative -mb-2 text-xs tracking-widest text-white uppercase">Learn more</span>
-                              <div class="interactive-string-wrapper">
-                                <InteractiveString />
-                              </div>
-                            {/if}
+                            <span class="relative text-xs tracking-widest text-white uppercase">Learn more</span>
+                            <div class="interactive-string-wrapper">
+                              <InteractiveString />
+                            </div>
                           </div>
-                        </a>
+                        </div>
                       </div>
-                    </div>
+                    </a>
                   {/if}
                 </div>
               </div>
@@ -367,22 +368,5 @@
         </button>
       {/each}
     </div>
-
-    <!-- Footer spacer (previous footer replaced with vertical navigation) -->
-    <div class="h-[72px] flex-shrink-0"></div>
-
-    {#if showGrid}
-      <div class="pointer-events-none fixed inset-0 z-[9998]">
-        <div class="mx-auto h-full px-5 md:px-[50px]">
-          <div class="flex h-full justify-between">
-            {#each Array(10) as _, i (i)}
-              <div class="mx-[5px] h-full flex-1 bg-[rgba(85,85,85,0.5)] first:ml-0 last:mr-0"></div>
-            {/each}
-          </div>
-        </div>
-      </div>
-    {/if}
   </div>
-  <!-- End of inner content div -->
 </div>
-<!-- End of main h-screen div -->
