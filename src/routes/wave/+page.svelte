@@ -37,8 +37,8 @@
     title="WAVE"
     description="Wave is the ring that allows artists and producers to easily control sound, shape effects and send commands. Detecting the most finesse gestures, Wave enables natural interaction with sound through movement."
     price="$349"
-    mainImage={wave_hand}
-    altImage={wave_render}
+    altImage={wave_hand}
+    mainImage={wave_render}
     altText="Wave ring for musicians"
     cartUrl="/" />
 </div>
