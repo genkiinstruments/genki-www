@@ -215,10 +215,16 @@
   const scrollThreshold = 50; // Accumulated scroll amount needed to trigger navigation
 
   function handleVerticalScroll(event: WheelEvent) {
-    // Always prevent default scroll behavior
+    // Only handle vertical scrolling, let horizontal scrolling pass through normally
+    if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
+      // This is primarily horizontal scrolling - don't interfere
+      return;
+    }
+    
+    // Only prevent default for vertical scrolling
     event.preventDefault();
 
-    // Add to scroll accumulator
+    // Add to scroll accumulator (vertical movement only)
     scrollAccumulator += event.deltaY;
 
     const now = Date.now();
