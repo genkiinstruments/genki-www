@@ -45,7 +45,7 @@
 
 <ScrollIndicator />
 
-<section class="flex h-full grow flex-col items-center justify-center py-10 md:py-20">
+<section class="flex h-full grow flex-col items-center justify-center py-40 md:py-10">
   <div class="flex w-full flex-col items-center gap-10 md:flex-row md:justify-center md:gap-12 lg:gap-16">
     <!-- Product Image Container -->
     <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
@@ -74,8 +74,8 @@
     </div>
 
     <!-- Product Info Container -->
-    <div class="w-full text-center text-lg md:mx-0 md:basis-[35%] md:text-left md:text-2xl lg:text-4xl {flippedLayout ? 'md:order-1' : 'md:order-2'}">
-      <div class="flex items-center justify-center md:justify-between">
+    <div class="w-full text-lg md:mx-0 md:basis-[35%] md:text-left md:text-2xl lg:text-4xl {flippedLayout ? 'md:order-1' : 'md:order-2'}">
+      <div class="flex items-center justify-between">
         {#if logoSrc}
           <img src={logoSrc} alt={altText} class="mx-auto max-h-16 md:mx-0" />
         {:else}
@@ -83,7 +83,7 @@
         {/if}
         <div class="font-mono text-xl md:hidden">{price}</div>
       </div>
-      <p class="mt-4 md:text-2xl">
+      <p class="mt-4 justify-start md:text-2xl">
         {description}
       </p>
       <div class="mt-6 flex w-full flex-row items-center justify-center gap-6 md:justify-start md:space-x-10">
