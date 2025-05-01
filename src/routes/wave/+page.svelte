@@ -21,11 +21,11 @@
         e.stopPropagation();
       }
     };
-    
-    document.addEventListener('touchstart', touchStartHandler, {passive: true, capture: true});
-    
+
+    document.addEventListener("touchstart", touchStartHandler, { passive: true, capture: true });
+
     return () => {
-      document.removeEventListener('touchstart', touchStartHandler, {capture: true});
+      document.removeEventListener("touchstart", touchStartHandler, { capture: true });
     };
   });
 </script>
@@ -54,4 +54,3 @@
 <YouTubeCarousel class="w-full overflow-hidden py-40 md:py-68" ids={["9pEGV0H5nTw", "foX4YGlUg4g", "a8aStUjS6uk", "oOKxmoZd4H8", "vJ-KT38i9Ls", "puQloBX3XPQ"]} />
 
 <Footer />
-
