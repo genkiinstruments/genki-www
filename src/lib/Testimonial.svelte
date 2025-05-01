@@ -1,13 +1,14 @@
 <script lang="ts">
   import quote_mark from "$lib/assets/quote.webp";
 
-  const { src, quote, name, occupation, alt } = $props();
+  const { src, mobileSrc, quote, name, occupation, alt } = $props();
 </script>
 
 <div class="w-full overflow-hidden">
-  <img {src} {alt} class="w-full object-cover" />
+  <img {src} {alt} class="hidden w-full object-cover sm:block" />
+  <img src={mobileSrc ? mobileSrc : src} {alt} class="block w-full object-cover sm:hidden" />
 </div>
-<div class="@container -mt-4 grid grid-cols-10">
+<div class="-mt-10 grid grid-cols-10">
   <div class="col-span-3 col-start-1 md:col-span-1 md:col-start-3">
     <img src={quote_mark} alt="Quotation mark" />
   </div>

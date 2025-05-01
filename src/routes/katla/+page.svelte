@@ -6,6 +6,7 @@
   import katla_logo from "$lib/assets/katla-logo.webp";
   import katla_bg from "$lib/assets/katla-bg.webp";
   import herdis from "$lib/assets/herdis-stefans.webp";
+  import herdis_mobile from "$lib/assets/katla-testimonials-herdis-mobile.webp";
   import Hero from "$lib/Hero.svelte";
   import Testimonial from "$lib/Testimonial.svelte";
 </script>
@@ -25,6 +26,7 @@
 
 <Testimonial
   src={herdis}
+  mobileSrc={herdis_mobile}
   quote="I quickly got very interesting and exciting results"
   name="Herdís Stefánsdóttir"
   occupation="Composer of music for multimedia, songwriter, and an electronic musician"

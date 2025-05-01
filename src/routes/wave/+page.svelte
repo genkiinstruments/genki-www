@@ -9,7 +9,8 @@
   import wave_hand from "$lib/assets/wave-hand.webp";
   import wave_render from "$lib/assets/wave-render.webp";
   import bergur from "$lib/assets/bergur-in-the-studio.webp";
-  
+  import bergur_mobile from "$lib/assets/wave-testimonials-bergur-mobile.webp";
+
   // Enable browser history navigation with horizontal swipe
   onMount(() => {
     // Set up swipe detection for browser navigation
@@ -42,7 +43,13 @@
     cartUrl="/" />
 </div>
 
-<Testimonial src={bergur} quote="Wave adds a dimension to musical creativity" name="Bergur Þórisson" occupation="Grammy nominated musical director (Björk)" alt="Bergur Torisson in the studio" />
+<Testimonial
+  src={bergur}
+  mobileSrc={bergur_mobile}
+  quote="Wave adds a dimension to musical creativity"
+  name="Bergur Þórisson"
+  occupation="Grammy nominated musical director (Björk)"
+  alt="Bergur Torisson in the studio" />
 
 <YouTubeCarousel class="w-full overflow-hidden py-40 md:py-68" ids={["9pEGV0H5nTw", "foX4YGlUg4g", "a8aStUjS6uk", "oOKxmoZd4H8", "vJ-KT38i9Ls", "puQloBX3XPQ"]} />
 

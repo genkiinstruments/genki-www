@@ -8,6 +8,7 @@
   import wavefront_stack from "$lib/assets/wavefront-stack.webp";
   import wavefront_single from "$lib/assets/wavefront-clean-hero-transparent.webp";
   import heymun from "$lib/assets/heymun.webp";
+  import heymun_mobile from "$lib/assets/wavefront-testimonials-heymun-mobile.webp";
 </script>
 
 <div class="relative mx-auto flex min-h-screen w-full flex-1 flex-col px-5 md:px-[50px]">
@@ -22,14 +23,15 @@
     cartUrl="/" />
 </div>
 
-<Testimonial 
+<Testimonial
   src={heymun}
+  mobileSrc={heymun_mobile}
   quote="I am blown away by the Wavefront module. Now I am able to communicate, express, and explore sounds via my movements on my Eurorack system."
   name="Heymun"
   occupation="Music composer, producer and musician"
-  alt="HEYMUN is a Malaysian born Sydney based."
-/>
+  alt="HEYMUN is a Malaysian born Sydney based." />
 
 <YouTubeCarousel class="w-full overflow-hidden py-40 md:py-68" ids={["Mxx2AuXiYWM", "I3hlnmP7yJU", "OxGjLVSPjCE", "MqfF2m-Mi-Y"]} />
 
 <Footer />
+

@@ -6,6 +6,7 @@
   import Hero from "$lib/Hero.svelte";
 
   import softwave_hero from "$lib/assets/softwave-hero.webp";
+  import toti_mobile from "$lib/assets/softwave-testimonials-toti-mobile.webp";
   import toti from "$lib/assets/toti-cool.webp";
 </script>
 
@@ -21,7 +22,13 @@
     flippedLayout={true} />
 </div>
 
-<Testimonial src={toti} quote="The depth of this software knows no bounds" name="Tóti Guðnason" occupation="Music composer, producer and musician" alt="Tóti Guðnason in the studio" />
+<Testimonial
+  src={toti}
+  mobileSrc={toti_mobile}
+  quote="The depth of this software knows no bounds"
+  name="Tóti Guðnason"
+  occupation="Music composer, producer and musician"
+  alt="Tóti Guðnason in the studio" />
 
 <YouTubeCarousel class="w-full overflow-hidden py-40 md:py-68" ids={["9pEGV0H5nTw", "foX4YGlUg4g", "a8aStUjS6uk", "oOKxmoZd4H8", "vJ-KT38i9Ls", "puQloBX3XPQ"]} />
 
