@@ -1,29 +1,40 @@
-<footer>
+<footer class="py-8">
+  <div class="hidden w-full border-b border-[#F6F6F6] py-1 opacity-30 sm:block"></div>
   <div class="mx-auto max-w-7xl border-b px-6 py-8 text-[#F6F6F6] lg:px-8 lg:pt-32">
-    <!-- Newsletter subscription section on top for mobile -->
-    <div class="mb-12 md:hidden">
-      <h3 class="text-lg font-semibold">Subscribe to our newsletter</h3>
-      <p class="font-book text-sm/6 opacity-50">The latest offers, news, articles, and resources.</p>
-      <form class="mt-6 flex flex-row rounded-lg border border-gray-400">
-        <label for="email-address-mobile" class="sr-only">Email address</label>
-        <input
-          type="email"
-          name="email-address"
-          id="email-address-mobile"
-          autocomplete="email"
-          required
-          class="w-full min-w-0 grow rounded-md bg-black px-3 py-1.5 text-base outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#FF5F49] sm:text-sm/6"
-          placeholder="Enter your email" />
-        <button
-          type="submit"
-          class="flex w-full items-center justify-end rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-white opacity-80 shadow-xs hover:bg-[#FF5F49]/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF5F49]"
-          >SUBSCRIBE</button>
-      </form>
-    </div>
-
+    <!-- Changed parent to handle flex/grid ordering -->
     <div class="py-10 text-base sm:grid sm:grid-cols-3 sm:gap-8 sm:text-sm/6">
-      <!-- Footer links in a two-column grid for mobile -->
-      <div class="grid grid-cols-2 gap-8 sm:col-span-2">
+      <!-- Newsletter Section (Moved up in source order, will be ordered second on sm+) -->
+      <!-- Added mb-10 for mobile spacing below, sm:mb-0 to remove it on larger screens -->
+      <!-- Added sm:order-2 -->
+      <div class="mb-10 sm:order-2 sm:mb-0">
+        <h3 class="text-lg font-semibold">Subscribe to our newsletter</h3>
+        <p class="font-book mt-2 text-sm/6 opacity-60">The latest offers, news, articles, and resources.</p>
+        <form class="mt-4 flex max-w-md flex-col gap-3 sm:flex-row sm:gap-0">
+          <label for="email-address-footer" class="sr-only">Email address</label>
+          <input
+            type="email"
+            name="email-address"
+            id="email-address-footer"
+            autocomplete="email"
+            required
+            class="w-full min-w-0 flex-1 appearance-none rounded-md border border-white/20 bg-[#1C1C1C] px-3 py-2 text-base text-white shadow-sm placeholder:text-gray-400 focus:border-[#FF5F49] focus:ring-1 focus:ring-[#FF5F49] focus:outline-none sm:rounded-r-none sm:text-sm/6"
+            placeholder="Enter your email" />
+          <button
+            type="submit"
+            aria-label="Subscribe"
+            class="flex shrink-0 items-center justify-center rounded-md bg-[#FF5F49]/80 px-3.5 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#E04A35] focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-[#FF5F49] sm:rounded-l-none">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="hidden size-5 sm:inline">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+            </svg>
+            <span class="sm:hidden">SUBSCRIBE</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Link Container: 2 cols on mobile, 4 cols on md+, spans 2/3 parent columns on sm+ -->
+      <!-- Will be ordered first on sm+ -->
+      <!-- Added sm:order-1 -->
+      <div class="grid grid-cols-2 gap-x-8 gap-y-10 sm:order-1 sm:col-span-2 md:grid-cols-4">
         <div>
           <h3 class="font-semibold">Hardware</h3>
           <ul role="list" class="mt-4 space-y-2">
@@ -37,8 +48,10 @@
               <a href="/katla" class="opacity-60 transition hover:opacity-100">Katla</a>
             </li>
           </ul>
+        </div>
 
-          <h3 class="mt-8 font-semibold">Company</h3>
+        <div>
+          <h3 class="font-semibold">Company</h3>
           <ul role="list" class="mt-4 space-y-2">
             <li>
               <a href="/about" class="opacity-60 transition hover:opacity-100">About</a>
@@ -65,8 +78,10 @@
               <a href="/cosmos" class="opacity-60 transition hover:opacity-100">Cosmos</a>
             </li>
           </ul>
+        </div>
 
-          <h3 class="mt-8 font-semibold">Support</h3>
+        <div>
+          <h3 class="font-semibold">Support</h3>
           <ul role="list" class="mt-4 space-y-2">
             <li>
               <a href="https://genkiinstruments.github.io/" target="_blank" class="opacity-60 transition hover:opacity-100">Documentation</a>
@@ -79,72 +94,11 @@
             </li>
           </ul>
         </div>
-
-        <!-- Desktop-only layout for larger screens -->
-        <div class="col-span-2 hidden md:grid md:grid-cols-2 md:gap-8">
-          <div>
-            <h3 class="font-semibold md:hidden">Hardware</h3>
-            <ul role="list" class="mt-6 space-y-4 md:hidden">
-              <li>
-                <a href="/wave" class="opacity-60 transition hover:opacity-100">Wave</a>
-              </li>
-              <li>
-                <a href="/wavefront" class="opacity-60 transition hover:opacity-100">Wavefront</a>
-              </li>
-              <li>
-                <a href="/katla" class="opacity-60 transition hover:opacity-100">Katla</a>
-              </li>
-            </ul>
-          </div>
-          <div class="mt-10 md:mt-0">
-            <h3 class="font-semibold md:hidden">Software</h3>
-            <ul role="list" class="mt-6 space-y-4 md:hidden">
-              <li>
-                <a href="/softwave" class="opacity-60 transition hover:opacity-100">Softwave</a>
-              </li>
-              <li>
-                <a href="/wave-for-work" class="opacity-60 transition hover:opacity-100">Wave for Work</a>
-              </li>
-              <li>
-                <a href="/cosmos" class="opacity-60 transition hover:opacity-100">Cosmos</a>
-              </li>
-              <li>
-                <a href="https://mimugloves.com/gloves/" class="opacity-60 transition hover:opacity-100" target="_blank" rel="noopener noreferrer"> MIMU Glover </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Newsletter - Desktop only version -->
-      <div class="hidden sm:mt-0 sm:block">
-        <h3 class="font-semibold">Subscribe to our newsletter</h3>
-        <p class="font-book pt-7">The latest offers, news, articles, and resources.</p>
-        <form class="mt-6 rounded-lg border border-gray-400 sm:flex sm:max-w-md">
-          <label for="email-address" class="sr-only">Email address</label>
-          <input
-            type="email"
-            name="email-address"
-            id="email-address"
-            autocomplete="email"
-            required
-            class="w-full min-w-0 rounded-md border-0 bg-black px-3 py-1.5 text-base outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#FF5F49] sm:w-64 sm:text-sm/6"
-            placeholder="Enter your email" />
-          <div class="mt-4 sm:mt-0 sm:ml-4 sm:shrink-0">
-            <button
-              type="submit"
-              class="flex w-full items-center justify-center rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-[#FF5F49]/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF5F49]"
-              >SUBSCRIBE</button>
-          </div>
-        </form>
       </div>
     </div>
   </div>
-  <!-- Copyright and social links -->
-  <p class="mt-12 mb-6 hidden text-center text-sm/6 opacity-70 sm:block">&copy; 2025 Genki Instruments ehf. All rights reserved.</p>
 
-  <!-- Full-width border that extends beyond container to screen edges -->
-  <div class="w-full border-b border-[#F6F6F6] py-1 opacity-50 sm:hidden"></div>
+  <div class="w-full border-b border-[#F6F6F6] py-1 opacity-30 sm:hidden"></div>
 
   <div class="mx-auto max-w-7xl border-b px-6 py-20 text-[#F6F6F6] sm:py-0 lg:px-8 lg:pt-32">
     <div class="flex justify-center pb-8">
@@ -194,6 +148,6 @@
         </a>
       </div>
     </div>
-    <p class="text-center text-xs opacity-70 sm:hidden">&copy; 2025 Genki Instruments ehf. All rights reserved.</p>
+    <p class="p text-center text-xs opacity-70 sm:py-20">© 2025 Genki Instruments ehf. All rights reserved.</p>
   </div>
 </footer>
