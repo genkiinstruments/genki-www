@@ -369,8 +369,22 @@
     animationId = requestAnimationFrame(updateString);
   }
 
-  // Lazy initialization for better page load performance
+  // Initial loading state
+  let preload = $state(true);
   let isInitialized = false;
+
+  // Simplified placeholder until fully loaded
+  function drawPlaceholder() {
+    if (!canvas || !ctx) return;
+
+    ctx.clearRect(0, 0, width, height);
+    ctx.beginPath();
+    ctx.moveTo(10, 25);
+    ctx.lineTo(10 + REST_LENGTH, 25);
+    ctx.lineWidth = LINE_WIDTH;
+    ctx.strokeStyle = "rgba(255, 255, 255, 1.0)";
+    ctx.stroke();
+  }
 
   function initializeAnimation() {
     if (isInitialized || !canvas) return;
@@ -386,34 +400,40 @@
     canvas.style.height = `${height}px`;
     ctx?.scale(dpr, dpr);
 
-    // Generate points
-    generateNeutralPosition();
+    // Draw placeholder immediately
+    drawPlaceholder();
 
-    // Start animation
-    animationId = requestAnimationFrame(updateString);
+    // Generate points in the background
+    setTimeout(() => {
+      generateNeutralPosition();
 
-    // Add event listeners
-    canvas.addEventListener("mousemove", handleMouseMove);
-    canvas.addEventListener("mousedown", handleMouseDown);
-    window.addEventListener("mouseup", handleMouseUp);
-    canvas.addEventListener("mouseleave", handleMouseLeave);
+      // Start animation
+      animationId = requestAnimationFrame(updateString);
 
-    isInitialized = true;
+      // Add event listeners
+      canvas?.addEventListener("mousemove", handleMouseMove);
+      canvas?.addEventListener("mousedown", handleMouseDown);
+      window.addEventListener("mouseup", handleMouseUp);
+      canvas?.addEventListener("mouseleave", handleMouseLeave);
+
+      preload = false;
+      isInitialized = true;
+    }, 50); // Much shorter delay for background init
   }
 
   onMount(() => {
-    // Use a longer delay to ensure DOM is fully rendered
-    setTimeout(() => {
-      if (canvas && !isInitialized) {
-        initializeAnimation();
-      }
-    }, 200);
+    // Initialize immediately
+    if (canvas && !isInitialized) {
+      initializeAnimation();
+    }
   });
 
   // React to canvas changes
-  $: if (canvas && !isInitialized) {
-    initializeAnimation();
-  }
+  $effect(() => {
+    if (canvas && !isInitialized) {
+      initializeAnimation();
+    }
+  });
 
   onMount(() => {
     // Cleanup on unmount
