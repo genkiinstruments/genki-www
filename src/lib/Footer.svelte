@@ -51,21 +51,6 @@
         </div>
 
         <div>
-          <h3 class="font-semibold">Company</h3>
-          <ul role="list" class="mt-4 space-y-2">
-            <li>
-              <a href="/about" class="opacity-60 transition hover:opacity-100">About</a>
-            </li>
-            <li>
-              <a href="/blog" class="opacity-60 transition hover:opacity-100">Blog</a>
-            </li>
-            <li>
-              <a href="/" class="opacity-60 transition hover:opacity-100">Press</a>
-            </li>
-          </ul>
-        </div>
-
-        <div>
           <h3 class="font-semibold">Software</h3>
           <ul role="list" class="mt-4 space-y-2">
             <li>
