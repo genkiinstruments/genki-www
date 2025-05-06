@@ -71,11 +71,9 @@
       {href}
       class="block w-full space-y-1 rounded-md p-3 text-left leading-none no-underline outline-hidden transition-all duration-300 ease-in-out select-none hover:bg-[#252525] focus:bg-[#252525]"
       onmouseenter={() => {
-        console.log("Hovering", title, hoverImage);
         if (hoverImage) activeHoverImage = hoverImage;
       }}
       onmouseleave={() => {
-        console.log("Leaving", title);
         activeHoverImage = null;
       }}
       onclick={() => {
