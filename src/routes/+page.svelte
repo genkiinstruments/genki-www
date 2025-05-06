@@ -66,6 +66,7 @@
 </script>
 
 <div class="relative flex h-[100dvh] w-full flex-col overflow-hidden text-[#DFDFDF]">
+  <Header />
   {#key currentIndex}
     <div class="absolute inset-0 z-0 mask-t-from-60%" transition:fade={{ duration: 500, easing: cubicInOut }}>
       <img class="hidden h-full w-full object-cover object-top sm:block" src={slides[currentIndex].background} alt="Background" />
@@ -73,9 +74,7 @@
     </div>
   {/key}
 
-  <Header class="relative z-10 mx-auto flex w-full flex-col px-5 md:px-[50px]" />
-
-  <div class="relative z-10 flex flex-1 items-center justify-center px-5 md:px-[50px]">
+  <div class="relative flex flex-1 items-center justify-center px-5 md:px-[50px]">
     <Carousel.Root
       opts={{
         loop: true,

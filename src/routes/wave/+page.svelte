@@ -30,9 +30,9 @@
   });
 </script>
 
-<div class="@container mx-auto flex min-h-screen w-full flex-1 flex-col px-5 md:px-[50px]">
-  <Header />
+<Header />
 
+<div class="@container mx-auto flex min-h-screen w-full flex-1 flex-col px-5 md:px-[50px]">
   <Hero
     title="WAVE"
     description="Wave is the ring that allows artists and producers to easily control sound, shape effects and send commands. Detecting the most finesse gestures, Wave enables natural interaction with sound through movement."

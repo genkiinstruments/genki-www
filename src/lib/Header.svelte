@@ -11,7 +11,6 @@
   import cosmosHoverImg from "$lib/assets/cosmos-space.webp"; // Using cosmos space image
 
   import software_header from "$lib/assets/software-header.webp"; // Using cosmos space image
-  import { cn } from "./utils";
 
   let activeHoverImage: string | null = $state(null);
   let mobileMenuOpen = $state(false);
@@ -19,8 +18,6 @@
   function toggleMobileMenu() {
     mobileMenuOpen = !mobileMenuOpen;
   }
-
-  let { class: className = undefined } = $props();
 
   // Define hardware and software dropdown content
   type ListItemProps = {
@@ -90,8 +87,8 @@
 {/snippet}
 
 <!-- Header - Fixed height -->
-
-<header class={cn("mt-2 grid h-[72px] flex-shrink-0 grid-cols-10 gap-[10px] bg-transparent", className)}>
+<!-- class="relative z-10 mx-auto flex w-full flex-col px-5 md:px-[50px]" -->
+<header class="relative z-10 mx-auto mt-2 flex grid h-[72px] w-full flex-shrink-0 grid-cols-10 flex-col gap-[10px] bg-transparent px-5 md:px-[50px]">
   <!-- Logo (left-most) in regular header layout -->
   <div class="z-10 col-span-1 flex items-center justify-start overflow-auto sm:col-span-2">
     <!-- Give the anchor appropriate height, remove fixed width, remove overflow-visible (likely not needed now) -->
