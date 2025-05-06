@@ -59,7 +59,7 @@
     {
       title: "Cosmos",
       href: "/cosmos",
-      content: "The Cosmos smiles upon you",
+      content: "Unique, playful, explorative",
       hoverImage: cosmosHoverImg,
     },
   ];
