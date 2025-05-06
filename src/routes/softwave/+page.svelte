@@ -10,9 +10,8 @@
   import toti from "$lib/assets/toti-cool.webp";
 </script>
 
-<Header />
-
 <div class="relative mx-auto flex min-h-screen w-full flex-1 flex-col px-5 md:px-[50px]">
+  <Header />
   <Hero
     title="Softwave"
     description="The key that unlocks the full potential of your Wave Ring. Control music with gestures, customize each button, and create saved presets from one seamlessly integrated application."

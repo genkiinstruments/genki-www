@@ -65,7 +65,7 @@
   });
 </script>
 
-<div class="relative flex h-[100dvh] w-full flex-col overflow-hidden text-[#DFDFDF]">
+<div class="relative flex h-[100dvh] w-full flex-col overflow-hidden px-5 text-[#DFDFDF] md:px-[50px]">
   <Header />
   {#key currentIndex}
     <div class="absolute inset-0 z-0 mask-t-from-60%" transition:fade={{ duration: 500, easing: cubicInOut }}>

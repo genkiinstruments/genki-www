@@ -88,7 +88,7 @@
 
 <!-- Header - Fixed height -->
 <!-- class="relative z-10 mx-auto flex w-full flex-col px-5 md:px-[50px]" -->
-<header class="relative z-10 mx-auto mt-2 flex grid h-[72px] w-full flex-shrink-0 grid-cols-10 flex-col gap-[10px] bg-transparent px-5 md:px-[50px]">
+<header class="relative z-10 mx-auto mt-2 flex grid h-[72px] w-full flex-shrink-0 grid-cols-10 flex-col gap-[10px] bg-transparent">
   <!-- Logo (left-most) in regular header layout -->
   <div class="z-10 col-span-1 flex items-center justify-start overflow-auto sm:col-span-2">
     <!-- Give the anchor appropriate height, remove fixed width, remove overflow-visible (likely not needed now) -->

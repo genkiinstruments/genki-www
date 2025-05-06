@@ -10,9 +10,8 @@
   import viktor_mobile from "$lib/assets/cosmos-testimonials-viktor-mobile.png.webp";
 </script>
 
-<Header />
-
 <div class="relative mx-auto flex min-h-screen w-full flex-1 flex-col px-5 md:px-[50px]">
+  <Header />
   <Hero
     title="COSMOS"
     description="Cosmos is a softsynth with hand-crafted effects and a playful interface. Shape sound with 8-voice polyphony, flexible modulation, and the spiralling galaxy arp. Dive into unexpected sonic turns. Try it for free!"

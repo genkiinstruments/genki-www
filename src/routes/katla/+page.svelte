@@ -11,10 +11,9 @@
   import Testimonial from "$lib/Testimonial.svelte";
 </script>
 
-<Header />
-
 <div class="relative mx-auto flex min-h-screen w-full flex-1 flex-col px-5 md:px-[50px]">
-  <img class="absolute inset-0 -z-10 h-[100dvh] w-full object-cover object-top" src={katla_bg} alt="Background" />
+  <Header />
+  <!-- <img class="absolute inset-0 -z-10 h-[100dvh] w-full object-cover object-top" src={katla_bg} alt="Background" /> -->
   <Hero
     title="Katla"
     logoSrc={katla_logo}

@@ -11,8 +11,8 @@
   import heymun_mobile from "$lib/assets/wavefront-testimonials-heymun-mobile.webp";
 </script>
 
-<Header />
 <div class="relative mx-auto flex min-h-screen w-full flex-1 flex-col px-5 md:px-[50px]">
+  <Header />
   <Hero
     title="WAVEFRONT"
     description="Elevate any modular setup. This customizable Eurorack receiver puts you in control of shaping effects, triggering samples and controlling gates — with your Wave Ring or your other favorite Bluetooth device."
@@ -34,4 +34,3 @@
 <YouTubeCarousel class="w-full overflow-hidden py-40 md:py-68" ids={["Mxx2AuXiYWM", "I3hlnmP7yJU", "OxGjLVSPjCE", "MqfF2m-Mi-Y"]} />
 
 <Footer />
-
