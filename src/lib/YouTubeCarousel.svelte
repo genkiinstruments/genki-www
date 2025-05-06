@@ -13,7 +13,7 @@
   <div class="relative overflow-hidden">
     <Carousel.Content>
       {#each ids as id, i (i)}
-        <Carousel.Item class="rounded-lg lg:basis-1/2">
+        <Carousel.Item class="rounded-lg lg:basis-3/4">
           <YouTube {id} />
         </Carousel.Item>
       {/each}
