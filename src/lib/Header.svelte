@@ -57,12 +57,6 @@
       hoverImage: softwaveHoverImg,
     },
     {
-      title: "Wave for Work",
-      href: "/wave-for-work",
-      content: "Use Wave to control your devices",
-      hoverImage: waveForWorkHoverImg,
-    },
-    {
       title: "Cosmos",
       href: "/cosmos",
       content: "The Cosmos smiles upon you",
