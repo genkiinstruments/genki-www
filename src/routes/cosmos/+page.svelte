@@ -20,7 +20,7 @@
     mainImage={cosmos}
     altText="Cosmos synthesizer interface"
     cartUrl="/"
-    flippedLayout={true} />
+    flipped={true} />
 </div>
 
 <Testimonial

@@ -19,7 +19,7 @@
     mainImage={softwave_hero}
     altText="Softwave, companion software to the Wave music ring"
     cartUrl="/"
-    flippedLayout={true} />
+    flipped={true} />
 </div>
 
 <Testimonial

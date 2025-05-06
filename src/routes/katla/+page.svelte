@@ -20,7 +20,7 @@
     description="Five-voice analog synthesizer from Iceland. Volcanic modulation, tactile sliders, with lava rock knobs and side-panels. Crafted for performers and sound designers seeking a unique chaos instrument."
     price="$349"
     altText="Katla synthesizer"
-    flippedLayout={true}
+    flipped={true}
     cartUrl="/" />
 </div>
 
