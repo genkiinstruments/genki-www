@@ -1,14 +1,9 @@
 <footer class="py-8">
-  <div class="hidden w-full border-b border-[#F6F6F6] py-1 opacity-30 sm:block"></div>
   <div class="mx-auto max-w-7xl border-b px-6 py-8 text-[#F6F6F6] lg:px-8 lg:pt-32">
-    <!-- Changed parent to handle flex/grid ordering -->
     <div class="py-10 text-base sm:grid sm:grid-cols-3 sm:gap-8 sm:text-sm/6">
-      <!-- Newsletter Section (Moved up in source order, will be ordered second on sm+) -->
-      <!-- Added mb-10 for mobile spacing below, sm:mb-0 to remove it on larger screens -->
-      <!-- Added sm:order-2 -->
       <div class="mb-10 sm:order-2 sm:mb-0">
-        <h3 class="text-lg font-semibold">Subscribe to our newsletter</h3>
-        <p class="font-book mt-2 text-sm/6 opacity-60">The latest offers, news, articles, and resources.</p>
+        <h3 class="text-lg font-semibold">Genki News</h3>
+        <p class="font-book mt-2 text-sm/6 opacity-60">Latest offers, news, and all things Genki.</p>
         <form class="mt-4 flex max-w-md flex-col gap-3 sm:flex-row sm:gap-0">
           <label for="email-address-footer" class="sr-only">Email address</label>
           <input
@@ -17,13 +12,13 @@
             id="email-address-footer"
             autocomplete="email"
             required
-            class="w-full min-w-0 flex-1 appearance-none rounded-md border border-white/20 bg-[#1C1C1C] px-3 py-2 text-base text-white shadow-sm placeholder:text-gray-400 focus:border-[#FF5F49] focus:ring-1 focus:ring-[#FF5F49] focus:outline-none sm:rounded-r-none sm:text-sm/6"
+            class="z-2 w-full min-w-0 flex-1 appearance-none rounded-md border border-white/20 bg-[#1C1C1C] px-3 py-2 text-base text-white shadow-sm placeholder:text-gray-400 sm:rounded-r-none sm:text-sm/6"
             placeholder="Enter your email" />
           <button
             type="submit"
             aria-label="Subscribe"
-            class="flex shrink-0 items-center justify-center rounded-md bg-[#FF5F49]/80 px-3.5 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#E04A35] focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-[#FF5F49] sm:rounded-l-none">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="hidden size-5 sm:inline">
+            class="text-gray flex shrink-0 items-center rounded-md border border-white/20 bg-black px-3.5 py-2 text-sm font-semibold shadow-sm transition-colors hover:bg-black/10 sm:rounded-l-none">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="hidden size-5 hover:text-white sm:inline">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
             </svg>
             <span class="sm:hidden">SUBSCRIBE</span>
@@ -31,9 +26,6 @@
         </form>
       </div>
 
-      <!-- Link Container: 2 cols on mobile, 4 cols on md+, spans 2/3 parent columns on sm+ -->
-      <!-- Will be ordered first on sm+ -->
-      <!-- Added sm:order-1 -->
       <div class="grid grid-cols-2 gap-x-8 gap-y-10 sm:order-1 sm:col-span-2 md:grid-cols-4">
         <div>
           <h3 class="font-semibold">Hardware</h3>
@@ -85,8 +77,8 @@
 
   <div class="w-full border-b border-[#F6F6F6] py-1 opacity-30 sm:hidden"></div>
 
-  <div class="mx-auto max-w-7xl border-b px-6 py-20 text-[#F6F6F6] sm:py-0 lg:px-8 lg:pt-32">
-    <div class="flex justify-center pb-8">
+  <div class="mx-auto flex max-w-7xl flex-col justify-between space-y-4 border-b px-6 py-10 text-[#F6F6F6] sm:py-0 md:flex-row lg:px-8 lg:pt-32">
+    <div class="flex items-center justify-center pb-8">
       <div class="flex gap-x-12 sm:gap-x-6">
         <a href="https://www.facebook.com/genkiinstruments" class="opacity-60 transition hover:opacity-100" target="_blank">
           <span class="sr-only">Facebook</span>
@@ -133,6 +125,6 @@
         </a>
       </div>
     </div>
-    <p class="p text-center text-xs opacity-70 sm:py-20">© 2025 Genki Instruments ehf. All rights reserved.</p>
+    <p class="p text-center text-xs opacity-70">© 2025 Genki Instruments ehf. All rights reserved.</p>
   </div>
 </footer>
