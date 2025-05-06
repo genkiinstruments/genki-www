@@ -88,7 +88,7 @@
         {#each slides as slide, i (i)}
           <Carousel.Item class="pl-4">
             <div class="grid h-full grid-cols-10 items-center gap-[10px]">
-              <div class={cn("col-span-10 p-4 md:col-span-3 md:p-0", slide.flipped ? "md:col-start-7" : "md:col-start-2")}>
+              <div class={cn("col-span-10 p-4 md:col-span-3 md:p-0 lg:col-span-2", !slide.flipped ? "md:col-start-2 lg:col-start-2" : "md:col-start-7 lg:col-start-7")}>
                 <a href={slide.href}>
                   <div class="mt-12 space-y-6 text-center md:mt-0 md:space-y-10 md:pb-0 md:text-left">
                     {#if slide.logo}
