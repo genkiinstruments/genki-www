@@ -7,7 +7,7 @@
   import wavefrontHoverImg from "$lib/assets/wavefront-header-hover.webp";
   import katlaHoverImg from "$lib/assets/katla-header-hover.webp";
 
-  import softwaveHoverImg from "$lib/assets/softwave-hero.webp"; // Using wave image as placeholder for now
+  import softwaveHoverImg from "$lib/assets/softwave-header-hero.webp";
   import waveForWorkHoverImg from "$lib/assets/wavefront-header-hover.webp"; // Using wavefront image as placeholder for now
   import cosmosHoverImg from "$lib/assets/cosmos-space.webp"; // Using cosmos space image
 
@@ -19,6 +19,8 @@
   function toggleMobileMenu() {
     mobileMenuOpen = !mobileMenuOpen;
   }
+
+  let { class: className } = $props();
 
   // Define hardware and software dropdown content
   type ListItemProps = {
@@ -88,9 +90,9 @@
 {/snippet}
 
 <!-- Header - Fixed height -->
-<header class="mt-2 grid h-[72px] flex-shrink-0 grid-cols-10 gap-[10px] bg-transparent">
+<header class="mt-2 grid h-[72px] flex-shrink-0 grid-cols-10 gap-[10px] bg-transparent {className}">
   <!-- Logo (left-most) in regular header layout -->
-  <div class="col-span-1 flex items-center justify-start overflow-auto sm:col-span-2">
+  <div class="z-10 col-span-1 flex items-center justify-start overflow-auto sm:col-span-2">
     <!-- Give the anchor appropriate height, remove fixed width, remove overflow-visible (likely not needed now) -->
     <a href="/" class="h-8 w-auto text-white opacity-80 transition-opacity duration-200 hover:opacity-100" aria-label="Go to index page">
       <!-- SVG remains h-full w-full to fill the anchor -->
@@ -212,8 +214,6 @@
         class="text-popover-foreground data-[state=closed]:animate-scale-out data-[state=open]:animate-scale-in relative mt-2.5 h-[var(--bits-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-md bg-[#161616] shadow-2xl transition-all duration-200 sm:w-[var(--bits-navigation-menu-viewport-width)]" />
     </div>
 
-    <span class="inline-block w-[15px] md:w-[30px]"></span>
-
     <!-- Cart Icon -->
     <!-- [TODO]: Fix link (April 02, 2025 16:17, ) -->
     <a href="/documentation" aria-label="View shopping cart" class="flex items-center justify-center opacity-80 transition-opacity duration-300 ease-in-out hover:opacity-100">
@@ -230,7 +230,6 @@
       </symbol>
     </svg>
   </NavigationMenu.Root>
-  <span class="hidden w-10 md:inline-block"></span>
 </header>
 
 <!-- Mobile Navigation Menu (only visible when toggled) -->
