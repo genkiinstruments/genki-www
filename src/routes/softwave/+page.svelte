@@ -5,7 +5,7 @@
   import Testimonial from "$lib/Testimonial.svelte";
   import Hero from "$lib/Hero.svelte";
 
-  import softwave_hero from "$lib/assets/softwave-hero.webp";
+  import softwave_hero from "$lib/assets/Softwave.webp";
   import toti_mobile from "$lib/assets/softwave-testimonials-toti-mobile.webp";
   import toti from "$lib/assets/toti-cool.webp";
 </script>

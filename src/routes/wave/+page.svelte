@@ -6,9 +6,9 @@
   import Testimonial from "$lib/Testimonial.svelte";
   import { onMount } from "svelte";
 
-  import wave_hand from "$lib/assets/wave-hand.webp";
-  import wave_render from "$lib/assets/wave-render.webp";
-  import bergur from "$lib/assets/bergur-in-the-studio.webp";
+  import wave_hand from "$lib/assets/Wave_01.webp";
+  import wave_render from "$lib/assets/Wave_02_Larger.webp";
+  import bergur from "$lib/assets/Testimonials_Bergur_Larger.webp";
   import bergur_mobile from "$lib/assets/wave-testimonials-bergur-mobile.webp";
 
   // Enable browser history navigation with horizontal swipe

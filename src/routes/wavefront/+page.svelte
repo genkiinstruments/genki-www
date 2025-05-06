@@ -5,9 +5,9 @@
   import Hero from "$lib/Hero.svelte";
   import Testimonial from "$lib/Testimonial.svelte";
 
-  import wavefront_stack from "$lib/assets/wavefront-stack.webp";
-  import wavefront_single from "$lib/assets/wavefront-clean-hero-transparent.webp";
-  import heymun from "$lib/assets/heymun.webp";
+  import wavefront_stack from "$lib/assets/WaveFront_01.webp";
+  import wavefront_single from "$lib/assets/WaveFront_02.webp";
+  import heymun from "$lib/assets/Testimonials_Heymun_Large.webp";
   import heymun_mobile from "$lib/assets/wavefront-testimonials-heymun-mobile.webp";
 </script>
 

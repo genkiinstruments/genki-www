@@ -7,8 +7,7 @@
   import wavefrontHoverImg from "$lib/assets/wavefront-header-hover.webp";
   import katlaHoverImg from "$lib/assets/katla-header-hover.webp";
 
-  import softwaveHoverImg from "$lib/assets/softwave-header-hero.webp";
-  import waveForWorkHoverImg from "$lib/assets/wavefront-header-hover.webp"; // Using wavefront image as placeholder for now
+  import softwaveHoverImg from "$lib/assets/Softwave_Menu.webp";
   import cosmosHoverImg from "$lib/assets/cosmos-space.webp"; // Using cosmos space image
 
   import software_header from "$lib/assets/software-header.webp"; // Using cosmos space image
