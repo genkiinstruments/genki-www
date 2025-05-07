@@ -21,7 +21,7 @@
     altImage={wave_hand}
     mainImage={wave_render}
     altText="Wave ring for musicians"
-    cartUrl="/" />
+    cartUrl="https://buy.stripe.com/eVacNz4OQdqubqE7su" />
 </div>
 
 <Testimonial
