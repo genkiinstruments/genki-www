@@ -4,6 +4,7 @@
   import YouTubeCarousel from "$lib/YouTubeCarousel.svelte";
   import Testimonial from "$lib/Testimonial.svelte";
   import Hero from "$lib/Hero.svelte";
+  import InteractiveString from "$lib/InteractiveString.svelte";
 
   import softwave_hero from "$lib/assets/Softwave.webp";
   import toti_mobile from "$lib/assets/softwave-testimonials-toti-mobile.webp";
@@ -18,7 +19,6 @@
     price="FREE"
     mainImage={softwave_hero}
     altText="Softwave, companion software to the Wave music ring"
-    cartUrl="/"
     flipped={true} />
 </div>
 
@@ -31,5 +31,19 @@
   alt="Tóti Guðnason in the studio" />
 
 <YouTubeCarousel class="w-full overflow-hidden py-40 md:py-68" ids={["9pEGV0H5nTw", "foX4YGlUg4g", "a8aStUjS6uk", "oOKxmoZd4H8", "vJ-KT38i9Ls", "puQloBX3XPQ"]} />
+
+<div class="flex flex-col justify-center items-center sm:py-96 py-48 w-full h-full">
+  <div class="group mb-6 flex w-full items-center justify-center md:col-span-3 md:col-start-2 md:text-left text-center text-5xl/20 md:text-3xl lg:text-7xl">Downloaded over 30,000 times</div>
+  <div class="flex flex-col items-center justify-center space-y-8 md:col-span-3 md:col-start-7 md:text-left">
+    <div class="flex flex-col space-y-4 justify-center">
+        <a href="https://github.com/genkiinstruments/releases/releases/tag/softwave" class="mt-3 flex w-full">
+          <div class="relative flex cursor-pointer flex-col items-center justify-end md:justify-center">
+            <span class="-mb-4 py-4 text-sm tracking-widest text-white uppercase sm:-mb-1 sm:py-0">Download now</span>
+            <InteractiveString />
+          </div>
+        </a>
+    </div>
+  </div>
+</div>
 
 <Footer />
