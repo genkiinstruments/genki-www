@@ -1,8 +1,4 @@
 <script lang="ts">
-  import { PUBLIC_GOOGLE_SCRIPT_URL } from '$env/static/public';
-  // Optional: For user feedback using svelte-toast
-  // import { toast } from '@zerodevx/svelte-toast';
-
   let email: string = '';
   let isLoading: boolean = false;
   let message: string = '';
@@ -24,7 +20,7 @@
     formData.append('email', email);
 
     try {
-      const response = await fetch(PUBLIC_GOOGLE_SCRIPT_URL, {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbz3bZ2bzUNyzKj3J51x733JiucneyIaY28NYPiePhhSq9CmVLwD7kb8tIFnysU_aEBHNg/exec", {
         method: 'POST',
         body: formData, // Sending as FormData, Google Apps Script doPost e.parameter will pick it up
         // If you prefer to send JSON:
