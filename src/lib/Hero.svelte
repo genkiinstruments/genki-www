@@ -19,7 +19,7 @@
 
 <ScrollIndicator />
 
-<div class="flex grow flex-col items-center py-16 sm:py-0 md:grid md:grid-cols-10 md:items-stretch">
+<div class="flex grow flex-col items-center py-16 sm:py-0 md:grid md:grid-cols-10 md:items-stretch mask-t-from-80%">
   {#if !flipped}
     <div class="group mb-6 flex w-full items-center justify-center md:col-span-4 md:col-start-2">
       {#if mainImage}
