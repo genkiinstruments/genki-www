@@ -90,7 +90,7 @@
                 <a {href}>
                   <div class="mt-12 space-y-6 text-center md:mt-0 md:space-y-10 md:pb-0 md:text-left">
                     {#if logo}
-                      <h1 class="text-5xl font-bold h-10">
+                      <h1 class="text-5xl font-bold h-8">
                         <img src={logo} alt={title} class="mx-auto pl-1 md:mx-0 h-full" />
                       </h1>
                     {:else}
