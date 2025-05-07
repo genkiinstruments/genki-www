@@ -12,6 +12,11 @@
   import Testimonial from "$lib/Testimonial.svelte";
   import ScrollIndicator from "$lib/ScrollIndicator.svelte";
   import InteractiveString from "$lib/InteractiveString.svelte";
+
+  type ListItemProps = {
+    title: string;
+    features: string[];
+  };
 </script>
 
 <div class="relative mx-auto flex min-h-screen w-full flex-1 flex-col px-5 md:px-[50px]">
@@ -53,7 +58,7 @@
 
 <YouTubeCarousel class="w-full  py-40 md:py-68" ids={["vPgHiyOXmMQ", "By-shXpcjSg", "BpfhsBbgY8M"]} />
 
-{#snippet ListItem({ title, features })}
+{#snippet ListItem({ title, features }: ListItemProps)}
   <div class="grid grid-cols-10 md:px-[50px] px-5 space-y-8 md:space-y-0">
     <p class="col-span-full md:col-span-2 md:col-start-3 uppercase font-bold">{title}</p>
     <ul class="col-span-full col-start-2 md:col-span-3 md:col-start-7 space-y-12">
