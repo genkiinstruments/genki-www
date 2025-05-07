@@ -91,7 +91,6 @@
 :root {
   /* Colors */
   --background: #151515;
-  --background: hsl(0 0% 5%);
   --background-alt: hsl(0 0% 8%);
   --foreground: hsl(0 0% 95%);
   --foreground-alt: hsl(0 0% 70%);
