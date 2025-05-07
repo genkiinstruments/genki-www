@@ -20,7 +20,7 @@
     mainImage={wavefront_stack}
     altImage={wavefront_single}
     altText="Wavefront Bluetooth LE Eurorack module"
-    cartUrl="/" />
+    cartUrl="https://buy.stripe.com/14k8xj6WYgCG66keUX" />
 </div>
 
 <Testimonial
