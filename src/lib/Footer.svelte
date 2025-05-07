@@ -1,29 +1,131 @@
+<script lang="ts">
+  import { PUBLIC_GOOGLE_SCRIPT_URL } from '$env/static/public';
+  // Optional: For user feedback using svelte-toast
+  // import { toast } from '@zerodevx/svelte-toast';
+
+  let email: string = '';
+  let isLoading: boolean = false;
+  let message: string = '';
+  let messageType: 'success' | 'error' | 'info' | '' = '';
+
+  async function handleSubmit() {
+    if (!email) {
+      message = 'Please enter an email address.';
+      messageType = 'error';
+      // toast.error('Please enter an email address.');
+      return;
+    }
+
+    isLoading = true;
+    message = '';
+    messageType = '';
+
+    const formData = new FormData();
+    formData.append('email', email);
+
+    try {
+      const response = await fetch(PUBLIC_GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        body: formData, // Sending as FormData, Google Apps Script doPost e.parameter will pick it up
+        // If you prefer to send JSON:
+        // headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // Google Script needs text/plain for JSON string
+        // body: JSON.stringify({ email: email }),
+      });
+
+      // Google Apps Script web apps might redirect, so handle opaque responses too
+      // Or, if your script returns JSON properly:
+      if (response.ok || response.type === 'opaque' || response.redirected) { // Opaque for cross-origin simple POSTs
+        // Try to parse JSON if not opaque. If opaque, assume success as Google Scripts redirects.
+        let result;
+        if (response.type !== 'opaque') {
+            result = await response.json();
+        } else {
+            // For opaque responses after a successful POST to Apps Script (often due to redirect)
+            // We assume success here because an error would typically not result in an opaque redirect
+            result = { status: 'success', message: 'Subscription request sent. Check your email or the sheet!' };
+        }
+
+
+        if (result.status === 'success') {
+          message = result.message || 'Successfully subscribed!';
+          messageType = 'success';
+          // toast.success(result.message || 'Successfully subscribed!');
+          email = ''; // Clear the input
+        } else if (result.status === 'info') {
+          message = result.message || 'Already subscribed.';
+          messageType = 'info';
+          // toast.info(result.message || 'Already subscribed.');
+        } else {
+          message = result.message || 'Subscription failed. Please try again.';
+          messageType = 'error';
+          // toast.error(result.message || 'Subscription failed. Please try again.');
+        }
+      } else {
+        const errorText = await response.text();
+        message = `Error: ${response.statusText} - ${errorText || 'Could not connect to the server.'}`;
+        messageType = 'error';
+        // toast.error(`Error: ${response.statusText} - ${errorText || 'Could not connect to the server.'}`);
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      message = 'An unexpected error occurred. Please try again.';
+      messageType = 'error';
+      // toast.error('An unexpected error occurred. Please try again.');
+    } finally {
+      isLoading = false;
+    }
+  }
+</script>
+
+
 <footer class="py-8">
   <div class="mx-auto max-w-7xl border-b px-6 py-8 text-[#F6F6F6] lg:px-8 lg:pt-32">
     <div class="py-10 text-base sm:grid sm:grid-cols-3 sm:gap-8 sm:text-sm/6">
       <div class="mb-10 sm:order-2 sm:mb-0">
-        <h3 class="text-lg font-semibold">Genki News</h3>
+        <h3 class="text-lg font-semibold">Newsletter</h3>
         <p class="font-book mt-2 text-sm/6 opacity-60">Latest offers, news, and all things Genki.</p>
-        <form class="mt-4 flex max-w-md flex-col gap-3 sm:flex-row sm:gap-0">
+        <!--
+          Note: When using client-side JS for submission (on:submit|preventDefault),
+          the native HTML5 'required' attribute might not provide the best UX
+          as the JS validation will likely run first.
+          You can keep 'required' for non-JS scenarios or rely solely on JS validation.
+        -->
+        <form class="mt-4 flex max-w-md flex-col gap-3 sm:flex-row sm:gap-0" on:submit|preventDefault={handleSubmit}>
           <label for="email-address-footer" class="sr-only">Email address</label>
           <input
+            bind:value={email}
             type="email"
             name="email-address"
             id="email-address-footer"
             autocomplete="email"
             required
             class="z-2 w-full min-w-0 flex-1 appearance-none rounded-md border border-white/20 bg-[#1C1C1C] px-3 py-2 text-base text-white shadow-sm placeholder:text-gray-400 sm:rounded-r-none sm:text-sm/6"
-            placeholder="Enter your email" />
+            placeholder="Enter your email"
+            disabled={isLoading} />
           <button
             type="submit"
             aria-label="Subscribe"
-            class="text-gray flex shrink-0 items-center rounded-md border border-white/20 bg-black px-3.5 py-2 text-sm font-semibold shadow-sm transition-colors hover:bg-black/10 sm:rounded-l-none">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="hidden size-5 hover:text-white sm:inline">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-            </svg>
-            <span class="sm:hidden">SUBSCRIBE</span>
+            class="text-gray flex shrink-0 items-center rounded-md border border-white/20 bg-black px-3.5 py-2 text-sm font-semibold shadow-sm transition-colors hover:bg-black/10 sm:rounded-l-none disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={isLoading}>
+            {#if isLoading}
+              <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Processing...
+            {:else}
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="hidden size-5 hover:text-white sm:inline">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
+              <span class="sm:hidden">SUBSCRIBE</span>
+            {/if}
           </button>
         </form>
+        {#if message}
+          <p class="mt-2 text-sm {messageType === 'success' ? 'text-green-400' : messageType === 'info' ? 'text-blue-400' : 'text-red-400'}">
+            {message}
+          </p>
+        {/if}
       </div>
 
       <div class="grid grid-cols-2 gap-x-8 gap-y-10 sm:order-1 sm:col-span-2 md:grid-cols-4">
@@ -31,13 +133,13 @@
           <h3 class="font-semibold">Hardware</h3>
           <ul role="list" class="mt-4 space-y-2">
             <li>
+              <a href="/katla" class="opacity-60 transition hover:opacity-100">Katla</a>
+            </li>
+            <li>
               <a href="/wave" class="opacity-60 transition hover:opacity-100">Wave</a>
             </li>
             <li>
               <a href="/wavefront" class="opacity-60 transition hover:opacity-100">Wavefront</a>
-            </li>
-            <li>
-              <a href="/katla" class="opacity-60 transition hover:opacity-100">Katla</a>
             </li>
           </ul>
         </div>
@@ -47,9 +149,6 @@
           <ul role="list" class="mt-4 space-y-2">
             <li>
               <a href="/softwave" class="opacity-60 transition hover:opacity-100">Softwave</a>
-            </li>
-            <li>
-              <a href="/wave-for-work" class="opacity-60 transition hover:opacity-100">Wave for Work</a>
             </li>
             <li>
               <a href="/cosmos" class="opacity-60 transition hover:opacity-100">Cosmos</a>
