@@ -74,20 +74,20 @@
     </div>
   {/key}
 
-  <div class="relative flex flex-1 items-center justify-center px-5 md:px-[50px]">
+  <div class="relative flex-1 items-center justify-center px-5 sm:flex md:px-[50px]">
     <Carousel.Root
       opts={{
         loop: true,
       }}
-      class="h-auto w-full"
+      class="flex h-full w-full"
       plugins={[Autoplay({ playOnInit: false, delay: 3000, stopOnInteraction: true }), WheelGesturesPlugin(), Fade()]}
       setApi={(emblaApi) => {
         api = emblaApi;
       }}>
-      <Carousel.Content class="-ml-4 h-full">
+      <Carousel.Content class="flex h-full w-full grow py-4">
         {#each slides as slide, i (i)}
-          <Carousel.Item class="pl-4">
-            <div class="grid h-full grid-cols-10 items-center gap-[10px]">
+          <Carousel.Item class="flex flex-grow flex-col">
+            <div class="hidden md:grid h-full grid-cols-10 items-center gap-[10px]">
               <div class={cn("col-span-10 p-4 md:col-span-3 md:p-0 lg:col-span-2", !slide.flipped ? "md:col-start-2 lg:col-start-2" : "md:col-start-7 lg:col-start-7")}>
                 <a href={slide.href}>
                   <div class="mt-12 space-y-6 text-center md:mt-0 md:space-y-10 md:pb-0 md:text-left">
@@ -115,13 +115,112 @@
                 </a>
               </div>
             </div>
+            <div class="flex md:hidden flex-col justify-between h-full grow items-center">
+                  <div class="space-y-6 text-center">
+               {#if slide.logo}
+                    <h1 class="text-5xl font-bold">
+                      <img src={slide.logo} alt={slide.title} class="mx-auto pl-1 md:mx-0" />
+                    </h1>
+                  {:else}
+                    <h1 class="text-4xl font-bold">
+                      {slide.title}
+                    </h1>
+                  {/if}
+                  <p class="font-book text-2xl md:text-4xl">
+                    {slide.description}
+                  </p></div>
+                  <div class="inline-block pt-4 md:pt-8">
+                    <div class="relative flex cursor-pointer flex-col items-center">
+                      <span class="relative text-xs tracking-widest text-white uppercase">Learn more</span>
+                      <div class="interactive-string-wrapper">
+                        <InteractiveString />
+                      </div>
+                    </div>
+                  </div>
+            </div>
           </Carousel.Item>
         {/each}
       </Carousel.Content>
+      <!-- <Carousel.Content class="-ml-4 h-full hidden md:flex"> -->
+      <!--   {#each slides as slide, i (i)} -->
+      <!--     <Carousel.Item class="pl-4"> -->
+      <!--       <div class="grid h-full grid-cols-10 items-center gap-[10px]"> -->
+      <!--         <div class={cn("col-span-10 p-4 md:col-span-3 md:p-0 lg:col-span-2", !slide.flipped ? "md:col-start-2 lg:col-start-2" : "md:col-start-7 lg:col-start-7")}> -->
+      <!--           <a href={slide.href}> -->
+      <!--             <div class="mt-12 space-y-6 text-center md:mt-0 md:space-y-10 md:pb-0 md:text-left"> -->
+      <!--               {#if slide.logo} -->
+      <!--                 <h1 class="text-5xl font-bold"> -->
+      <!--                   <img src={slide.logo} alt={slide.title} class="mx-auto pl-1 md:mx-0" /> -->
+      <!--                 </h1> -->
+      <!--               {:else} -->
+      <!--                 <h1 class="text-4xl font-bold"> -->
+      <!--                   {slide.title} -->
+      <!--                 </h1> -->
+      <!--               {/if} -->
+      <!--               <p class="font-book text-2xl md:text-4xl"> -->
+      <!--                 {slide.description} -->
+      <!--               </p> -->
+      <!--               <div class="inline-block pt-4 md:pt-8"> -->
+      <!--                 <div class="relative flex cursor-pointer flex-col items-center"> -->
+      <!--                   <span class="relative text-xs tracking-widest text-white uppercase">Learn more</span> -->
+      <!--                   <div class="interactive-string-wrapper"> -->
+      <!--                     <InteractiveString /> -->
+      <!--                   </div> -->
+      <!--                 </div> -->
+      <!--               </div> -->
+      <!--             </div> -->
+      <!--           </a> -->
+      <!--         </div> -->
+      <!--       </div> -->
+      <!--     </Carousel.Item> -->
+      <!--   {/each} -->
+      <!-- </Carousel.Content> -->
     </Carousel.Root>
   </div>
 
-  <div class="absolute bottom-10 left-1/2 z-20 flex -translate-x-1/2 transform flex-col items-center gap-4 md:bottom-12">
+  <!-- <div class="md:hidden flex flex-col flex-1"> -->
+  <!--   <Carousel.Root -->
+  <!--     opts={{ -->
+  <!--       loop: true, -->
+  <!--     }} -->
+  <!--     class="flex h-full w-full" -->
+  <!--     plugins={[Autoplay({ playOnInit: false, delay: 3000, stopOnInteraction: true }), WheelGesturesPlugin(), Fade()]} -->
+  <!--     setApi={(emblaApi) => { -->
+  <!--       api = emblaApi; -->
+  <!--     }}> -->
+  <!--     <Carousel.Content class="flex h-full w-full grow py-4"> -->
+  <!--       {#each slides as slide, i (i)} -->
+  <!--         <Carousel.Item class="flex flex-grow flex-col"> -->
+  <!--           <div class="flex flex-col justify-between h-full grow items-center"> -->
+  <!--                 <div class="space-y-6 text-center"> -->
+  <!--              {#if slide.logo} -->
+  <!--                   <h1 class="text-5xl font-bold"> -->
+  <!--                     <img src={slide.logo} alt={slide.title} class="mx-auto pl-1 md:mx-0" /> -->
+  <!--                   </h1> -->
+  <!--                 {:else} -->
+  <!--                   <h1 class="text-4xl font-bold"> -->
+  <!--                     {slide.title} -->
+  <!--                   </h1> -->
+  <!--                 {/if} -->
+  <!--                 <p class="font-book text-2xl md:text-4xl"> -->
+  <!--                   {slide.description} -->
+  <!--                 </p></div> -->
+  <!--                 <div class="inline-block pt-4 md:pt-8"> -->
+  <!--                   <div class="relative flex cursor-pointer flex-col items-center"> -->
+  <!--                     <span class="relative text-xs tracking-widest text-white uppercase">Learn more</span> -->
+  <!--                     <div class="interactive-string-wrapper"> -->
+  <!--                       <InteractiveString /> -->
+  <!--                     </div> -->
+  <!--                   </div> -->
+  <!--                 </div> -->
+  <!--           </div> -->
+  <!--         </Carousel.Item> -->
+  <!--       {/each} -->
+  <!--     </Carousel.Content> -->
+  <!--   </Carousel.Root> -->
+  <!-- </div> -->
+
+  <div class="hidden absolute md:block bottom-10 left-1/2 z-20 flex -translate-x-1/2 transform flex-col items-center gap-4 md:bottom-12">
     <div class="flex gap-3">
       {#each slides as _, i (i)}
         <button class="p-1 transition-all duration-200" onclick={() => api?.scrollTo(i)} aria-label={`Navigate to slide ${i + 1}`}>
