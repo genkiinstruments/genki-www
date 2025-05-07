@@ -4,7 +4,7 @@
   import YouTubeCarousel from "$lib/YouTubeCarousel.svelte";
 
   import katla_logo from "$lib/assets/katla-logo.webp";
-  import katla_bg from "$lib/assets/katla-hero-render.webp";
+  import katla_bg from "$lib/assets/katla-hero-render2.webp";
   import katla_mobile_bg from "$lib/assets/katla-mobile-hero.webp";
   import herdis from "$lib/assets/Testimonials_Herdis_Medium.webp";
   import herdis_mobile from "$lib/assets/herdis-mobile.webp";

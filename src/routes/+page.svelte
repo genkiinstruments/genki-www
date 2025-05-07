@@ -4,7 +4,7 @@
 
   import wavefront_bg from "$lib/assets/wavefront-bg.webp";
   import wave_bg from "$lib/assets/wave-bg.webp";
-  import katla_bg from "$lib/assets/katla-index-hero-render.webp";
+  import katla_bg from "$lib/assets/katla-index-hero-render2.webp";
   import cosmos_bg from "$lib/assets/Cosmos_3D.webp";
   import softwave_bg from "$lib/assets/Softwave_3D.webp";
 
