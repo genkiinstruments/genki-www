@@ -193,7 +193,6 @@
           </div></NavigationMenu.Content>
       </NavigationMenu.Item>
       <NavigationMenu.Item>
-        <!-- [TODO]: Fix link (April 02, 2025 16:17, ) -->
         <NavigationMenu.Link
           class="group inline-flex h-8 w-max items-center justify-center rounded-[7px] bg-transparent px-6 py-2 text-sm font-medium opacity-80 transition-all duration-300 ease-in-out hover:opacity-100 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50"
           href="https://genkiinstruments.github.io/"
@@ -212,21 +211,11 @@
         class="text-popover-foreground data-[state=closed]:animate-scale-out data-[state=open]:animate-scale-in relative mt-2.5 h-[var(--bits-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-md bg-[#161616] shadow-2xl transition-all duration-200 sm:w-[var(--bits-navigation-menu-viewport-width)]" />
     </div>
 
-    <!-- Cart Icon -->
-    <!-- [TODO]: Fix link (April 02, 2025 16:17, ) -->
-    <a href="/documentation" aria-label="View shopping cart" class="flex items-center justify-center opacity-80 transition-opacity duration-300 ease-in-out hover:opacity-100">
+    <a href="https://genkiinstruments.github.io/" aria-label="View shopping cart" class="flex items-center justify-center opacity-80 transition-opacity duration-300 ease-in-out hover:opacity-100">
       <svg class="h-[1.2em] w-[1.2em]">
         <use xlink:href="#cart-icon"></use>
       </svg>
     </a>
-    <!-- Cart Icon SVG -->
-    <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
-      <symbol id="cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="9" cy="21" r="1"></circle>
-        <circle cx="20" cy="21" r="1"></circle>
-        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-      </symbol>
-    </svg>
   </NavigationMenu.Root>
 </header>
 
