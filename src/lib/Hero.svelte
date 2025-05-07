@@ -14,7 +14,7 @@
     flipped?: boolean;
   };
 
-  const { title, description, price, mainImage = undefined, altText, altImage = "", logoSrc = "", cartUrl = "/", flipped = false }: Props = $props();
+  const { title, description, price, mainImage = undefined, altText, altImage = "", logoSrc = "", cartUrl, flipped = false }: Props = $props();
 </script>
 
 <ScrollIndicator />
@@ -42,15 +42,18 @@
         <p class="mt-4 justify-start md:text-2xl">
           {description}
         </p>
-        <div class="mt-6 flex w-full flex-row items-center justify-center gap-6 md:justify-start md:space-x-10">
-          <div class="hidden font-mono text-2xl md:block">{price}</div>
-          <a href={cartUrl} class="mt-3 flex">
-            <div class="relative flex cursor-pointer flex-col items-center">
-              <span class="-mb-4 py-4 text-sm tracking-widest text-white uppercase sm:-mb-1 sm:py-0">Add to cart</span>
-              <InteractiveString />
-            </div>
-          </a>
-        </div>
+
+        {#if cartUrl}
+          <div class="mt-6 flex w-full flex-row items-center justify-center gap-6 md:justify-start md:space-x-10">
+            <div class="hidden font-mono text-2xl md:block">{price}</div>
+            <a href={cartUrl} class="mt-3 flex">
+              <div class="relative flex cursor-pointer flex-col items-center">
+                <span class="-mb-4 py-4 text-sm tracking-widest text-white uppercase sm:-mb-1 sm:py-0">Buy now</span>
+                <InteractiveString />
+              </div>
+            </a>
+          </div>
+        {/if}
       </div>
     </div>
   {:else}
@@ -69,16 +72,19 @@
         <p class="mt-4 justify-start md:text-2xl">
           {description}
         </p>
-        <div class="mt-6 flex w-full flex-row items-center justify-center gap-6 md:justify-start md:space-x-10">
-          <div class="hidden items-center justify-center font-mono text-2xl md:flex">{price}</div>
-          <a href={cartUrl} class="flex items-center justify-center">
-            <div class="relative flex cursor-pointer flex-col items-center">
-              <span class="-mb-4 py-4 text-sm tracking-widest text-white uppercase sm:-mb-1 sm:py-0">Add to cart</span>
-              <InteractiveString />
-            </div>
-          </a>
-        </div>
       </div>
+              {#if cartUrl}
+          <div class="mt-6 flex w-full flex-row items-center justify-center gap-6 md:justify-start md:space-x-10">
+            <div class="hidden font-mono text-2xl md:block">{price}</div>
+            <a href={cartUrl} class="mt-3 flex">
+              <div class="relative flex cursor-pointer flex-col items-center">
+                <span class="-mb-4 py-4 text-sm tracking-widest text-white uppercase sm:-mb-1 sm:py-0">Buy now</span>
+                <InteractiveString />
+              </div>
+            </a>
+          </div>
+        {/if}
+
     </div>
     <div class="group mb-6 flex w-full items-center justify-center md:col-span-4 md:col-start-6 lg:col-span-5">
       {#if mainImage}
