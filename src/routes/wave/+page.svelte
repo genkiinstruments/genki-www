@@ -10,24 +10,6 @@
   import wave_render from "$lib/assets/Wave_02_Larger.webp";
   import bergur from "$lib/assets/Testimonials_Bergur_Larger.webp";
   import bergur_mobile from "$lib/assets/wave-testimonials-bergur-mobile.webp";
-
-  // Enable browser history navigation with horizontal swipe
-  onMount(() => {
-    // Set up swipe detection for browser navigation
-    const touchStartHandler = (e: TouchEvent) => {
-      // Only capture wide horizontal swipes near the edge of the screen
-      if (e.touches[0].clientX < 50 || e.touches[0].clientX > window.innerWidth - 50) {
-        // Allow browser to handle this swipe for navigation
-        e.stopPropagation();
-      }
-    };
-
-    document.addEventListener("touchstart", touchStartHandler, { passive: true, capture: true });
-
-    return () => {
-      document.removeEventListener("touchstart", touchStartHandler, { capture: true });
-    };
-  });
 </script>
 
 <div class="@container mx-auto flex min-h-screen w-full flex-1 flex-col px-5 md:px-[50px]">
