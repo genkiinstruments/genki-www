@@ -1,4 +1,6 @@
 <script lang="ts">
+  import cn from "clsx";
+
   import InteractiveString from "./InteractiveString.svelte";
   import ScrollIndicator from "./ScrollIndicator.svelte";
 
@@ -23,7 +25,7 @@
   {#if !flipped}
     <div class="group mb-6 flex w-full items-center justify-center md:col-span-4 md:col-start-2">
       {#if mainImage}
-        <img src={mainImage} class="flex h-auto w-full group-hover:hidden" alt="Main" />
+        <img src={mainImage} class={cn("flex h-auto w-full", altImage && "group-hover:hidden")} alt="Main" />
       {/if}
       {#if altImage}
         <img src={altImage} class="hidden h-auto w-full group-hover:flex" alt="Alternative" />
@@ -33,13 +35,13 @@
       <div class="flex flex-col space-y-4">
         <div class="flex items-center justify-between">
           {#if logoSrc}
-            <img src={logoSrc} alt={altText} class="mx-auto max-h-16 md:mx-0" />
+            <img src={logoSrc} alt={altText} class="mx-auto object-cover max-h-16 md:mx-0" />
           {:else}
-            <h1 class="text-2xl font-bold uppercase md:text-4xl">{title}</h1>
+            <h1 class="md:text-2xl font-bold uppercase lg:text-3xl">{title}</h1>
           {/if}
-          <div class="font-mono text-xl md:hidden">{price}</div>
+          <div class="font-mono md:text-xl md:hidden">{price}</div>
         </div>
-        <p class="mt-4 justify-start md:text-2xl">
+        <p class="mt-4 justify-start lg:text-2xl">
           {description}
         </p>
 
@@ -73,7 +75,7 @@
           {description}
         </p>
       </div>
-              {#if cartUrl}
+        {#if cartUrl}
           <div class="mt-6 flex w-full flex-row items-center justify-center gap-6 md:justify-start md:space-x-10">
             <div class="hidden font-mono text-2xl md:block">{price}</div>
             <a href={cartUrl} class="mt-3 flex">
@@ -88,7 +90,7 @@
     </div>
     <div class="group mb-6 flex w-full items-center justify-center md:col-span-4 md:col-start-6 lg:col-span-5">
       {#if mainImage}
-        <img src={mainImage} class="flex h-auto w-full items-center justify-center {altImage ?? 'group-hover:hidden'}" alt="Main" />
+        <img src={mainImage} class="flex h-auto w-full items-center justify-center {altImage && 'group-hover:hidden'}" alt="Main" />
       {/if}
       {#if altImage}
         <img src={altImage} class="hidden h-auto w-full group-hover:flex" alt="Alternative" />
