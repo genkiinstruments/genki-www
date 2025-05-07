@@ -29,6 +29,12 @@
 
   const hardware: ListItemProps[] = [
     {
+      href: "/katla",
+      title: "Katla",
+      content: "Volcanic. Caotic. Analog polysynth.",
+      hoverImage: katlaHoverImg,
+    },
+    {
       href: "/wave",
       title: "Wave",
       content: "The ring for musicians",
@@ -39,12 +45,6 @@
       title: "Wavefront",
       content: "Eurorack. Wireless.",
       hoverImage: wavefrontHoverImg,
-    },
-    {
-      href: "/katla",
-      title: "Katla",
-      content: "Volcanic. Caotic. Analog polysynth.",
-      hoverImage: katlaHoverImg,
     },
   ];
 
