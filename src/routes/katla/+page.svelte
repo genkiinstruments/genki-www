@@ -19,21 +19,25 @@
   };
 </script>
 
-<div class="relative mx-auto flex min-h-screen w-full flex-1 flex-col px-5 md:px-[50px]">
+<div class="relative mx-auto flex min-h-[70dvh] md:min-h-[100dvh] w-full flex-1 flex-col px-5 md:px-[50px]">
   <Header />
-  <img class="absolute inset-0 -z-10 h-[100dvh] w-full object-cover hidden sm:block  mask-t-from-60%" src={katla_bg} alt="Background" />
-  <img class="absolute inset-0 -z-10 h-[100dvh] w-full object-cover sm:hidden  mask-t-from-60%" src={katla_mobile_bg} alt="Background" />
+  <div class="group md:hidden mb-6 flex w-full items-center justify-center text-center text-4xl">PRE-ORDER</div>
+  <img class="absolute inset-0 -z-10 h-auto w-full object-cover hidden sm:block  mask-t-from-60%" src={katla_bg} alt="Background" />
+  <img class="absolute inset-0 -z-10 h-auto w-full object-cover sm:hidden  mask-t-from-60%" src={katla_mobile_bg} alt="Background" />
 </div>
 
 <ScrollIndicator />
 
-<div class="items-center py-24 sm:py-48 grid md:grid-cols-10 md:items-stretch">
-  <div class="group mb-6 flex w-full items-center justify-center md:col-span-3 md:col-start-2 md:text-left text-center text-6xl/20 md:text-5xl lg:text-9xl">PRE-ORDER LIMITED ROUND <br /> 3/100 SOLD</div>
+<div class="items-center py-8 sm:py-48 grid md:grid-cols-10 md:items-stretch">
+  <div class="group -mt-36 mb-6 flex w-full items-center justify-center md:col-span-3 md:col-start-2 md:text-left text-center text-3xl md:text-5xl lg:text-9xl">LIMITED ROUND <br /> 3/100 SOLD</div>
 
   <div class="flex items-center justify-center space-y-8 md:col-span-3 md:col-start-7 md:text-left">
     <div class="flex flex-col space-y-4">
       <p class="mt-4 justify-start text-xl md:text-5xl lg:text-6xl px-5 md:px-0">
-        Five-voice analog synthesizer from Iceland. Volcanic modulation, tactile sliders, with lava rock knobs and side-panels. Crafted for performers and sound designers seeking a unique instrument of volcanic caos.
+        Five-voice analog synthesizer from Iceland. Volcanic modulation, tactile sliders, with lava rock knobs and side-panels. 
+      </p>
+      <p class="mt-4 justify-start text-xl md:text-5xl lg:text-6xl px-5 md:px-0">
+        Crafted for performers and sound designers seeking a unique instrument of volcanic caos.
       </p>
       <div class="mt-6 flex w-full flex-row items-center justify-center gap-6 md:justify-between">
         <div class="hidden font-mono md:block text-2xl md:text-3xl lg:text-4xl">$4,990</div>
@@ -56,7 +60,7 @@
   occupation="Composer of music for multimedia, songwriter, and an electronic musician"
   alt="Herdís Stefánsdóttir in the studio" />
 
-<YouTubeCarousel class="w-full  py-40 md:py-68" ids={["vPgHiyOXmMQ", "By-shXpcjSg", "BpfhsBbgY8M"]} />
+<YouTubeCarousel class="w-full  py-40 md:py-68" ids={["2c85TVuPOm4", "vPgHiyOXmMQ", "By-shXpcjSg", "BpfhsBbgY8M"]} />
 
 {#snippet ListItem({ title, features }: ListItemProps)}
   <div class="grid grid-cols-10 md:px-[50px] px-5 space-y-8 md:space-y-0">
