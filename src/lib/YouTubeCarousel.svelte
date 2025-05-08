@@ -1,5 +1,6 @@
 <script lang="ts">
   import Autoplay from "embla-carousel-autoplay";
+  import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 
   import YouTube from "$lib/YouTube.svelte";
   import * as Carousel from "$lib/components/ui/carousel/index.js";
@@ -9,7 +10,7 @@
   let { ids, class: className, ...restProps } = $props();
 </script>
 
-<Carousel.Root plugins={[youtube_plugin]} opts={{ loop: true }} class={className} onmouseenter={youtube_plugin.stop} onmouseleave={youtube_plugin.reset} {...restProps}>
+<Carousel.Root plugins={[youtube_plugin, WheelGesturesPlugin]} opts={{ loop: true }} class={className} onmouseenter={youtube_plugin.stop} onmouseleave={youtube_plugin.reset} {...restProps}>
   <div class="relative overflow-hidden">
     <Carousel.Content>
       {#each ids as id, i (i)}
