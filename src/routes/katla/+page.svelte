@@ -60,7 +60,7 @@
   occupation="Composer of music for multimedia, songwriter, and an electronic musician"
   alt="Herdís Stefánsdóttir in the studio" />
 
-<YouTubeCarousel class="w-full  py-40 md:py-68" ids={["2c85TVuPOm4", "vPgHiyOXmMQ", "By-shXpcjSg", "BpfhsBbgY8M"]} />
+<YouTubeCarousel class="w-full py-40 md:py-68" ids={["2c85TVuPOm4", "vPgHiyOXmMQ", "By-shXpcjSg", "BpfhsBbgY8M"]} />
 
 {#snippet ListItem({ title, features }: ListItemProps)}
   <div class="grid grid-cols-10 md:px-[50px] px-5 space-y-8 md:space-y-0">
