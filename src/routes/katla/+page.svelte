@@ -13,6 +13,8 @@
   import ScrollIndicator from "$lib/ScrollIndicator.svelte";
   import InteractiveString from "$lib/InteractiveString.svelte";
 
+  const sold = 4;
+
   type ListItemProps = {
     title: string;
     features: string[];
@@ -29,7 +31,7 @@
 <ScrollIndicator />
 
 <div class="items-center py-8 sm:py-48 grid md:grid-cols-10 md:items-stretch">
-  <div class="group -mt-36 mb-6 flex w-full items-center justify-center md:col-span-3 md:col-start-2 md:text-left text-center text-3xl md:text-5xl lg:text-9xl">LIMITED ROUND <br /> 3/100 SOLD</div>
+  <div class="group -mt-36 mb-6 flex w-full items-center justify-center md:col-span-3 md:col-start-2 md:text-left text-center text-3xl md:text-5xl lg:text-9xl">LIMITED ROUND <br /> {sold}/100 SOLD</div>
 
   <div class="flex items-center justify-center space-y-8 md:col-span-3 md:col-start-7 md:text-left">
     <div class="flex flex-col space-y-4">
@@ -78,7 +80,7 @@
 <div class="space-y-12 md:space-y-24 text-md lg:text-xl lg:text-3xl">
   <div class="w-full border-b border-[#F6F6F6] py-1 opacity-30"></div>
 
-  {@render ListItem({title:"Information", features:["First pre-order run", "100 units available", "Shipping Q4 2025", "Full support"]})}
+  {@render ListItem({title:"Information", features:["First pre-order run", "Limited units available", "Shipping Q4 2025", "Full support"]})}
 
   <div class="w-full border-b border-[#F6F6F6] py-1 opacity-30"></div>
   {@render ListItem({title:"Key features", features:["Five digiloc voices", "Handmade basalt side-panels", "Paraphonic-inpired polyphony", "Volcanic modulation matrix", "80s inspired digital reverb", "Analog filter, mixer, wavefolder and distortion", "Mountable in standard rack"]})}
@@ -99,7 +101,7 @@
 </div>
 
 <div class="flex flex-col justify-center items-center sm:py-96 py-48 w-full h-full">
-  <div class="group mb-6 flex w-full items-center justify-center md:col-span-3 md:col-start-2 md:text-left text-center text-6xl/20 md:text-5xl lg:text-9xl">3/100 SOLD</div>
+  <div class="group mb-6 flex w-full items-center justify-center md:col-span-3 md:col-start-2 md:text-left text-center text-6xl/20 md:text-5xl lg:text-9xl">{sold}/100 SOLD</div>
   <div class="flex flex-col items-center justify-center space-y-8 md:col-span-3 md:col-start-7 md:text-left">
     <div class="flex flex-col space-y-4 justify-center">
         <a href="https://buy.stripe.com/8wMeVH1CE9aedyMcMN" class="mt-3 flex w-full">
