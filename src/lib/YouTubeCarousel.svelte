@@ -10,7 +10,7 @@
   let { ids, class: className, ...restProps } = $props();
 </script>
 
-<Carousel.Root plugins={[youtube_plugin, WheelGesturesPlugin]} opts={{ loop: true }} class={className} onmouseenter={youtube_plugin.stop} onmouseleave={youtube_plugin.reset} {...restProps}>
+<Carousel.Root plugins={[youtube_plugin, WheelGesturesPlugin()]} opts={{ loop: true }} class={className} onmouseenter={youtube_plugin.stop} onmouseleave={youtube_plugin.reset} {...restProps}>
   <div class="relative overflow-hidden">
     <Carousel.Content>
       {#each ids as id, i (i)}

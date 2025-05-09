@@ -78,7 +78,7 @@
     <Carousel.Root
       opts={{ loop: true, }}
       class="flex h-full w-full"
-      plugins={[Autoplay({ playOnInit: true, delay: 4000, stopOnInteraction: true }), WheelGesturesPlugin(), Fade()]}
+      plugins={[Autoplay({ playOnInit: true, delay: 4000, stopOnInteraction: true }), Fade(), WheelGesturesPlugin()]}
       setApi={(emblaApi) => {
         api = emblaApi;
       }}>
