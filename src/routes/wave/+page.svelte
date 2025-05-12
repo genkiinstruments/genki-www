@@ -4,7 +4,6 @@
   import YouTubeCarousel from "$lib/YouTubeCarousel.svelte";
   import Hero from "$lib/Hero.svelte";
   import Testimonial from "$lib/Testimonial.svelte";
-  import { onMount } from "svelte";
 
   import wave_hand from "$lib/assets/Wave_01.webp";
   import wave_render from "$lib/assets/Wave_02_Larger.webp";

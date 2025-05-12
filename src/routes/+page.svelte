@@ -76,22 +76,22 @@
 
   <div class="relative flex-1 items-center justify-center">
     <Carousel.Root
-      opts={{ loop: true, }}
+      opts={{ loop: true }}
       class="flex h-full w-full"
       plugins={[Autoplay({ playOnInit: true, delay: 4000, stopOnInteraction: true }), Fade(), WheelGesturesPlugin()]}
       setApi={(emblaApi) => {
         api = emblaApi;
       }}>
       <Carousel.Content class="flex h-full w-full grow py-4">
-        {#each slides as {href, logo, title, description, flipped}, i (i)}
+        {#each slides as { href, logo, title, description, flipped }, i (i)}
           <Carousel.Item class="flex flex-grow flex-col">
             <div class="hidden h-full grid-cols-10 items-center gap-[10px] md:grid">
               <div class={cn("col-span-10 p-4 md:col-span-3 md:p-0 lg:col-span-3", !flipped ? "md:col-start-2 lg:col-start-2" : "md:col-start-7 lg:col-start-7")}>
                 <a {href}>
                   <div class="mt-12 space-y-6 text-center md:mt-0 md:space-y-10 md:pb-0 md:text-left">
                     {#if logo}
-                      <h1 class="text-5xl font-bold h-8">
-                        <img src={logo} alt={title} class="mx-auto pl-1 md:mx-0 h-full" />
+                      <h1 class="h-8 text-5xl font-bold">
+                        <img src={logo} alt={title} class="mx-auto h-full pl-1 md:mx-0" />
                       </h1>
                     {:else}
                       <h1 class="text-4xl font-bold">
@@ -113,7 +113,7 @@
                 </a>
               </div>
             </div>
-            <a class="flex h-full grow flex-col items-center justify-between md:hidden" href={href}>
+            <a class="flex h-full grow flex-col items-center justify-between md:hidden" {href}>
               <div class="space-y-6 text-center">
                 {#if logo}
                   <h1 class="text-5xl font-bold">
