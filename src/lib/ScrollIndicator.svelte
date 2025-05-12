@@ -54,7 +54,7 @@
 
 {#if visible}
   <div class="fixed bottom-8 left-1/2 z-50 flex -translate-x-1/2 flex-col items-center opacity-30" transition:fade={{ duration: 500 }}>
-    <div class="animate-scroll-dot h-3 w-1 rounded-full "></div>
+    <div class="animate-scroll-dot h-3 w-1 rounded-full"></div>
   </div>
 {/if}
 

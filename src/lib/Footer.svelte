@@ -1,27 +1,27 @@
 <script lang="ts">
-  let email: string = '';
+  let email: string = "";
   let isLoading: boolean = false;
-  let message: string = '';
-  let messageType: 'success' | 'error' | 'info' | '' = '';
+  let message: string = "";
+  let messageType: "success" | "error" | "info" | "" = "";
 
   async function handleSubmit() {
     if (!email) {
-      message = 'Please enter an email address.';
-      messageType = 'error';
+      message = "Please enter an email address.";
+      messageType = "error";
       // toast.error('Please enter an email address.');
       return;
     }
 
     isLoading = true;
-    message = '';
-    messageType = '';
+    message = "";
+    messageType = "";
 
     const formData = new FormData();
-    formData.append('email', email);
+    formData.append("email", email);
 
     try {
       const response = await fetch("https://script.google.com/macros/s/AKfycbz3bZ2bzUNyzKj3J51x733JiucneyIaY28NYPiePhhSq9CmVLwD7kb8tIFnysU_aEBHNg/exec", {
-        method: 'POST',
+        method: "POST",
         body: formData, // Sending as FormData, Google Apps Script doPost e.parameter will pick it up
         // If you prefer to send JSON:
         // headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // Google Script needs text/plain for JSON string
@@ -30,49 +30,48 @@
 
       // Google Apps Script web apps might redirect, so handle opaque responses too
       // Or, if your script returns JSON properly:
-      if (response.ok || response.type === 'opaque' || response.redirected) { // Opaque for cross-origin simple POSTs
+      if (response.ok || response.type === "opaque" || response.redirected) {
+        // Opaque for cross-origin simple POSTs
         // Try to parse JSON if not opaque. If opaque, assume success as Google Scripts redirects.
         let result;
-        if (response.type !== 'opaque') {
-            result = await response.json();
+        if (response.type !== "opaque") {
+          result = await response.json();
         } else {
-            // For opaque responses after a successful POST to Apps Script (often due to redirect)
-            // We assume success here because an error would typically not result in an opaque redirect
-            result = { status: 'success', message: 'Subscription request sent. Check your email or the sheet!' };
+          // For opaque responses after a successful POST to Apps Script (often due to redirect)
+          // We assume success here because an error would typically not result in an opaque redirect
+          result = { status: "success", message: "Subscription request sent. Check your email or the sheet!" };
         }
 
-
-        if (result.status === 'success') {
-          message = result.message || 'Successfully subscribed!';
-          messageType = 'success';
+        if (result.status === "success") {
+          message = result.message || "Successfully subscribed!";
+          messageType = "success";
           // toast.success(result.message || 'Successfully subscribed!');
-          email = ''; // Clear the input
-        } else if (result.status === 'info') {
-          message = result.message || 'Already subscribed.';
-          messageType = 'info';
+          email = ""; // Clear the input
+        } else if (result.status === "info") {
+          message = result.message || "Already subscribed.";
+          messageType = "info";
           // toast.info(result.message || 'Already subscribed.');
         } else {
-          message = result.message || 'Subscription failed. Please try again.';
-          messageType = 'error';
+          message = result.message || "Subscription failed. Please try again.";
+          messageType = "error";
           // toast.error(result.message || 'Subscription failed. Please try again.');
         }
       } else {
         const errorText = await response.text();
-        message = `Error: ${response.statusText} - ${errorText || 'Could not connect to the server.'}`;
-        messageType = 'error';
+        message = `Error: ${response.statusText} - ${errorText || "Could not connect to the server."}`;
+        messageType = "error";
         // toast.error(`Error: ${response.statusText} - ${errorText || 'Could not connect to the server.'}`);
       }
     } catch (error) {
-      console.error('Form submission error:', error);
-      message = 'An unexpected error occurred. Please try again.';
-      messageType = 'error';
+      console.error("Form submission error:", error);
+      message = "An unexpected error occurred. Please try again.";
+      messageType = "error";
       // toast.error('An unexpected error occurred. Please try again.');
     } finally {
       isLoading = false;
     }
   }
 </script>
-
 
 <footer class="py-8">
   <div class="mx-auto max-w-7xl border-b px-6 py-8 text-[#F6F6F6] lg:px-8 lg:pt-32">

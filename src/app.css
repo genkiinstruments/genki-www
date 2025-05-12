@@ -85,7 +85,8 @@
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url("https://api.fontshare.com/v2/fonts/cal-sans/woff2/CalSans-SemiBold.woff2") format("woff2");
+  src: url("https://api.fontshare.com/v2/fonts/cal-sans/woff2/CalSans-SemiBold.woff2")
+    format("woff2");
 }
 
 :root {
@@ -368,9 +369,7 @@
 
   body {
     @apply bg-background text-foreground font-sans;
-    font-feature-settings:
-      "rlig" 1,
-      "calt" 1;
+    font-feature-settings: "rlig" 1, "calt" 1;
     /* Hide vertical scrollbars but allow horizontal interactions */
     scrollbar-width: thin;
     -ms-overflow-style: none;
@@ -392,14 +391,19 @@
   *:not(body):not(.focus-override) {
     outline: none !important;
     &:focus-visible {
-      @apply focus-visible:ring-foreground focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:outline-hidden;
+      @apply focus-visible:ring-foreground focus-visible:ring-offset-background
+        focus-visible:ring-2 focus-visible:ring-offset-1
+        focus-visible:outline-hidden;
     }
   }
 
   .link {
-    @apply hover:text-foreground/80 focus-visible:ring-foreground focus-visible:ring-offset-background inline-flex items-center gap-1 rounded-xs font-medium underline underline-offset-4 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden;
+    @apply hover:text-foreground/80 focus-visible:ring-foreground
+      focus-visible:ring-offset-background inline-flex items-center gap-1
+      rounded-xs font-medium underline underline-offset-4 focus-visible:ring-2
+      focus-visible:ring-offset-2 focus-visible:outline-hidden;
   }
-  
+
   /* Class for disabling scroll but allowing keyboard navigation on index page */
   .index-page-no-scroll {
     overflow: hidden;
@@ -407,15 +411,19 @@
     width: 100%;
     height: 100%;
   }
-  
+
   /* Animation for InteractiveString entrance */
   .interactive-string-wrapper {
     animation: fadeIn 500ms ease forwards;
     opacity: 0;
   }
-  
+
   @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 }
