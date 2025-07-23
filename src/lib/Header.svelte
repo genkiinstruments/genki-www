@@ -116,6 +116,15 @@
   <!-- Navigation and Cart (right-most) -->
   <NavigationMenu.Root class="jusity relative z-10 col-span-8 hidden w-full items-center justify-end md:col-span-4 md:flex">
     <NavigationMenu.List class="group flex list-none items-center justify-center ">
+      <NavigationMenu.Item>
+        <NavigationMenu.Link
+          class="group inline-flex h-8 w-max items-center justify-center rounded-[7px] bg-transparent px-6 py-2 text-sm font-medium opacity-80 transition-all duration-300 ease-in-out hover:opacity-100 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50"
+          href="/sale"
+          target="_blank">
+          <span class="hidden sm:inline">LIMITED TIME 30% OFF ULTIMATE BUNDLE</span>
+          <span class="inline sm:hidden"> Docs </span>
+        </NavigationMenu.Link>
+      </NavigationMenu.Item>
       <NavigationMenu.Item value="hardware">
         <NavigationMenu.Trigger
           class="group inline-flex h-8 w-max items-center justify-center rounded-[7px] bg-transparent px-6 py-2 text-sm font-medium opacity-80 transition-all duration-300 ease-in-out hover:opacity-100 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 data-[state=open]:opacity-100">
