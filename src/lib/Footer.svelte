@@ -100,10 +100,10 @@
           <button
             type="submit"
             aria-label="Subscribe"
-            class="text-gray flex shrink-0 items-center rounded-md border border-white/20 bg-black px-3.5 py-2 text-sm font-semibold shadow-sm transition-colors hover:bg-black/10 sm:rounded-l-none disabled:opacity-50 disabled:cursor-not-allowed"
+            class="text-gray flex shrink-0 items-center rounded-md border border-white/20 bg-black px-3.5 py-2 text-sm font-semibold shadow-sm transition-colors hover:bg-black/10 disabled:cursor-not-allowed disabled:opacity-50 sm:rounded-l-none"
             disabled={isLoading}>
             {#if isLoading}
-              <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <svg class="mr-3 -ml-1 h-5 w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
               </svg>
@@ -215,6 +215,13 @@
               fill-rule="evenodd"
               d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.417-4.814a2.507 2.507 0 0 1 1.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z"
               clip-rule="evenodd" />
+          </svg>
+        </a>
+        <a href="https://www.tiktok.com/@genkiinstruments" class="opacity-60 transition hover:opacity-100" target="_blank">
+          <span class="sr-only">TikTok</span>
+          <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
           </svg>
         </a>
       </div>
