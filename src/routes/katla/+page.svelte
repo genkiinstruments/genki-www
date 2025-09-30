@@ -11,7 +11,7 @@
   import ScrollIndicator from "$lib/ScrollIndicator.svelte";
   import InteractiveString from "$lib/InteractiveString.svelte";
 
-  const sold = 6;
+  const sold = 9;
 
   type ListItemProps = {
     title: string;
