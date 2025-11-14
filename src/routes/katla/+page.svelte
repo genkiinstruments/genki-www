@@ -23,7 +23,7 @@
 <div class="relative mx-auto flex min-h-[70dvh] w-full flex-1 flex-col px-5 md:min-h-[100dvh] md:px-[50px]">
   <Header />
 
-  <BFCMBanner message="Limited time: Wave included with every Katla" anchor="katla-offer" />
+  <BFCMBanner message="Limited time: Wave and WIDI Master included with every Katla" anchor="katla-offer" />
 
   <div class="group mb-6 flex w-full items-center justify-center text-center text-4xl md:hidden">PRE-ORDER</div>
   <img class="absolute inset-0 -z-10 hidden h-auto w-full mask-t-from-60% object-cover sm:block" src={katla_bg} alt="Background" />
