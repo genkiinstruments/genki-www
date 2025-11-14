@@ -4,6 +4,7 @@
   import YouTubeCarousel from "$lib/YouTubeCarousel.svelte";
   import Hero from "$lib/Hero.svelte";
   import Testimonial from "$lib/Testimonial.svelte";
+  import BFCMBanner from "$lib/BFCMBanner.svelte";
 
   import wavefront_stack from "$lib/assets/WaveFront_01.webp";
   import wavefront_single from "$lib/assets/WaveFront_02.webp";
@@ -13,6 +14,7 @@
 
 <div class="relative mx-auto flex min-h-screen w-full flex-1 flex-col px-5 md:px-[50px]">
   <Header />
+  <BFCMBanner message="Ultimate Bundle with Wave, Wavefront, WIDI Master & Cosmos for $599 (save $247)" anchor="ultimate-bundle" />
   <Hero
     title="WAVEFRONT"
     description="Elevate any modular setup. This customizable Eurorack receiver puts you in control of shaping effects, triggering samples and controlling gates — with your Wave Ring or your other favorite Bluetooth device."

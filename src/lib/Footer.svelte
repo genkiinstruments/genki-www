@@ -73,7 +73,7 @@
   }
 </script>
 
-<footer class="py-8">
+<footer class="bg-background py-8">
   <div class="mx-auto max-w-7xl border-b px-6 py-8 text-[#F6F6F6] lg:px-8 lg:pt-32">
     <div class="py-10 text-base sm:grid sm:grid-cols-3 sm:gap-8 sm:text-sm/6">
       <div class="mb-10 sm:order-2 sm:mb-0">
@@ -94,7 +94,7 @@
             id="email-address-footer"
             autocomplete="email"
             required
-            class="z-2 w-full min-w-0 flex-1 appearance-none rounded-md border border-white/20 bg-[#1C1C1C] px-3 py-2 text-base text-white shadow-sm placeholder:text-gray-400 sm:rounded-r-none sm:text-sm/6"
+            class="z-2 w-full min-w-0 flex-1 appearance-none rounded-md border border-white/20 px-3 py-2 text-base text-white shadow-sm placeholder:text-gray-400 sm:rounded-r-none sm:text-sm/6"
             placeholder="Enter your email"
             disabled={isLoading} />
           <button

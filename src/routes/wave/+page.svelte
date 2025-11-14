@@ -4,6 +4,7 @@
   import YouTubeCarousel from "$lib/YouTubeCarousel.svelte";
   import Hero from "$lib/Hero.svelte";
   import Testimonial from "$lib/Testimonial.svelte";
+  import BFCMBanner from "$lib/BFCMBanner.svelte";
 
   import wave_hand from "$lib/assets/Wave_01.webp";
   import wave_render from "$lib/assets/Wave_02_Larger.webp";
@@ -13,6 +14,7 @@
 
 <div class="@container mx-auto flex min-h-screen w-full flex-1 flex-col px-5 md:px-[50px]">
   <Header />
+  <BFCMBanner message="Two Waves for $499 (save $199)" anchor="two-waves" />
   <Hero
     title="WAVE"
     description="Wave is the ring that allows artists and producers to easily control sound, shape effects and send commands. Detecting the most finesse gestures, Wave enables natural interaction with sound through movement."

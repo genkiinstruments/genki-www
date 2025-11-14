@@ -7,12 +7,14 @@
   import katla_bg from "$lib/assets/katla-index-hero-render2.webp";
   import cosmos_bg from "$lib/assets/Cosmos_3D.webp";
   import softwave_bg from "$lib/assets/Softwave_3D.webp";
+  import bfcm_bg from "$lib/assets/bfcm-index-desktop.webp";
 
   import wavefront_mobile from "$lib/assets/index-wavefront-mobile.webp";
   import wave_mobile from "$lib/assets/index-wave-mobile.webp";
   import katla_mobile from "$lib/assets/index-katla-mobile.webp";
   import cosmos_mobile from "$lib/assets/index-cosmos-mobile.webp";
   import softwave_mobile from "$lib/assets/index-softwave-mobile.webp";
+  import bfcm_mobile from "$lib/assets/bfcm-index-mobile.webp";
 
   import katla_logo from "$lib/assets/katla-logo.webp";
   import InteractiveString from "$lib/InteractiveString.svelte";
@@ -40,6 +42,15 @@
   });
 
   const slides = [
+    {
+      title: "BLACK FRIDAY",
+      description: "Limited time offers on bundles and instruments. Save up to 30%.",
+      background: bfcm_bg,
+      mobile: bfcm_mobile,
+      logo: null,
+      href: "/bfcm25",
+      flipped: false,
+    },
     { title: "KATLA", description: "Five-voice polyphonic synth, made from the ashes of Katla.", background: katla_bg, mobile: katla_mobile, logo: katla_logo, href: "/katla", flipped: false },
     { title: "WAVE", description: "Control your sound, shape effects and send commands with the Wave ring.", background: wave_bg, mobile: wave_mobile, logo: null, href: "/wave", flipped: false },
     { title: "WAVEFRONT", description: "Connect Wave, or any Bluetooth device, to your Eurorack.", background: wavefront_bg, mobile: wavefront_mobile, logo: null, href: "/wavefront", flipped: false },
@@ -57,10 +68,64 @@
     }
   }
 
+  let lastScrollTime = 0;
+  const scrollThrottle = 1200; // milliseconds between scroll actions
+
+  function handleWheel(event: WheelEvent) {
+    const now = Date.now();
+    if (api && now - lastScrollTime > scrollThrottle) {
+      if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) {
+        // Vertical scroll detected
+        if (event.deltaY > 0) {
+          api.scrollNext();
+        } else {
+          api.scrollPrev();
+        }
+        lastScrollTime = now;
+      }
+    }
+  }
+
+  let touchStartY = 0;
+  let touchStartX = 0;
+
+  function handleTouchStart(event: TouchEvent) {
+    touchStartY = event.touches[0].clientY;
+    touchStartX = event.touches[0].clientX;
+  }
+
+  function handleTouchEnd(event: TouchEvent) {
+    const now = Date.now();
+    if (api && now - lastScrollTime > scrollThrottle) {
+      const touchEndY = event.changedTouches[0].clientY;
+      const touchEndX = event.changedTouches[0].clientX;
+      const deltaY = touchStartY - touchEndY;
+      const deltaX = touchStartX - touchEndX;
+
+      // Check if vertical swipe is more significant than horizontal
+      if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 50) {
+        if (deltaY > 0) {
+          // Swiped up - go to next
+          api.scrollNext();
+        } else {
+          // Swiped down - go to previous
+          api.scrollPrev();
+        }
+        lastScrollTime = now;
+      }
+    }
+  }
+
   onMount(() => {
     document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("wheel", handleWheel, { passive: true });
+    document.addEventListener("touchstart", handleTouchStart, { passive: true });
+    document.addEventListener("touchend", handleTouchEnd, { passive: true });
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("wheel", handleWheel);
+      document.removeEventListener("touchstart", handleTouchStart);
+      document.removeEventListener("touchend", handleTouchEnd);
     };
   });
 </script>

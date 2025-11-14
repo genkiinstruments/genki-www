@@ -5,6 +5,7 @@
   import Testimonial from "$lib/Testimonial.svelte";
   import Hero from "$lib/Hero.svelte";
   import InteractiveString from "$lib/InteractiveString.svelte";
+  import BFCMBanner from "$lib/BFCMBanner.svelte";
 
   import softwave_hero from "$lib/assets/Softwave.webp";
   import toti_mobile from "$lib/assets/softwave-testimonials-toti-mobile.webp";
@@ -13,6 +14,7 @@
 
 <div class="relative mx-auto flex min-h-screen w-full flex-1 flex-col px-5 md:px-[50px]">
   <Header />
+  <BFCMBanner message="Wave Ring bundles with huge savings - Two Waves for $499 or Ultimate Bundle for $599" anchor="ultimate-bundle" />
   <Hero
     title="Softwave"
     description="The key that unlocks the full potential of your Wave Ring. Control music with gestures, customize each button, and create saved presets from one seamlessly integrated application."
