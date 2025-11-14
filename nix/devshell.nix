@@ -5,6 +5,7 @@ pkgs.mkShell {
     with pkgs;
     with perSystem.self;
     [
+      nodejs
       pnpm
       figma-sync
       png-to-webp
