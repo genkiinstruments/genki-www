@@ -64,7 +64,7 @@
             <a
               href="https://buy.stripe.com/9B64gz1H1e6vabd1Ca5c406?prefilled_promo_code=ULTIMATE30"
               class="inline-flex items-center justify-center rounded-lg bg-white px-8 py-4 text-lg font-medium text-black transition-all duration-200 hover:bg-gray-200">
-              All the best we can offer!
+              Buy now
             </a>
           </div>
           <!-- Desktop image -->
@@ -103,7 +103,7 @@
             <a
               href="https://buy.stripe.com/cNi3cv4Td8Mb1EHcgO5c409?prefilled_promo_code=BFCM25"
               class="inline-flex items-center justify-center rounded-lg bg-white px-8 py-4 text-lg font-medium text-black transition-all duration-200 hover:bg-gray-200">
-              Make a great deal!
+              Buy now
             </a>
           </div>
         </div>
