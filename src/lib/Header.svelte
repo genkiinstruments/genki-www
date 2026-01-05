@@ -116,13 +116,6 @@
   <!-- Navigation and Cart (right-most) -->
   <NavigationMenu.Root class="jusity relative z-10 col-span-8 hidden w-full items-center justify-end md:col-span-4 md:flex">
     <NavigationMenu.List class="group flex list-none items-center justify-center ">
-      <NavigationMenu.Item>
-        <NavigationMenu.Link
-          class="group inline-flex h-8 w-max items-center justify-center rounded-[7px] bg-red-600/20 px-6 py-2 text-sm font-medium text-red-400 transition-all duration-300 ease-in-out hover:bg-red-600/30 hover:text-red-300 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50"
-          href="/bfcm25">
-          Black Friday
-        </NavigationMenu.Link>
-      </NavigationMenu.Item>
       <NavigationMenu.Item value="hardware">
         <NavigationMenu.Trigger
           class="group inline-flex h-8 w-max items-center justify-center rounded-[7px] bg-transparent px-6 py-2 text-sm font-medium opacity-80 transition-all duration-300 ease-in-out hover:opacity-100 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 data-[state=open]:opacity-100">
@@ -265,10 +258,6 @@
             </li>
           {/each}
         </ul>
-      </div>
-
-      <div class="mb-8">
-        <a href="/bfcm25" class="block rounded-lg bg-red-600/20 px-4 py-3 font-medium text-red-400" onclick={toggleMobileMenu}> Black Friday Sale </a>
       </div>
 
       <div>

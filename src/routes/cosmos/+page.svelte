@@ -5,7 +5,6 @@
   import Hero from "$lib/Hero.svelte";
   import Testimonial from "$lib/Testimonial.svelte";
   import InteractiveString from "$lib/InteractiveString.svelte";
-  import BFCMBanner from "$lib/BFCMBanner.svelte";
 
   import cosmos from "$lib/assets/cosmos-main.webp";
   import viktor from "$lib/assets/viktor-cosmos.webp";
@@ -14,7 +13,6 @@
 
 <div class="relative mx-auto flex min-h-screen w-full flex-1 flex-col px-5 md:px-[50px]">
   <Header />
-  <BFCMBanner message="Ultimate Bundle for just $599 (save $247)" anchor="ultimate-bundle" />
   <Hero
     title="COSMOS"
     description="Cosmos is a softsynth with hand-crafted effects and a playful interface. Shape sound with 8-voice polyphony, flexible modulation, and the spiralling galaxy arp. Dive into unexpected sonic turns. Try it for free!"

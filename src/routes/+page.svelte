@@ -7,14 +7,11 @@
   import katla_bg from "$lib/assets/katla-index-hero-render2.webp";
   import cosmos_bg from "$lib/assets/Cosmos_3D.webp";
   import softwave_bg from "$lib/assets/Softwave_3D.webp";
-  import bfcm_bg from "$lib/assets/bfcm-index-desktop.webp";
-
   import wavefront_mobile from "$lib/assets/index-wavefront-mobile.webp";
   import wave_mobile from "$lib/assets/index-wave-mobile.webp";
   import katla_mobile from "$lib/assets/index-katla-mobile.webp";
   import cosmos_mobile from "$lib/assets/index-cosmos-mobile.webp";
   import softwave_mobile from "$lib/assets/index-softwave-mobile.webp";
-  import bfcm_mobile from "$lib/assets/bfcm-index-mobile.webp";
 
   import katla_logo from "$lib/assets/katla-logo.webp";
   import InteractiveString from "$lib/InteractiveString.svelte";
@@ -42,15 +39,6 @@
   });
 
   const slides = [
-    {
-      title: "BLACK FRIDAY",
-      description: "Limited time offers on bundles and instruments. Save up to 30%.",
-      background: bfcm_bg,
-      mobile: bfcm_mobile,
-      logo: null,
-      href: "/bfcm25",
-      flipped: false,
-    },
     { title: "KATLA", description: "Five-voice polyphonic synth, made from the ashes of Katla.", background: katla_bg, mobile: katla_mobile, logo: katla_logo, href: "/katla", flipped: false },
     { title: "WAVE", description: "Control your sound, shape effects and send commands with the Wave ring.", background: wave_bg, mobile: wave_mobile, logo: null, href: "/wave", flipped: false },
     { title: "WAVEFRONT", description: "Connect Wave, or any Bluetooth device, to your Eurorack.", background: wavefront_bg, mobile: wavefront_mobile, logo: null, href: "/wavefront", flipped: false },
