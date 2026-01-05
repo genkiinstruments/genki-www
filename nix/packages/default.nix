@@ -12,12 +12,14 @@ pkgs.stdenv.mkDerivation {
 
   nativeBuildInputs = with pkgs; [
     nodejs
-    pnpm.configHook
+    pnpm
+    pnpmConfigHook
   ];
 
-  pnpmDeps = pkgs.pnpm.fetchDeps {
+  pnpmDeps = pkgs.fetchPnpmDeps {
     inherit pname version src;
-    hash = "sha256-5X6nPeDRtyD0B4mN+NfhDg+JUQcuwaHihjPB7kXoY4k=";
+    hash = "sha256-hVnVOn2sQFS6v6ldG+b5uVD2BdWR3ZVgBbjLVpqsex0=";
+    fetcherVersion = 3;
   };
 
   buildPhase = "pnpm check && pnpm build"; # check fixes: Cannot find base config file "./.svelte-kit/tsconfig.json" [tsconfig.json]
